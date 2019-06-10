@@ -20,6 +20,9 @@ public class Patient {
     @NotBlank
     private String lastName;
 
+    @NotBlank
+    private String gender;
+
     @Pattern(regexp = "\\d{9}")
     private int phoneNumber;
 
@@ -68,4 +71,13 @@ public class Patient {
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
 }
