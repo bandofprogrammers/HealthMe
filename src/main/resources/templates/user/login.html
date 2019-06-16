@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <p>Login</p>
+    <form action="/user/login" method="POST">
+        <div>
+            <label for="userName">Email address</label>
+            <input placeholder="Email address" type='text' name='username' id="userName">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input placeholder="Password" type='password' name='password' id="password"/>
+        </div>
+        <button type="submit">Sign in</button>
+    </form>
+
+<!--    <div th:if="${param.error} and ${session}"-->
+<!--         th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION']}">-->
+<!--        <div class="alert alert-dismissible alert-danger error">-->
+<!--            <p>Invalid credentials</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+</body>
+</html>

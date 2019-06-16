@@ -1,47 +1,23 @@
-package com.healthme.entity;
+package com.healthme.model;
 
-import org.hibernate.validator.constraints.pl.PESEL;
+public class UserDto {
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
-@Entity
-@Table(name="patients")
-public class Patient {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-//    @NotBlank
     private String firstName;
-
-//    @NotBlank
     private String lastName;
-
-//    @NotBlank
     private String gender;
-
-//    @Pattern(regexp = "\\d{9}")
     private int phoneNumber;
-
-//    @PESEL
     private String pesel;
-
-    private String password;
-
     private String email;
+    private String password;
+    private String matchingPassword;
 
-    public String getEmail() {
-        return email;
+
+    public String getMatchingPassword() {
+        return matchingPassword;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Patient() {
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 
     public String getPassword() {
@@ -52,12 +28,12 @@ public class Patient {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -76,6 +52,14 @@ public class Patient {
         this.lastName = lastName;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public int getPhoneNumber() {
         return phoneNumber;
     }
@@ -91,13 +75,4 @@ public class Patient {
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
 }

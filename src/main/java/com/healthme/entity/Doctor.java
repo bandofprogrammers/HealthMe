@@ -11,20 +11,39 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+//    @NotBlank
     private String firstName;
 
-    @NotBlank
+//    @NotBlank
     private String lastName;
 
-    @NotBlank
+//    @NotBlank
     private String specialization;
 
-    @Pattern(regexp = "\\d{9}")
+//    @Pattern(regexp = "\\d{9}")
     private int phoneNumber;
 
+    private String email;
+
+    private String password;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Doctor() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getId() {
