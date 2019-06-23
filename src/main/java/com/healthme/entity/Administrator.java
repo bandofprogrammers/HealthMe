@@ -1,12 +1,10 @@
 package com.healthme.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name="doctors")
-public class Doctor {
+@Table(name="administrators")
+public class Administrator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +12,6 @@ public class Doctor {
     private String firstName;
     private String lastName;
     private String gender;
-    private String specialization;
     private int phoneNumber;
     private String email;
     private String password;
@@ -49,14 +46,6 @@ public class Doctor {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
     }
 
     public int getPhoneNumber() {

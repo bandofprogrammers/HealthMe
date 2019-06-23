@@ -1,10 +1,6 @@
 package com.healthme.entity;
 
-import org.hibernate.validator.constraints.pl.PESEL;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="patients")
@@ -13,44 +9,13 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @NotBlank
     private String firstName;
-
-//    @NotBlank
     private String lastName;
-
-//    @NotBlank
     private String gender;
-
-//    @Pattern(regexp = "\\d{9}")
     private int phoneNumber;
-
-//    @PESEL
     private String pesel;
-
     private String password;
-
     private String email;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Patient() {
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Long getId() {
         return id;
@@ -76,6 +41,14 @@ public class Patient {
         this.lastName = lastName;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public int getPhoneNumber() {
         return phoneNumber;
     }
@@ -92,12 +65,19 @@ public class Patient {
         this.pesel = pesel;
     }
 
-    public String getGender() {
-        return gender;
+    public String getPassword() {
+        return password;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

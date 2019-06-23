@@ -1,0 +1,16 @@
+<nav class="navbar" th:fragment="nav_bar" xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <div class="container-fluid">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">HealthMe!</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAnonymous()"><a href="/user/login">login</a></li>
+                <li sec:authorize="isAnonymous()"><a href="/user/register">register</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/logout">logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
