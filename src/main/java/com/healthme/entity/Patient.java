@@ -16,6 +16,8 @@ public class Patient {
     private String pesel;
     private String password;
     private String email;
+    @OneToOne
+    private PatientFile patientFile;
 
     public Long getId() {
         return id;
@@ -79,5 +81,13 @@ public class Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public PatientFile getPatientFile() {
+        return patientFile;
+    }
+
+    public void setPatientFile(PatientFile patientFile) {
+        this.patientFile = patientFile;
     }
 }
