@@ -1,12 +1,12 @@
 package com.healthme.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
-@Table(name="doctors")
-public class Doctor {
+@Table(name="users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +14,14 @@ public class Doctor {
     private String firstName;
     private String lastName;
     private String gender;
-    private String specialization;
-    private int phoneNumber;
-    private String email;
+    private Integer phoneNumber;
+    private String pesel;
     private String password;
+    private String email;
+    private Boolean enabled;
+
+    @ManyToMany
+    private Collection<Role> roles;
 
     public Long getId() {
         return id;
@@ -51,20 +55,28 @@ public class Doctor {
         this.gender = gender;
     }
 
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
     public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -75,11 +87,19 @@ public class Doctor {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public Boolean isEnabled() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

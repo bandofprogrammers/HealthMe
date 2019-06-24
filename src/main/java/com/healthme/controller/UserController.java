@@ -1,6 +1,6 @@
 package com.healthme.controller;
 
-import com.healthme.entity.Patient;
+import com.healthme.entity.User;
 import com.healthme.model.UserDto;
 import com.healthme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -29,17 +28,17 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterView(Model model) {
-        model.addAttribute("patient", new UserDto());
+        model.addAttribute("user", new UserDto());
         return "user/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView registerUser(@ModelAttribute("patient") @Valid UserDto accountDto, BindingResult result) {
+    public ModelAndView registerUser(@ModelAttribute("user") @Valid UserDto accountDto, BindingResult result) {
 
-        Patient registered = new Patient();
+        User registered = new User();
 
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto, result);
+            registered = createUserAccount(accountDto);
         }
 
         if (registered == null) {
@@ -47,14 +46,14 @@ public class UserController {
         }
 
         if (result.hasErrors()) {
-            return new ModelAndView("user/register", "patient", accountDto);
+            return new ModelAndView("user/register", "user", accountDto);
         } else {
-            return new ModelAndView("user/registered", "patient", accountDto);
+            return new ModelAndView("user/registered", "user", accountDto);
         }
     }
 
-    private Patient createUserAccount(UserDto accountDto, BindingResult result) {
-        Patient registered = null;
+    private User createUserAccount(UserDto accountDto) {
+        User registered = null;
         try {
             registered = userService.registerNewUserAccount(accountDto);
         } catch (NullPointerException e) {
