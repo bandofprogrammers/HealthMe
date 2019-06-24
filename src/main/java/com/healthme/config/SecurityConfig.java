@@ -18,7 +18,7 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 @Configuration
 @ComponentScan("com.healthme")
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -41,33 +41,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/resources/**","/user/register").permitAll()
                 .antMatchers("/**")
-                .hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
-//                .permitAll()
-                .antMatchers("/user/register")
-                .permitAll()
-                .antMatchers("/css/**")
-                .permitAll()
-                .antMatchers("/js/**")
-                .permitAll()
+                .hasAnyAuthority("WRITE_PRIVILEGE","READ_PRIVILEGE")
+                .anyRequest().authenticated()
+
                 .and()
-                .formLogin()
-                .loginPage("/user/login")
+                .formLogin().loginPage("/user/login")
                 .loginProcessingUrl("/user/login")
-                .defaultSuccessUrl("/",true)
+                .defaultSuccessUrl("/", true)
                 .failureUrl("/user/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/user/login?logout=true")
-//                .deleteCookies("JSESSIONID");
-                .invalidateHttpSession(true)
-                .permitAll()
-                .and()
-                .csrf()
-                .disable();
+                .invalidateHttpSession(false)
+                .logoutSuccessUrl("/user/login")
+                .deleteCookies("JSESSIONID")
+                .permitAll();
     }
 
     @Bean

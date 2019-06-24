@@ -18,9 +18,15 @@ public class User {
     private String pesel;
     private String password;
     private String email;
-    private Boolean enabled;
+    private boolean enabled;
 
     @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
     public Long getId() {
@@ -87,11 +93,11 @@ public class User {
         this.email = email;
     }
 
-    public Boolean isEnabled() {
+    public boolean isEnabled() {
         return true;
     }
 
-    public void setEnabled(Boolean enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -99,7 +105,7 @@ public class User {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 }

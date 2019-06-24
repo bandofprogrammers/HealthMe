@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-@Service
+@Service("userDetailsService")
 @Transactional
 public class MyUserDetailsService implements UserDetailsService {
 
