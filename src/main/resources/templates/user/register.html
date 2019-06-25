@@ -1,56 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="includes/header::header">
     <title>Register</title>
 </head>
 <body>
-    <p>Register</p>
-    <form method="post" th:object="${patient}">
-        <div>
-            <label for="firstName">First name</label>
-            <input placeholder="Enter firstname" type="text" th:field="*{firstName}"
-                   id="firstName"/>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>Register</p>
+            <form method="post" th:object="${user}">
+                <div class="form-group">
+                    <label class="sr-only" for="firstName">First name</label>
+                    <input class="form-control" placeholder="Enter firstname" type="text" th:field="*{firstName}"
+                           id="firstName"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="lastName">Last name</label>
+                    <input class="form-control" placeholder="Enter last name" type="text" th:field="*{lastName}"
+                           id="lastName"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="phoneNumber">Phone number</label>
+                    <input class="form-control" placeholder="Enter phone number" type="text" th:field="*{phoneNumber}"
+                           id="phoneNumber"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="gender">Gender</label>
+                    <input class="form-control" placeholder="Select gender" type="text" th:field="*{gender}"
+                           id="gender"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="pesel">Pesel</label>
+                    <input class="form-control" placeholder="Enter first name" type="text" th:field="*{pesel}"
+                           id="pesel"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input class="form-control" placeholder="Enter password" type="password" th:field="*{password}"
+                           id="password"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="matchingPassword">Repeat password</label>
+                    <input class="form-control" placeholder="Repeat password" type="password"
+                           th:field="*{matchingPassword}" id="matchingPassword"/>
+                </div>
+                <div class="form-group">
+                    <lablel class="sr-only" for="Email"><b>Email</b></lablel>
+                    <input class="form-control" placeholder="Enter email" type="text" th:field="*{email}" id="Email"/>
+                </div>
+                <!--        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">-->
+                <!--            <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>-->
+                <!--        </div>-->
+                <button class="btn btn-md btn-primary btn-block" type="submit">Register</button>
+            </form>
         </div>
-        <div>
-            <label for="lastName">Last name</label>
-            <input placeholder="Enter last name" type="text" th:field="*{lastName}"
-                   id="lastName"/>
-        </div>
-        <div>
-            <label for="phoneNumber">Phone number</label>
-            <input placeholder="Enter phone number" type="text" th:field="*{phoneNumber}"
-                   id="phoneNumber"/>
-        </div>
-        <div>
-            <label for="gender">Gender</label>
-            <input placeholder="Select gender" type="text" th:field="*{gender}"
-                   id="gender"/>
-        </div>
-        <div>
-            <label for="pesel">Pesel</label>
-            <input placeholder="Enter first name" type="text" th:field="*{pesel}"
-                   id="pesel"/>
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input placeholder="Enter password" type="password" th:field="*{password}"
-                   id="password"/>
-        </div>
-        <div>
-            <label for="matchingPassword">Repeat password</label>
-            <input placeholder="Repeat password" type="password"
-                   th:field="*{matchingPassword}" id="matchingPassword"/>
-        </div>
-        <div>
-            <lablel for="Email"><b>Email</b></lablel>
-            <input placeholder="Enter email" type="text" th:field="*{email}" id="Email"/>
-        </div>
-<!--        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">-->
-<!--            <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>-->
-<!--        </div>-->
-        <button type="submit">Register</button>
-    </form>
+    </div>
+</div>
+
 </body>
 </html>

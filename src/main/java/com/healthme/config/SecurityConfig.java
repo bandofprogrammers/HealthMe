@@ -13,12 +13,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 @Configuration
 @ComponentScan("com.healthme")
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -39,32 +40,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return authProvider;
     }
 
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/user/register")
-                .permitAll()
-                .antMatchers("/css/**")
-                .permitAll()
-                .antMatchers("/js/**")
-                .permitAll()
-                .antMatchers("/**")
-                .hasAnyRole("ADMIN", "USER")
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/patient").hasRole("PATIENT")
+                .antMatchers("/doctor").hasRole("DOCTOR")
                 .and()
-                .formLogin()
-                .loginPage("/user/login")
+                .formLogin().loginPage("/user/login")
                 .loginProcessingUrl("/user/login")
-                .defaultSuccessUrl("/")
+                .successHandler(myAuthenticationSuccessHandler())
                 .failureUrl("/user/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/user/login?logout=true")
-                .invalidateHttpSession(true)
-                .permitAll()
-                .and()
-                .csrf()
-                .disable();
+                .invalidateHttpSession(false)
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .permitAll();
     }
 
     @Bean

@@ -1,38 +1,34 @@
-package com.healthme.service;
+package com.healthme.model;
 
-import com.healthme.entity.Patient;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyUserPrincipal implements UserDetails {
-    private Patient patient;
 
-    public MyUserPrincipal(Patient user) {
-        this.patient = user;
+    private User user;
+
+    public MyUserPrincipal(User user) {
+        this.user = user;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> roleUser = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
-        return roleUser;
-    }
-
-    public Patient getPatient() {
-        return patient;
+        return user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return patient.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return patient.getEmail();
+        return user.getEmail();
     }
 
     @Override
@@ -54,5 +50,4 @@ public class MyUserPrincipal implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }
