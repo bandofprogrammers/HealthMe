@@ -1,7 +1,5 @@
 package com.healthme.model;
 
-import org.springframework.data.repository.cdi.Eager;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -98,7 +96,7 @@ public class User {
     }
 
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public void setEnabled(boolean enabled) {
