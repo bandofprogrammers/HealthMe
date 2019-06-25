@@ -1,6 +1,6 @@
 package com.healthme.controller;
 
-import com.healthme.entity.User;
+import com.healthme.model.User;
 import com.healthme.model.UserDto;
 import com.healthme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.healthme.service;
 
-import com.healthme.entity.User;
+import com.healthme.model.User;
 import com.healthme.model.UserDto;
 import com.healthme.repository.RoleRepository;
 import com.healthme.repository.UserRepository;
@@ -31,7 +31,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setEmail(accountDto.getEmail());
         user.setEnabled(true);
-        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
+        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_PATIENT")));
         return userRepository.save(user);
     }
 

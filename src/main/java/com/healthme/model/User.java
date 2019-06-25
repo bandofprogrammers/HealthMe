@@ -1,7 +1,8 @@
-package com.healthme.entity;
+package com.healthme.model;
+
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -20,14 +21,17 @@ public class User {
     private String email;
     private boolean enabled;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private List<Role> roles;
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -101,11 +105,11 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Collection<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

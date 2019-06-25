@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 @Configuration
@@ -39,26 +40,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/resources/**","/user/register").permitAll()
-                .antMatchers("/**")
-                .hasAnyAuthority("WRITE_PRIVILEGE","READ_PRIVILEGE")
-                .anyRequest().authenticated()
-
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/patient").hasRole("PATIENT")
+                .antMatchers("/doctor").hasRole("DOCTOR")
                 .and()
                 .formLogin().loginPage("/user/login")
                 .loginProcessingUrl("/user/login")
-                .defaultSuccessUrl("/", true)
+                .successHandler(myAuthenticationSuccessHandler())
                 .failureUrl("/user/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(false)
-                .logoutSuccessUrl("/user/login")
+                .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID")
                 .permitAll();
     }

@@ -11,6 +11,9 @@
                 <li sec:authorize="isAnonymous()"><a href="/user/register">register</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">logout</a></li>
             </ul>
+
+            <span class="navbar-text" sec:authentication="name"></span>
+<!--            <span class="navbar-text" sec:authentication="principal.authorities">No roles</span>-->
         </div>
     </div>
 </nav>

@@ -1,24 +1,25 @@
 package com.healthme.controller;
 
-
-import com.healthme.service.MyUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
 
+    @RequestMapping("/patient")
+    public String getIndexView(){
+        return "home/patient";
+    }
+
     @RequestMapping("/")
-    public String getHomeView(){
+    public String getLoggedIndexView(){
         return "home/home";
     }
 
-    @RequestMapping("/test")
-    @ResponseBody
-    public String getHomeView2(){
-        MyUserDetailsService myUserDetailsService = new MyUserDetailsService();
+    @RequestMapping("/admin")
+    public String getAdminView(){
+        return "home/admin";
+    }
 
-        return String.valueOf(myUserDetailsService.loadUserByUsername("test@test.com"));}
+
 }

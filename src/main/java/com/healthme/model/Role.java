@@ -1,24 +1,24 @@
-package com.healthme.entity;
+package com.healthme.model;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "privileges")
-public class Privilege {
-
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
 
-    @ManyToMany(mappedBy = "privileges")
-    private Collection<Role> roles;
+    @ManyToMany(mappedBy = "roles")
+    private Collection<User> users;
 
-    public Privilege() {
+    public Role() {
     }
 
-    public Privilege(String name) {
+    public Role(String name) {
         this.name=name;
     }
 
@@ -38,11 +38,12 @@ public class Privilege {
         this.name = name;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
+    public Collection<User> getUsers() {
+        return users;
     }
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
+    public void setUsers(Collection<User> users) {
+        this.users = users;
     }
+
 }
