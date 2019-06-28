@@ -32,8 +32,13 @@
                             <td th:text="${patient.pesel}"></td>
                             <td th:text="${patient.phoneNumber}"></td>
                             <td th:text="${patient.email}"></td>
-                            <td><span class="glyphicon glyphicon-ok"></span>
-                                <span class=" glyphicon glyphicon-remove "></span></td>
+                            <td>
+                                <a th:href="@{'/admin/approve/'+${patient.id}}">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </a>
+                                <a th:href="@{'/admin/discard/'+${patient.id}}">
+                                    <span class=" glyphicon glyphicon-remove "></span>
+                                </a>
                         </tr>
                     </th:block>
                 </tbody>

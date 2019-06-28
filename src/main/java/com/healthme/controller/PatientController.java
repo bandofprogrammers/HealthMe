@@ -9,6 +9,6 @@ public class PatientController {
 
     @RequestMapping("/home")
     public String getHomeView() {
-        return "home/patient";
+        return "patient/home";
     }
 }
