@@ -1,12 +1,10 @@
 package com.healthme.model;
 
-import org.springframework.data.repository.cdi.Eager;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -15,11 +13,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String gender;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String pesel;
     private String password;
     private String email;
-    private boolean enabled;
+
+    //    TODO boolean stored as string in the mysql db, otherwise corrupted value is saved - fix to be found
+    private String enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -65,11 +65,11 @@ public class User {
         this.gender = gender;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -98,10 +98,10 @@ public class User {
     }
 
     public boolean isEnabled() {
-        return true;
+        return Boolean.valueOf(enabled);
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
 
@@ -112,4 +112,6 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+
 }
