@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:insert="includes/header::header">
+    <title>Pending patient accounts</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h3>Patients waiting for approval</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Gender</th>
+                        <th>Pesel</th>
+                        <th>Phone</th>
+                        <th>Mail</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="patient:${notEnabledUsers}">
+                        <tr>
+                            <td th:text="${patient.firstName}"></td>
+                            <td th:text="${patient.lastName}"></td>
+                            <td th:text="${patient.gender}"></td>
+                            <td th:text="${patient.pesel}"></td>
+                            <td th:text="${patient.phoneNumber}"></td>
+                            <td th:text="${patient.email}"></td>
+                            <td><span class="glyphicon glyphicon-ok"></span>
+                                <span class=" glyphicon glyphicon-remove "></span></td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

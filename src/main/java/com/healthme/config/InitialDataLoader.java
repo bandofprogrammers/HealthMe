@@ -46,7 +46,7 @@ public class InitialDataLoader implements
         user.setPassword(passwordEncoder.encode("test"));
         user.setEmail("test_admin@test.com");
         user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled(true);
+        user.setEnabled("true");
         userRepository.save(user);
 
         Role patientRole = roleRepository.findByName("ROLE_PATIENT");
@@ -56,7 +56,7 @@ public class InitialDataLoader implements
         user.setPassword(passwordEncoder.encode("test"));
         user.setEmail("test_patient@test.com");
         user.setRoles(Arrays.asList(patientRole));
-        user.setEnabled(true);
+        user.setEnabled("true");
         userRepository.save(user);
 
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
@@ -66,7 +66,7 @@ public class InitialDataLoader implements
         user.setPassword(passwordEncoder.encode("test"));
         user.setEmail("test_doctor@test.com");
         user.setRoles(Arrays.asList(doctorRole));
-        user.setEnabled(true);
+        user.setEnabled("true");
         userRepository.save(user);
 
         alreadySetup = true;

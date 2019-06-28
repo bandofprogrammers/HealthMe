@@ -30,7 +30,7 @@ public class UserService {
         user.setLastName(accountDto.getLastName());
         user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setEmail(accountDto.getEmail());
-        user.setEnabled(true);
+        user.setEnabled("false");
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_PATIENT")));
         return userRepository.save(user);
     }
