@@ -33,10 +33,10 @@
                             <td th:text="${patient.phoneNumber}"></td>
                             <td th:text="${patient.email}"></td>
                             <td>
-                                <a th:href="@{'/admin/approve/'+${patient.id}}">
+                                <a th:href="@{'/admin/patient/approve/'+${patient.id}}">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </a>
-                                <a th:href="@{'/admin/discard/'+${patient.id}}">
+                                <a th:href="@{'/admin/patient/discard/'+${patient.id}}">
                                     <span class=" glyphicon glyphicon-remove "></span>
                                 </a>
                         </tr>
