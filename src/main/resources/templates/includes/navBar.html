@@ -10,6 +10,7 @@
                 <li sec:authorize="isAnonymous()"><a href="/user/login">login</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/user/register">register</a></li>
                 <li sec:authorize="hasRole('ADMIN')"><a href="/admin/approvals">Patient approval</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a href="/admin/doctors">Doctors</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">logout</a></li>
             </ul>
             <span class="navbar-text" sec:authentication="name"></span>

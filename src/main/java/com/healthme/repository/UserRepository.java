@@ -1,5 +1,6 @@
 package com.healthme.repository;
 
+import com.healthme.model.Role;
 import com.healthme.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +17,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query("SELECT u FROM User u WHERE u.enabled='false'")
     List<User> getAllNotEnabled();
+
+    @Query("SELECT u FROM User u WHERE :role MEMBER OF u.roles")
+    List<User> findAllDoctors(@Param("role") Role role);
 }

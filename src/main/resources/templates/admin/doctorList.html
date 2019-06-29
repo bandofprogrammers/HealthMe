@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:insert="includes/header::header">
+    <title>Doctors</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>Doctors</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Gender</th>
+                    <th>Pesel</th>
+                    <th>Phone</th>
+                    <th>Mail</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="doctor:${doctors}">
+                    <tr>
+                        <td th:text="${doctor.firstName}"></td>
+                        <td th:text="${doctor.lastName}"></td>
+                        <td th:text="${doctor.gender}"></td>
+                        <td th:text="${doctor.pesel}"></td>
+                        <td th:text="${doctor.phoneNumber}"></td>
+                        <td th:text="${doctor.email}"></td>
+                        <td>
+                            <a th:href="@{'/admin/edit/doctor/'+${doctor.id}}">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a th:href="@{'/admin/remove/doctor/'+${doctor.id}}">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <a th:href="@{'/admin/add/doctor'}">
+                Add <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
