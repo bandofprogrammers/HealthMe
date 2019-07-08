@@ -1,7 +1,9 @@
 package com.healthme.controller;
 
+import com.healthme.model.Doctor;
 import com.healthme.model.Patient;
 import com.healthme.model.Role;
+import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.RoleRepository;
 import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -59,49 +64,49 @@ public class AdminController {
     @RequestMapping(value = "/doctors", method = RequestMethod.GET)
     public String getDoctorListView(Model model) {
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
-        List<Patient> doctors = patientRepository.findAllDoctors(doctorRole);
+        List<Doctor> doctors = doctorRepository.findAllDoctors(doctorRole);
         model.addAttribute("doctors", doctors);
         return "admin/doctorList";
     }
 
     @RequestMapping(value = "/remove/doctor/{id}", method = RequestMethod.GET)
     public String removeDoctor(@PathVariable Long id) {
-        Patient doctor = patientRepository.getOne(id);
-        patientRepository.delete(doctor);
+        Doctor doctor = doctorRepository.getOne(id);
+        doctorRepository.delete(doctor);
         return "admin/doctorList";
     }
 
     @RequestMapping(value = "/edit/doctor/{id}", method = RequestMethod.GET)
     public String editDoctor(@PathVariable Long id, Model model) {
-        Patient doctor = patientRepository.getOne(id);
+        Doctor doctor = doctorRepository.getOne(id);
         model.addAttribute("doctor", doctor);
         return "admin/editDoctor";
     }
 
     @RequestMapping(value = "/edit/doctor", method = RequestMethod.POST)
-    public String editDoctor(@ModelAttribute("doctor") Patient doctor) {
+    public String editDoctor(@ModelAttribute("doctor") Doctor doctor) {
         doctor.setEnabled("true");
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
         doctor.setRoles(Arrays.asList(doctorRole));
-        patientRepository.save(doctor);
+        doctorRepository.save(doctor);
         return "redirect:/admin/doctors";
     }
 
     @RequestMapping(value = "/add/doctor", method = RequestMethod.GET)
     public String getAddDoctorView(Model model) {
-        Patient doctor = new Patient();
+        Doctor doctor = new Doctor();
         model.addAttribute("doctor", doctor);
         return "admin/addDoctor";
     }
 
     @RequestMapping(value = "/add/doctor", method = RequestMethod.POST)
-    public String addDoctor(@ModelAttribute("doctor") Patient doctor) {
+    public String addDoctor(@ModelAttribute("doctor") Doctor doctor) {
         String password = doctor.getPassword();
         doctor.setPassword(passwordEncoder.encode(password));
         doctor.setEnabled("true");
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
         doctor.setRoles(Arrays.asList(doctorRole));
-        patientRepository.save(doctor);
+        doctorRepository.save(doctor);
         return "redirect:/admin/doctors";
     }
 

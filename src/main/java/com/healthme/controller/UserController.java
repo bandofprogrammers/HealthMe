@@ -28,7 +28,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterView(Model model) {
-        model.addAttribute("user", new UserDto());
+        model.addAttribute("patient", new UserDto());
         return "user/register";
     }
 
@@ -46,9 +46,9 @@ public class UserController {
         }
 
         if (result.hasErrors()) {
-            return new ModelAndView("user/register", "user", accountDto);
+            return new ModelAndView("user/register", "patient", accountDto);
         } else {
-            return new ModelAndView("user/registered", "user", accountDto);
+            return new ModelAndView("user/registered", "patient", accountDto);
         }
     }
 

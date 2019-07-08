@@ -1,7 +1,11 @@
 package com.healthme.service;
 
+import com.healthme.model.Admin;
+import com.healthme.model.Doctor;
 import com.healthme.model.Patient;
 import com.healthme.model.UserDto;
+import com.healthme.repository.AdminRepository;
+import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.RoleRepository;
 import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +16,15 @@ import java.util.Arrays;
 
 @Service
 public class UserService {
+
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
+
+    @Autowired
+    private AdminRepository adminRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -37,8 +48,12 @@ public class UserService {
 
     private boolean emailExists(String email) {
         Patient patient = patientRepository.findByEmail(email);
+        Doctor doctor = doctorRepository.findByEmail(email);
+        Admin admin = adminRepository.findByEmail(email);
 
-        if (patient != null) {
+        if (patient != null ||
+                admin != null ||
+                doctor != null) {
             return true;
         }
         return false;

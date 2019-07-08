@@ -19,7 +19,4 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     @Query("SELECT p FROM Patient p WHERE p.enabled='false'")
     List<Patient> getAllNotEnabled();
 
-    @Query("SELECT p FROM Patient p WHERE :role MEMBER OF p.roles")
-    List<Patient> findAllDoctors(@Param("role") Role role);
-
 }
