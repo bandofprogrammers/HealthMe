@@ -1,117 +1,47 @@
 package com.healthme.model;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name = "users")
-public class User {
+public interface User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private String phoneNumber;
-    private String pesel;
-    private String password;
-    private String email;
+    Long getId();
 
-    //    TODO boolean stored as string in the mysql db, otherwise corrupted value is saved - fix to be found
-    private String enabled;
+    void setId(Long id);
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
+    String getFirstName();
 
-    public User() {
-    }
+    void setFirstName(String firstName);
 
-    public Long getId() {
-        return id;
-    }
+    String getLastName();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    void setLastName(String lastName);
 
-    public String getFirstName() {
-        return firstName;
-    }
+    String getGender();
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    void setGender(String gender);
 
-    public String getLastName() {
-        return lastName;
-    }
+    String getPhoneNumber();
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    void setPhoneNumber(String phoneNumber);
 
-    public String getGender() {
-        return gender;
-    }
+    String getPesel();
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    void setPesel(String pesel);
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    String getPassword();
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    void setPassword(String password);
 
-    public String getPesel() {
-        return pesel;
-    }
+    String getEmail();
 
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
-    }
+    void setEmail(String email);
 
-    public String getPassword() {
-        return password;
-    }
+    boolean isEnabled();
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    void setEnabled(String enabled);
 
-    public String getEmail() {
-        return email;
-    }
+    List<Role> getRoles();
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public boolean isEnabled() {
-        return Boolean.valueOf(enabled);
-    }
-
-    public void setEnabled(String enabled) {
-        this.enabled = enabled;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
+    void setRoles(List<Role> roles);
 
 }

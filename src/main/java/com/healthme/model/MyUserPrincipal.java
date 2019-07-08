@@ -9,26 +9,26 @@ import java.util.stream.Collectors;
 
 public class MyUserPrincipal implements UserDetails {
 
-    private User user;
+    private Patient patient;
 
-    public MyUserPrincipal(User user) {
-        this.user = user;
+    public MyUserPrincipal(Patient patient) {
+        this.patient = patient;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        return patient.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return patient.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return patient.getEmail();
     }
 
     @Override
@@ -48,6 +48,6 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.isEnabled();
+        return patient.isEnabled();
     }
 }

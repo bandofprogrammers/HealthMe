@@ -1,8 +1,8 @@
 package com.healthme.service;
 
 import com.healthme.model.MyUserPrincipal;
-import com.healthme.model.User;
-import com.healthme.repository.UserRepository;
+import com.healthme.model.Patient;
+import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,15 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private PatientRepository patientRepository;
 
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(userName);
-        if (user == null) {
+        Patient patient = patientRepository.findByEmail(userName);
+        if (patient == null) {
             throw new UsernameNotFoundException(userName);
         }
-        return new MyUserPrincipal(user);
+        return new MyUserPrincipal(patient);
     }
 }

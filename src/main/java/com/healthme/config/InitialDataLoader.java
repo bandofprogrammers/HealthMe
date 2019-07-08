@@ -1,9 +1,9 @@
 package com.healthme.config;
 
+import com.healthme.model.Patient;
 import com.healthme.model.Role;
-import com.healthme.model.User;
 import com.healthme.repository.RoleRepository;
-import com.healthme.repository.UserRepository;
+import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,7 +20,7 @@ public class InitialDataLoader implements
     boolean alreadySetup = false;
 
     @Autowired
-    private UserRepository userRepository;
+    private PatientRepository patientRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -40,38 +40,39 @@ public class InitialDataLoader implements
         createRoleIfNotFound("ROLE_DOCTOR");
 
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        User user = new User();
-        user.setFirstName("Test_Admin");
-        user.setLastName("Test_Admin");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setEmail("test_admin@test.com");
-        user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled("true");
-        userRepository.save(user);
+        Patient patient = new Patient();
+        patient.setFirstName("Test_Admin");
+        patient.setLastName("Test_Admin");
+        patient.setPassword(passwordEncoder.encode("test"));
+        patient.setEmail("test_admin@test.com");
+        patient.setRoles(Arrays.asList(adminRole));
+        patient.setEnabled("true");
+        patientRepository.save(patient);
 
         Role patientRole = roleRepository.findByName("ROLE_PATIENT");
-        user = new User();
-        user.setFirstName("Test_User");
-        user.setLastName("Test_User");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setEmail("test_patient@test.com");
-        user.setRoles(Arrays.asList(patientRole));
-        user.setEnabled("true");
-        userRepository.save(user);
+        patient = new Patient();
+        patient.setFirstName("Test_User");
+        patient.setLastName("Test_User");
+        patient.setPassword(passwordEncoder.encode("test"));
+        patient.setEmail("test_patient@test.com");
+        patient.setRoles(Arrays.asList(patientRole));
+        patient.setEnabled("true");
+        patientRepository.save(patient);
 
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
-        user = new User();
-        user.setFirstName("Test_Doctor");
-        user.setLastName("Test_Doctor");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setEmail("test_doctor@test.com");
-        user.setRoles(Arrays.asList(doctorRole));
-        user.setEnabled("true");
-        userRepository.save(user);
+        patient = new Patient();
+        patient.setFirstName("Test_Doctor");
+        patient.setLastName("Test_Doctor");
+        patient.setPassword(passwordEncoder.encode("test"));
+        patient.setEmail("test_doctor@test.com");
+        patient.setRoles(Arrays.asList(doctorRole));
+        patient.setEnabled("true");
+        patientRepository.save(patient);
 
         alreadySetup = true;
     }
 
+//    TODO read what is going on with this annotation
     @Transactional
     private Role createRoleIfNotFound(
             String name) {
