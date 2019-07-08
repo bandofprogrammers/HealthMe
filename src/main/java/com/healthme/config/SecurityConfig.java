@@ -1,7 +1,9 @@
 package com.healthme.config;
 
 
-import com.healthme.service.MyUserDetailsService;
+import com.healthme.service.MyAdminDetailsService;
+import com.healthme.service.MyDoctorDetailsService;
+import com.healthme.service.MyPatientDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,20 +24,50 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new MyUserDetailsService();
+    public UserDetailsService patientDetailsService() {
+        return new MyPatientDetailsService();
+    }
+
+    @Bean
+    public UserDetailsService doctorDetailsService() {
+        return new MyDoctorDetailsService();
+    }
+
+    @Bean
+    public UserDetailsService adminDetailsService() {
+        return new MyAdminDetailsService();
     }
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(patientAuthenticationProvider());
+        auth.authenticationProvider(doctorAuthenticationProvider());
+        auth.authenticationProvider(adminAuthenticationProvider());
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public DaoAuthenticationProvider patientAuthenticationProvider() {
         DaoAuthenticationProvider authProvider
                 = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setUserDetailsService(patientDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public DaoAuthenticationProvider doctorAuthenticationProvider() {
+        DaoAuthenticationProvider authProvider
+                = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(doctorDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public DaoAuthenticationProvider adminAuthenticationProvider() {
+        DaoAuthenticationProvider authProvider
+                = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(adminDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }

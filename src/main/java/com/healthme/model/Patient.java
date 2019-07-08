@@ -1,11 +1,13 @@
 package com.healthme.model;
 
+
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
-public class Patient {
+@Table(name = "patients")
+public class Patient implements User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +25,9 @@ public class Patient {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles",
+            name = "patients_roles",
             joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
+                    name = "patient_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
