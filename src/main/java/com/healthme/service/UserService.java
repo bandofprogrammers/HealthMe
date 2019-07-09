@@ -1,9 +1,13 @@
 package com.healthme.service;
 
-import com.healthme.model.User;
+import com.healthme.model.Admin;
+import com.healthme.model.Doctor;
+import com.healthme.model.Patient;
 import com.healthme.model.UserDto;
+import com.healthme.repository.AdminRepository;
+import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.RoleRepository;
-import com.healthme.repository.UserRepository;
+import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,33 +16,44 @@ import java.util.Arrays;
 
 @Service
 public class UserService {
+
     @Autowired
-    private UserRepository userRepository;
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
+
+    @Autowired
+    private AdminRepository adminRepository;
 
     @Autowired
     private RoleRepository roleRepository;
 
-    public User registerNewUserAccount(UserDto accountDto) throws NullPointerException {
+    public Patient registerNewUserAccount(UserDto accountDto) throws NullPointerException {
 
         if (emailExists(accountDto.getEmail())) {
             throw new NullPointerException("There is an account with that email address: " + accountDto.getEmail());
         }
-        User user = new User();
+        Patient patient = new Patient();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        user.setFirstName(accountDto.getFirstName());
-        user.setLastName(accountDto.getLastName());
-        user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
-        user.setEmail(accountDto.getEmail());
-        user.setEnabled("false");
-        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_PATIENT")));
-        return userRepository.save(user);
+        patient.setFirstName(accountDto.getFirstName());
+        patient.setLastName(accountDto.getLastName());
+        patient.setPassword(passwordEncoder.encode(accountDto.getPassword()));
+        patient.setEmail(accountDto.getEmail());
+        patient.setEnabled("false");
+        patient.setRoles(Arrays.asList(roleRepository.findByName("ROLE_PATIENT")));
+        return patientRepository.save(patient);
     }
 
     private boolean emailExists(String email) {
-        User user = userRepository.findByEmail(email);
+        Patient patient = patientRepository.findByEmail(email);
+        Doctor doctor = doctorRepository.findByEmail(email);
+        Admin admin = adminRepository.findByEmail(email);
 
-        if (user != null) {
+        if (patient != null ||
+                admin != null ||
+                doctor != null) {
             return true;
         }
         return false;

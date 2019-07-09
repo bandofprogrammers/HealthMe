@@ -13,7 +13,7 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
+    private Collection<Patient> patients;
 
     public Role() {
     }
@@ -38,12 +38,12 @@ public class Role {
         this.name = name;
     }
 
-    public Collection<User> getUsers() {
-        return users;
+    public Collection<Patient> getPatients() {
+        return patients;
     }
 
-    public void setUsers(Collection<User> users) {
-        this.users = users;
+    public void setPatients(Collection<Patient> patients) {
+        this.patients = patients;
     }
 
 }

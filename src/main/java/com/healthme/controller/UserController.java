@@ -1,6 +1,6 @@
 package com.healthme.controller;
 
-import com.healthme.model.User;
+import com.healthme.model.Patient;
 import com.healthme.model.UserDto;
 import com.healthme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +28,14 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterView(Model model) {
-        model.addAttribute("user", new UserDto());
+        model.addAttribute("patient", new UserDto());
         return "user/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView registerUser(@ModelAttribute("user") @Valid UserDto accountDto, BindingResult result) {
 
-        User registered = new User();
+        Patient registered = new Patient();
 
         if (!result.hasErrors()) {
             registered = createUserAccount(accountDto);
@@ -46,14 +46,14 @@ public class UserController {
         }
 
         if (result.hasErrors()) {
-            return new ModelAndView("user/register", "user", accountDto);
+            return new ModelAndView("user/register", "patient", accountDto);
         } else {
-            return new ModelAndView("user/registered", "user", accountDto);
+            return new ModelAndView("user/registered", "patient", accountDto);
         }
     }
 
-    private User createUserAccount(UserDto accountDto) {
-        User registered = null;
+    private Patient createUserAccount(UserDto accountDto) {
+        Patient registered = null;
         try {
             registered = userService.registerNewUserAccount(accountDto);
         } catch (NullPointerException e) {

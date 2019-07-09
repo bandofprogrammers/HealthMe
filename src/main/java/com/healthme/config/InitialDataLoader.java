@@ -1,9 +1,13 @@
 package com.healthme.config;
 
+import com.healthme.model.Admin;
+import com.healthme.model.Doctor;
+import com.healthme.model.Patient;
 import com.healthme.model.Role;
-import com.healthme.model.User;
+import com.healthme.repository.AdminRepository;
+import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.RoleRepository;
-import com.healthme.repository.UserRepository;
+import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,7 +24,13 @@ public class InitialDataLoader implements
     boolean alreadySetup = false;
 
     @Autowired
-    private UserRepository userRepository;
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private AdminRepository adminRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -40,34 +50,34 @@ public class InitialDataLoader implements
         createRoleIfNotFound("ROLE_DOCTOR");
 
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        User user = new User();
-        user.setFirstName("Test_Admin");
-        user.setLastName("Test_Admin");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setEmail("test_admin@test.com");
-        user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled("true");
-        userRepository.save(user);
+        Admin admin = new Admin();
+        admin.setFirstName("Test_Admin");
+        admin.setLastName("Test_Admin");
+        admin.setPassword(passwordEncoder.encode("test"));
+        admin.setEmail("test_admin@test.com");
+        admin.setRoles(Arrays.asList(adminRole));
+        admin.setEnabled("true");
+        adminRepository.save(admin);
 
         Role patientRole = roleRepository.findByName("ROLE_PATIENT");
-        user = new User();
-        user.setFirstName("Test_User");
-        user.setLastName("Test_User");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setEmail("test_patient@test.com");
-        user.setRoles(Arrays.asList(patientRole));
-        user.setEnabled("true");
-        userRepository.save(user);
+        Patient patient = new Patient();
+        patient.setFirstName("Test_User");
+        patient.setLastName("Test_User");
+        patient.setPassword(passwordEncoder.encode("test"));
+        patient.setEmail("test_patient@test.com");
+        patient.setRoles(Arrays.asList(patientRole));
+        patient.setEnabled("true");
+        patientRepository.save(patient);
 
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
-        user = new User();
-        user.setFirstName("Test_Doctor");
-        user.setLastName("Test_Doctor");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setEmail("test_doctor@test.com");
-        user.setRoles(Arrays.asList(doctorRole));
-        user.setEnabled("true");
-        userRepository.save(user);
+        Doctor doctor = new Doctor();
+        doctor.setFirstName("Test_Doctor");
+        doctor.setLastName("Test_Doctor");
+        doctor.setPassword(passwordEncoder.encode("test"));
+        doctor.setEmail("test_doctor@test.com");
+        doctor.setRoles(Arrays.asList(doctorRole));
+        doctor.setEnabled("true");
+        doctorRepository.save(doctor);
 
         alreadySetup = true;
     }

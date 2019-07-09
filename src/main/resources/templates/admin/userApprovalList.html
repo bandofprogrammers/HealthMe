@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <th:block th:each="patient:${notEnabledUsers}">
+                    <th:block th:each="patient:${notEnabledPatients}">
                         <tr>
                             <td th:text="${patient.firstName}"></td>
                             <td th:text="${patient.lastName}"></td>
