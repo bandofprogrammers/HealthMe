@@ -71,10 +71,9 @@ public class MySimpleUrlAuthenticationSuccessHandler
             return "/patient/home";
         } else if (isDoctor) {
             return "/doctor/home";
-        } else if(isAdmin){
+        } else if (isAdmin) {
             return "/admin/home";
-        }
-        else {
+        } else {
             throw new IllegalStateException();
         }
     }

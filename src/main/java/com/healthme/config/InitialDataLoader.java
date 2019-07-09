@@ -82,7 +82,6 @@ public class InitialDataLoader implements
         alreadySetup = true;
     }
 
-//    TODO read what is going on with this annotation
     @Transactional
     private Role createRoleIfNotFound(
             String name) {
