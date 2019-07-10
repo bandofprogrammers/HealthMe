@@ -90,6 +90,8 @@ public class AdminController {
 
     @RequestMapping(value = "/edit/doctor", method = RequestMethod.POST)
     public String editDoctor(@ModelAttribute("doctor") Doctor doctor) {
+        String password = doctor.getPassword();
+        doctor.setPassword(passwordEncoder.encode(password));
         doctor.setEnabled("true");
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
         doctor.setRoles(Arrays.asList(doctorRole));

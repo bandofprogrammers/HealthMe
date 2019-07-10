@@ -23,7 +23,7 @@
                            id="lastName"/>
                 </div>
                 <div class="form-group">
-                    <select class="form-control"   th:field="*{doctorSpecializationList}">
+                    <select multiple="true" class="form-control"   th:field="*{doctorSpecializationList}">
                         <option th:each="specialization : ${doctorSpecializationList}"
                                 th:value="${specialization.id}"
                                 th:text="${specialization.name}">
