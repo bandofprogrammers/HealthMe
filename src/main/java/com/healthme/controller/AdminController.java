@@ -84,6 +84,7 @@ public class AdminController {
     public String editDoctor(@PathVariable Long id, Model model) {
         Doctor doctor = doctorRepository.getOne(id);
         model.addAttribute("doctor", doctor);
+        model.addAttribute("doctorSpecializationList",doctorSpecializationRepository.findAll());
         return "admin/editDoctor";
     }
 
