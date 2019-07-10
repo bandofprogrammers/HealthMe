@@ -39,7 +39,6 @@ public class Doctor implements User {
     @Email
     private String email;
 
-    @NotNull
     @OneToOne
     private WorkCalendar workCalendar;
 
