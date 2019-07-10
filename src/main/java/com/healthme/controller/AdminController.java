@@ -4,6 +4,7 @@ import com.healthme.model.Doctor;
 import com.healthme.model.Patient;
 import com.healthme.model.Role;
 import com.healthme.repository.DoctorRepository;
+import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.repository.RoleRepository;
 import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class AdminController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private DoctorSpecializationRepository doctorSpecializationRepository;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
@@ -96,6 +100,7 @@ public class AdminController {
     public String getAddDoctorView(Model model) {
         Doctor doctor = new Doctor();
         model.addAttribute("doctor", doctor);
+        model.addAttribute("doctorSpecializationList",doctorSpecializationRepository.findAll());
         return "admin/addDoctor";
     }
 
