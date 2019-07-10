@@ -19,6 +19,10 @@ public class DoctorSpecialization {
     public DoctorSpecialization() {
     }
 
+    public DoctorSpecialization(@NotBlank String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

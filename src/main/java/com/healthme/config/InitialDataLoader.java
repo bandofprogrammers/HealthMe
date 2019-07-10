@@ -1,13 +1,12 @@
 package com.healthme.config;
 
+import com.healthme.entity.DoctorSpecialization;
+import com.healthme.entity.WorkCalendar;
 import com.healthme.model.Admin;
 import com.healthme.model.Doctor;
 import com.healthme.model.Patient;
 import com.healthme.model.Role;
-import com.healthme.repository.AdminRepository;
-import com.healthme.repository.DoctorRepository;
-import com.healthme.repository.RoleRepository;
-import com.healthme.repository.PatientRepository;
+import com.healthme.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class InitialDataLoader implements
@@ -38,6 +38,15 @@ public class InitialDataLoader implements
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private DoctorSpecializationRepository doctorSpecializationRepository;
+
+    @Autowired
+    private WorkCalendarRepository workCalendarRepository;
+
+    public InitialDataLoader() {
+    }
+
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -48,6 +57,9 @@ public class InitialDataLoader implements
         createRoleIfNotFound("ROLE_ADMIN");
         createRoleIfNotFound("ROLE_PATIENT");
         createRoleIfNotFound("ROLE_DOCTOR");
+        createNewDoctorSpecializationIfNotFound("internist");
+        createNewDoctorSpecializationIfNotFound("laryngologist");
+        createNewWorkCalendarIfNotFound("2019");
 
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         Admin admin = new Admin();
@@ -70,6 +82,8 @@ public class InitialDataLoader implements
         patientRepository.save(patient);
 
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
+        List<DoctorSpecialization> doctorSpecialization = doctorSpecializationRepository.findAll();
+        WorkCalendar workCalendar = workCalendarRepository.findByName("2019");
         Doctor doctor = new Doctor();
         doctor.setFirstName("Test_Doctor");
         doctor.setLastName("Test_Doctor");
@@ -77,6 +91,11 @@ public class InitialDataLoader implements
         doctor.setEmail("test_doctor@test.com");
         doctor.setRoles(Arrays.asList(doctorRole));
         doctor.setEnabled("true");
+        doctor.setGender("male");
+        doctor.setPhoneNumber("777777777");
+        doctor.setPesel("75012097612");
+        doctor.setWorkCalendar(workCalendar);
+        doctor.setDoctorSpecializationList(doctorSpecialization);
         doctorRepository.save(doctor);
 
         alreadySetup = true;
@@ -91,5 +110,27 @@ public class InitialDataLoader implements
             roleRepository.save(role);
         }
         return role;
+    }
+
+    @Transactional
+    private DoctorSpecialization createNewDoctorSpecializationIfNotFound(
+            String name) {
+        DoctorSpecialization doctorSpecialization = doctorSpecializationRepository.findByName(name);
+        if (doctorSpecialization == null) {
+            doctorSpecialization = new DoctorSpecialization(name);
+            doctorSpecializationRepository.save(doctorSpecialization);
+        }
+        return doctorSpecialization;
+    }
+
+    @Transactional
+    private WorkCalendar createNewWorkCalendarIfNotFound(
+            String name) {
+        WorkCalendar workCalendar = workCalendarRepository.findByName(name);
+        if (workCalendar == null) {
+            workCalendar = new WorkCalendar(name);
+            workCalendarRepository.save(workCalendar);
+        }
+        return workCalendar;
     }
 }
