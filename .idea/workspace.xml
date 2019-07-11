@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b33db3c8-6092-4e08-b063-ca19f7fee490" name="Default Changelist" comment="" />
+    <list default="true" id="b33db3c8-6092-4e08-b063-ca19f7fee490" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheckValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/entity/DoctorSpecialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/DoctorSpecialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/entity/WorkCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/WorkCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/model/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Doctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/repository/DoctorSpecializationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/repository/DoctorSpecializationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/repository/WorkCalendarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/repository/WorkCalendarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/patient/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/patient/register.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,24 +27,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/DoctorController.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="165">
+              <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
               <folding>
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#414#415#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/AdminController.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheckValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="67" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/UserDto.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Patient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-60">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,10 +113,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/healthme/entity/Role.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/home/index.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/MyUserPrincipal.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/Role.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/home/user.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/config/MySimpleAythenticationHandler.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/home/doctor.html" />
@@ -97,7 +149,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/repository/PatientRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/repository/DoctorRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/MyUserDetailsService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/config/MySimpleUrlAuthenticationSuccessHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/config/SecurityConfig.java" />
@@ -108,6 +159,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Patient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/admin/AdminService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheckValidator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/UserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/patient/register.html" />
       </list>
     </option>
   </component>
@@ -118,9 +174,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="180" />
-    <option name="y" value="128" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="147" />
+    <option name="y" value="71" />
     <option name="width" value="1657" />
     <option name="height" value="952" />
   </component>
@@ -203,6 +259,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="healthme" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="healthme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HealthMe" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="healthme" type="462c0819:PsiDirectoryNode" />
               <item name="repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -213,6 +279,45 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="healthme" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="healthme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HealthMe" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="healthme" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="healthme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HealthMe" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="healthme" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="doctor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="healthme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HealthMe" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="healthme" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="patient" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="healthme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HealthMe" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="healthme" type="462c0819:PsiDirectoryNode" />
+              <item name="validatior" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="healthme" type="b2602c69:ProjectViewProjectNode" />
@@ -322,7 +427,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ExpenditureManager-SpringBoot/pom.xml" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -383,10 +488,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
+    <frame x="147" y="71" width="1657" height="952" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3375761" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3786468" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -395,7 +500,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25809935" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29040098" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -415,17 +520,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/DoctorService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/entity/Administrator.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/a.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/repository/PrivilegeRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/includes/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/entity/Privilege.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home/index.html" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home/superUser.html" />
@@ -565,16 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/config/MySimpleUrlAuthenticationSuccessHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -592,13 +676,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -688,30 +765,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Patient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Doctor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -746,6 +803,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/DoctorSpecialization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/WorkCalendar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/DoctorController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -757,10 +850,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/AdminController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/UserDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Patient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheckValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="67" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/validatior/PasswordCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
