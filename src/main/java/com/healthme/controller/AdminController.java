@@ -59,9 +59,8 @@ public class AdminController {
 
     @RequestMapping(value = "/edit/doctor/{id}", method = RequestMethod.GET)
     public String editDoctor(@PathVariable Long id, Model model) {
-
         model.addAttribute("doctor", adminService.getDoctorById(id));
-
+        model.addAttribute("doctorSpecializationList",doctorSpecializationRepository.findAll());
         return "admin/editDoctor";
     }
 
@@ -74,6 +73,7 @@ public class AdminController {
     @RequestMapping(value = "/add/doctor", method = RequestMethod.GET)
     public String getAddDoctorView(Model model) {
         model.addAttribute("doctor", new Doctor());
+        model.addAttribute("doctorSpecializationList",doctorSpecializationRepository.findAll());
         return "admin/addDoctor";
     }
 
