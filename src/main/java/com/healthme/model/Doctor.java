@@ -1,7 +1,5 @@
 package com.healthme.model;
 
-import com.healthme.entity.DoctorSpecialization;
-import com.healthme.entity.WorkCalendar;
 import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;

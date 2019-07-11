@@ -1,4 +1,4 @@
-package com.healthme.entity;
+package com.healthme.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
