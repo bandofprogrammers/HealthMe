@@ -1,4 +1,6 @@
-package com.healthme.model;
+package com.healthme.model.entity;
+
+import com.healthme.model.User;
 
 import com.healthme.entity.DoctorSpecialization;
 import com.healthme.entity.WorkCalendar;

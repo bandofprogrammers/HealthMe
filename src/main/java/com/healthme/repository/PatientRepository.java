@@ -1,7 +1,6 @@
 package com.healthme.repository;
 
-import com.healthme.model.Patient;
-import com.healthme.model.Role;
+import com.healthme.model.entity.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

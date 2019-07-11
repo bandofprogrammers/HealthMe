@@ -2,10 +2,10 @@ package com.healthme.config;
 
 import com.healthme.entity.DoctorSpecialization;
 import com.healthme.entity.WorkCalendar;
-import com.healthme.model.Admin;
-import com.healthme.model.Doctor;
-import com.healthme.model.Patient;
-import com.healthme.model.Role;
+import com.healthme.model.entity.Admin;
+import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.Role;
 import com.healthme.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
