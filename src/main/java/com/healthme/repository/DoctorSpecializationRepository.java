@@ -1,6 +1,6 @@
 package com.healthme.repository;
 
-import com.healthme.entity.DoctorSpecialization;
+import com.healthme.model.entity.DoctorSpecialization;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

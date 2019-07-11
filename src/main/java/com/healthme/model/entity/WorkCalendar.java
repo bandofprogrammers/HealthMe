@@ -1,25 +1,23 @@
-package com.healthme.entity;
+package com.healthme.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 
 @Entity
-public class DoctorSpecialization {
+public class WorkCalendar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String name;
 
-    public DoctorSpecialization() {
+    public WorkCalendar() {
     }
 
-    public DoctorSpecialization(@NotBlank String name) {
+    public WorkCalendar(String name) {
         this.name = name;
     }
 

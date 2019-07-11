@@ -1,16 +1,36 @@
 package com.healthme.model;
 
+import com.healthme.validatior.PasswordCheck;
+import org.hibernate.validator.constraints.pl.PESEL;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+@PasswordCheck
 public class UserDto {
 
+    @NotBlank(message = "First name must not be empty")
     private String firstName;
+
+    @NotBlank(message = "Last name must not be empty")
     private String lastName;
+
+    //TODO
     private String gender;
     private int phoneNumber;
-    private String pesel;
-    private String email;
-    private String password;
-    private String matchingPassword;
 
+    @PESEL
+    private String pesel;
+
+    @Email(message = "Email format is not correct")
+    @NotBlank(message = "Email must not be empty")
+    private String email;
+
+    @NotBlank(message = "Password must not be empty")
+    private String password;
+
+    @NotBlank(message = "Please repeat the password")
+    private String matchingPassword;
 
     public String getMatchingPassword() {
         return matchingPassword;

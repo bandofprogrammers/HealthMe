@@ -50,9 +50,9 @@
                     <lablel class="sr-only" for="Email"><b>Email</b></lablel>
                     <input class="form-control" placeholder="Enter email" type="text" th:field="*{email}" id="Email"/>
                 </div>
-                <!--        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">-->
-                <!--            <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>-->
-                <!--        </div>-->
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                            <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>
+                        </div>
                 <button class="btn btn-md btn-primary btn-block" type="submit">Register</button>
             </form>
         </div>

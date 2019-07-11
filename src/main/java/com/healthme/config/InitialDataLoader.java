@@ -1,7 +1,7 @@
 package com.healthme.config;
 
-import com.healthme.entity.DoctorSpecialization;
-import com.healthme.entity.WorkCalendar;
+import com.healthme.model.entity.DoctorSpecialization;
+import com.healthme.model.entity.WorkCalendar;
 import com.healthme.model.entity.Admin;
 import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.Patient;
