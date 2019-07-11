@@ -52,8 +52,9 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/remove/doctor/{id}", method = RequestMethod.GET)
-    public String removeDoctor(@PathVariable Long id) {
+    public String removeDoctor(@PathVariable Long id,Model model) {
         adminService.removeDoctorById(id);
+        model.addAttribute("doctors",adminService.findAllDoctors());
         return "admin/doctorList";
     }
 
