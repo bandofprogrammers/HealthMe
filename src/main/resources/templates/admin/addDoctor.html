@@ -23,6 +23,14 @@
                            id="lastName"/>
                 </div>
                 <div class="form-group">
+                    <select multiple="true" class="form-control"   th:field="*{doctorSpecializationList}">
+                        <option th:each="specialization : ${doctorSpecializationList}"
+                                th:value="${specialization.id}"
+                                th:text="${specialization.name}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="sr-only" for="phoneNumber">Phone number</label>
                     <input class="form-control" placeholder="Enter phone number" type="text" th:field="*{phoneNumber}"
                            id="phoneNumber"/>

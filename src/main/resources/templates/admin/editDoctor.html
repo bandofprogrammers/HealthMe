@@ -13,6 +13,10 @@
             <p>Edit doctor</p>
             <form method="post" th:object="${doctor}" action="/admin/edit/doctor">
                 <div class="form-group">
+                    <input class="form-control" type="hidden" th:field="*{id}"
+                           id="id"/>
+                </div>
+                <div class="form-group">
                     <label class="sr-only" for="firstName">First name</label>
                     <input class="form-control" placeholder="Enter firstname" type="text" th:field="*{firstName}"
                            id="firstName"/>
@@ -21,6 +25,14 @@
                     <label class="sr-only" for="lastName">Last name</label>
                     <input class="form-control" placeholder="Enter last name" type="text" th:field="*{lastName}"
                            id="lastName"/>
+                </div>
+                <div class="form-group">
+                    <select multiple="true" class="form-control"   th:field="*{doctorSpecializationList}">
+                        <option th:each="specialization : ${doctorSpecializationList}"
+                                th:value="${specialization.id}"
+                                th:text="${specialization.name}">
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="phoneNumber">Phone number</label>
@@ -36,6 +48,11 @@
                     <label class="sr-only" for="pesel">Pesel</label>
                     <input class="form-control" placeholder="Enter pesel" type="text" th:field="*{pesel}"
                            id="pesel"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input class="form-control" placeholder="Enter password" type="password" th:field="*{password}"
+                           id="password"/>
                 </div>
                 <div class="form-group">
                     <lablel class="sr-only" for="Email"><b>Email</b></lablel>

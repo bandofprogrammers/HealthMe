@@ -1,6 +1,8 @@
 package com.healthme.controller;
 
+
 import com.healthme.model.entity.Doctor;
+import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private DoctorSpecializationRepository doctorSpecializationRepository;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
@@ -54,7 +59,9 @@ public class AdminController {
 
     @RequestMapping(value = "/edit/doctor/{id}", method = RequestMethod.GET)
     public String editDoctor(@PathVariable Long id, Model model) {
+
         model.addAttribute("doctor", adminService.getDoctorById(id));
+
         return "admin/editDoctor";
     }
 

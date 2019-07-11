@@ -2,7 +2,14 @@ package com.healthme.model.entity;
 
 import com.healthme.model.User;
 
+import com.healthme.entity.DoctorSpecialization;
+import com.healthme.entity.WorkCalendar;
+import org.hibernate.validator.constraints.pl.PESEL;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -12,13 +19,34 @@ public class Doctor implements User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
+
+    @NotBlank
     private String gender;
+
+    @NotBlank
     private String phoneNumber;
+
+    @PESEL
     private String pesel;
+
+    @NotBlank
     private String password;
+
+    @Email
     private String email;
+
+    @OneToOne
+    private WorkCalendar workCalendar;
+
+    @NotNull
+    @ManyToMany
+    private List<DoctorSpecialization> doctorSpecializationList;
 
     //    TODO boolean stored as string in the mysql db, otherwise corrupted value is saved - fix to be found
     private String enabled;
@@ -133,5 +161,21 @@ public class Doctor implements User {
     @Override
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public WorkCalendar getWorkCalendar() {
+        return workCalendar;
+    }
+
+    public void setWorkCalendar(WorkCalendar workCalendar) {
+        this.workCalendar = workCalendar;
+    }
+
+    public List<DoctorSpecialization> getDoctorSpecializationList() {
+        return doctorSpecializationList;
+    }
+
+    public void setDoctorSpecializationList(List<DoctorSpecialization> doctorSpecializationList) {
+        this.doctorSpecializationList = doctorSpecializationList;
     }
 }
