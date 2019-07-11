@@ -1,9 +1,9 @@
 package com.healthme.config;
 
 
-import com.healthme.service.MyAdminDetailsService;
-import com.healthme.service.MyDoctorDetailsService;
-import com.healthme.service.MyPatientDetailsService;
+import com.healthme.service.admin.MyAdminDetailsService;
+import com.healthme.service.doctor.MyDoctorDetailsService;
+import com.healthme.service.patient.MyPatientDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -83,6 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/patient/register").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/patient/**").hasRole("PATIENT")
                 .antMatchers("/doctor/**").hasRole("DOCTOR")

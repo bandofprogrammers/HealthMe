@@ -1,8 +1,8 @@
-package com.healthme.service;
+package com.healthme.service.patient;
 
-import com.healthme.model.Admin;
-import com.healthme.model.Doctor;
-import com.healthme.model.Patient;
+import com.healthme.model.entity.Admin;
+import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.Patient;
 import com.healthme.model.UserDto;
 import com.healthme.repository.AdminRepository;
 import com.healthme.repository.DoctorRepository;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-public class UserService {
+public class PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
@@ -29,7 +29,7 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public Patient registerNewUserAccount(UserDto accountDto) throws NullPointerException {
+    public Patient registerNewPatientAccount(UserDto accountDto) throws NullPointerException {
 
         if (emailExists(accountDto.getEmail())) {
             throw new NullPointerException("There is an account with that email address: " + accountDto.getEmail());

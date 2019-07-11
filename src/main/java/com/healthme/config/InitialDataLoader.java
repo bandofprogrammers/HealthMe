@@ -1,9 +1,9 @@
 package com.healthme.config;
 
-import com.healthme.model.Admin;
-import com.healthme.model.Doctor;
-import com.healthme.model.Patient;
-import com.healthme.model.Role;
+import com.healthme.model.entity.Admin;
+import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.Role;
 import com.healthme.repository.AdminRepository;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.RoleRepository;

@@ -1,5 +1,7 @@
 package com.healthme.model;
 
+import com.healthme.model.entity.Role;
+
 import java.util.List;
 
 public interface User {

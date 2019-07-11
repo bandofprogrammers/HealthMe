@@ -1,10 +1,8 @@
-package com.healthme.service;
+package com.healthme.service.doctor;
 
-import com.healthme.model.Doctor;
+import com.healthme.model.entity.Doctor;
 import com.healthme.model.MyUserPrincipal;
-import com.healthme.model.Patient;
 import com.healthme.repository.DoctorRepository;
-import com.healthme.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
