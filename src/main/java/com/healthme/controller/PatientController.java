@@ -33,7 +33,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView createPatientAccount(@ModelAttribute("user") @Valid UserDto accountDto, BindingResult result) {
+    public ModelAndView createPatientAccount(@ModelAttribute("patient") @Valid UserDto accountDto, BindingResult result) {
 
         Patient registered = new Patient();
 
