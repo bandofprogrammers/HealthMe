@@ -40,6 +40,7 @@ public class PatientService {
         patient.setFirstName(accountDto.getFirstName());
         patient.setLastName(accountDto.getLastName());
         patient.setPassword(passwordEncoder.encode(accountDto.getPassword()));
+        patient.setPhoneNumber(accountDto.getPhoneNumber());
         patient.setEmail(accountDto.getEmail());
         patient.setEnabled("false");
         patient.setRoles(Arrays.asList(roleRepository.findByName("ROLE_PATIENT")));
