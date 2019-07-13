@@ -2,6 +2,8 @@ package com.healthme.model.entity;
 
 import com.healthme.model.User;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="doctors")
@@ -42,6 +45,10 @@ public class Doctor implements User {
     @OneToOne
     private WorkCalendar workCalendar;
 
+    @OneToMany(mappedBy = "doctor",fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Set<Prescription> prescriptions;
+
     @NotNull
     @ManyToMany
     private List<DoctorSpecialization> doctorSpecializationList;
@@ -50,6 +57,7 @@ public class Doctor implements User {
     private String enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(
             name = "doctors_roles",
             joinColumns = @JoinColumn(
@@ -175,5 +183,13 @@ public class Doctor implements User {
 
     public void setDoctorSpecializationList(List<DoctorSpecialization> doctorSpecializationList) {
         this.doctorSpecializationList = doctorSpecializationList;
+    }
+
+    public Set<Prescription> getPrescriptions() {
+        return prescriptions;
+    }
+
+    public void setPrescriptions(Set<Prescription> prescriptions) {
+        this.prescriptions = prescriptions;
     }
 }

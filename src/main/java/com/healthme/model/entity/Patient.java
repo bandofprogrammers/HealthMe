@@ -3,9 +3,12 @@ package com.healthme.model.entity;
 
 
 import com.healthme.model.User;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "patients")
@@ -25,7 +28,12 @@ public class Patient implements User {
     //    TODO boolean stored as string in the mysql db, otherwise corrupted value is saved - fix to be found
     private String enabled;
 
+    @OneToMany(mappedBy = "patient",fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Set<Prescription> prescriptionList;
+
     @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(
             name = "patients_roles",
             joinColumns = @JoinColumn(
@@ -33,6 +41,7 @@ public class Patient implements User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
+
 
     public Patient() {
     }
@@ -118,4 +127,11 @@ public class Patient implements User {
     }
 
 
+    public Set<Prescription> getPrescriptionList() {
+        return prescriptionList;
+    }
+
+    public void setPrescriptionList(Set<Prescription> prescriptionList) {
+        this.prescriptionList = prescriptionList;
+    }
 }
