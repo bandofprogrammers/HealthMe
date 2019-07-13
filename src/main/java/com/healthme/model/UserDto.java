@@ -17,7 +17,7 @@ public class UserDto {
 
     //TODO
     private String gender;
-    private int phoneNumber;
+    private String phoneNumber;
 
     @PESEL
     private String pesel;
@@ -80,11 +80,11 @@ public class UserDto {
         this.gender = gender;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
