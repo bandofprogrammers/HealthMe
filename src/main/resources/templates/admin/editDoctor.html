@@ -17,6 +17,10 @@
                            id="id"/>
                 </div>
                 <div class="form-group">
+<!--                    TODO surely there is a way to do conditional validation somehow, password should not be validated in this view-->
+                    <input class="form-control" type="hidden" name="password" value="x" id="password"/>
+                </div>
+                <div class="form-group">
                     <label class="sr-only" for="firstName">First name</label>
                     <input class="form-control" placeholder="Enter firstname" type="text" th:field="*{firstName}"
                            id="firstName"/>

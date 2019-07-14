@@ -21,25 +21,26 @@ public class Doctor implements User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "First name must not be empty")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "Last name must not be empty")
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "Gender must be selected")
     private String gender;
 
-    @NotBlank
+    @NotBlank(message = "Phone number is required")
     private String phoneNumber;
 
     @PESEL
     private String pesel;
 
-    @NotBlank
+    @NotBlank(message = "Password is required")
     private String password;
 
-    @Email
+    @NotBlank(message = "Email is required")
+    @Email(message = "Wrong email format")
     private String email;
 
     @OneToOne
