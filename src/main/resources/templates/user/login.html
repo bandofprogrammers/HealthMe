@@ -20,7 +20,7 @@
                         <input class="form-control" placeholder="Password" type='password' name='password' id="password"/>
                     </div>
                     <div th:if="${param.error} and ${session}"
-                         th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION']}">
+                         th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
                         <div class="alert alert-dismissible alert-danger error">
                             <p th:text="${errorMsg}"></p>
                         </div>

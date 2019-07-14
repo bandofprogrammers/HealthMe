@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/patient")
@@ -60,5 +62,13 @@ public class PatientController {
             return null;
         }
         return registered;
+    }
+
+    @ModelAttribute("genders")
+    public List<String> genders(){
+        List<String> genders = new ArrayList<>();
+        genders.add("Male");
+        genders.add("Female");
+        return genders;
     }
 }
