@@ -24,6 +24,8 @@ public class Patient implements User {
     private String pesel;
     private String password;
     private String email;
+    @OneToMany
+    private List<Address> addressList;
 
     //    TODO boolean stored as string in the mysql db, otherwise corrupted value is saved - fix to be found
     private String enabled;
@@ -133,5 +135,13 @@ public class Patient implements User {
 
     public void setPrescriptionList(Set<Prescription> prescriptionList) {
         this.prescriptionList = prescriptionList;
+    }
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 }
