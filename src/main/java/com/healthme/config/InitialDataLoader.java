@@ -91,7 +91,7 @@ public class InitialDataLoader implements
         doctor.setEmail("test_doctor@test.com");
         doctor.setRoles(Arrays.asList(doctorRole));
         doctor.setEnabled("true");
-        doctor.setGender("male");
+        doctor.setGender("Male");
         doctor.setPhoneNumber("777777777");
         doctor.setPesel("75012097612");
         doctor.setWorkCalendar(workCalendar);

@@ -42,6 +42,8 @@ public class PatientService {
         patient.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         patient.setPhoneNumber(accountDto.getPhoneNumber());
         patient.setEmail(accountDto.getEmail());
+        patient.setGender(accountDto.getGender());
+        patient.setPesel(accountDto.getPesel());
         patient.setEnabled("false");
         patient.setRoles(Arrays.asList(roleRepository.findByName("ROLE_PATIENT")));
         return patientRepository.save(patient);

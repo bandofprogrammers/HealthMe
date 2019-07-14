@@ -52,6 +52,8 @@ public class AdminService {
 
     public void saveChangesInDoctorData(Doctor doctor) {
         //TODO controller should return enabled and role so we do not have to set it here
+        Doctor originalDoctor = doctorRepository.getOne(doctor.getId());
+        doctor.setPassword(originalDoctor.getPassword());
         doctor.setEnabled("true");
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
         doctor.setRoles(Arrays.asList(doctorRole));
@@ -65,6 +67,12 @@ public class AdminService {
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
         doctor.setRoles(Arrays.asList(doctorRole));
         doctorRepository.save(doctor);
+    }
+
+    public void resetDoctorPassword(Doctor doctor) {
+        Doctor originalDoctor=doctorRepository.getOne(doctor.getId());
+        originalDoctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
+        doctorRepository.save(originalDoctor);
     }
 
     public Doctor getDoctorById(Long id) {
