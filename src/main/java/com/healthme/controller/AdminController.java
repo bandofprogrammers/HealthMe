@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -52,16 +55,16 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/remove/doctor/{id}", method = RequestMethod.GET)
-    public String removeDoctor(@PathVariable Long id,Model model) {
+    public String removeDoctor(@PathVariable Long id, Model model) {
         adminService.removeDoctorById(id);
-        model.addAttribute("doctors",adminService.findAllDoctors());
+        model.addAttribute("doctors", adminService.findAllDoctors());
         return "admin/doctorList";
     }
 
     @RequestMapping(value = "/edit/doctor/{id}", method = RequestMethod.GET)
     public String editDoctor(@PathVariable Long id, Model model) {
         model.addAttribute("doctor", adminService.getDoctorById(id));
-        model.addAttribute("doctorSpecializationList",doctorSpecializationRepository.findAll());
+        model.addAttribute("doctorSpecializationList", doctorSpecializationRepository.findAll());
         return "admin/editDoctor";
     }
 
@@ -74,7 +77,7 @@ public class AdminController {
     @RequestMapping(value = "/add/doctor", method = RequestMethod.GET)
     public String getAddDoctorView(Model model) {
         model.addAttribute("doctor", new Doctor());
-        model.addAttribute("doctorSpecializationList",doctorSpecializationRepository.findAll());
+        model.addAttribute("doctorSpecializationList", doctorSpecializationRepository.findAll());
         return "admin/addDoctor";
     }
 
@@ -84,4 +87,26 @@ public class AdminController {
         return "redirect:/admin/doctors";
     }
 
+    @RequestMapping(value = "/resetpassword/doctor/{id}", method = RequestMethod.GET)
+    public String resetDoctorPassword(@PathVariable Long id, Model model) {
+        Doctor doctor = new Doctor();
+        doctor.setId(id);
+        model.addAttribute("doctor", doctor);
+        return "admin/resetDoctorPassword";
+    }
+
+    @RequestMapping(value = "/resetpassword/doctor", method = RequestMethod.POST)
+    public String resetDoctorPassword(@ModelAttribute("doctor") Doctor doctor, Model model) {
+        adminService.resetDoctorPassword(doctor);
+        model.addAttribute("doctors", adminService.findAllDoctors());
+        return "admin/doctorList";
+    }
+
+    @ModelAttribute("genders")
+    public List<String> genders() {
+        List<String> genders = new ArrayList<>();
+        genders.add("Male");
+        genders.add("Female");
+        return genders;
+    }
 }

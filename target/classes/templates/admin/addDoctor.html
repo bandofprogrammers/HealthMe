@@ -37,8 +37,12 @@
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="gender">Gender</label>
-                    <input class="form-control" placeholder="Select gender" type="text" th:field="*{gender}"
-                           id="gender"/>
+                    <select class="form-control" placeholder="Select gender" type="text" th:field="*{gender}"
+                            id="gender">
+                        <th:block th:each="gender:${genders}">
+                            <option th:value="${gender}" th:text="${gender}"></option>
+                        </th:block>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="pesel">Pesel</label>
@@ -54,9 +58,9 @@
                     <lablel class="sr-only" for="Email"><b>Email</b></lablel>
                     <input class="form-control" placeholder="Enter email" type="text" th:field="*{email}" id="Email"/>
                 </div>
-                <!--        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">-->
-                <!--            <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>-->
-                <!--        </div>-->
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>
+                </div>
                 <button class="btn btn-md btn-primary btn-block" type="submit">Add</button>
             </form>
         </div>

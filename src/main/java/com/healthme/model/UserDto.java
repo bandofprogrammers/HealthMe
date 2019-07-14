@@ -9,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 @PasswordCheck
 public class UserDto {
 
+    private Long id;
+
     @NotBlank(message = "First name must not be empty")
     private String firstName;
 
@@ -94,5 +96,13 @@ public class UserDto {
 
     public void setPesel(String pesel) {
         this.pesel = pesel;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
