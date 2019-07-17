@@ -31,8 +31,8 @@
                         <td th:text="${visit.Patient.pesel}"></td>
                         <td th:text="${visit.Patient.phoneNumber}"></td>
                         <td>
-                            <a th:href="@{'/doctor'}">
-                            Add <span class="glyphicon glyphicon-plus"></span>
+                            <a th:href="@{'/doctor/addPrescription/'+${visit.Patient.email}}">
+                            Presc. <span class="glyphicon glyphicon-plus"></span>
                         </a></td>
                     </tr>
                 </th:block>
