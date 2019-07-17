@@ -9,11 +9,37 @@
 <div class="container-fluid">
     <div th:insert="includes/navBar::nav_bar"></div>
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <p>This view is dedicated for doctor!</p>
+        <div class="col-md-8 col-md-offset-2">
+            <p>Today's visit</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Time</th>
+                    <th>Gender</th>
+                    <th>Pesel</th>
+                    <th>Phone number</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="visit:${visits}">
+                    <tr>
+                        <td th:text="${visit.Patient.firstName}"></td>
+                        <td th:text="${visit.localDateTime}"></td>
+                        <td th:text="${visit.Patient.gender}"></td>
+                        <td th:text="${visit.Patient.pesel}"></td>
+                        <td th:text="${visit.Patient.phoneNumber}"></td>
+                        <td>
+                            <a th:href="@{'/doctor'}">
+                            Add <span class="glyphicon glyphicon-plus"></span>
+                        </a></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
 </body>
 </html>

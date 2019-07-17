@@ -1,11 +1,6 @@
 package com.healthme.config;
 
-import com.healthme.model.entity.DoctorSpecialization;
-import com.healthme.model.entity.WorkCalendar;
-import com.healthme.model.entity.Admin;
-import com.healthme.model.entity.Doctor;
-import com.healthme.model.entity.Patient;
-import com.healthme.model.entity.Role;
+import com.healthme.model.entity.*;
 import com.healthme.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -14,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,6 +39,9 @@ public class InitialDataLoader implements
 
     @Autowired
     private WorkCalendarRepository workCalendarRepository;
+
+    @Autowired
+    private VisitRepository visitRepository;
 
     public InitialDataLoader() {
     }
@@ -78,7 +77,10 @@ public class InitialDataLoader implements
         patient.setPassword(passwordEncoder.encode("test"));
         patient.setEmail("test_patient@test.com");
         patient.setRoles(Arrays.asList(patientRole));
+        patient.setPesel("82032423172");
+        patient.setGender("Male");
         patient.setEnabled("true");
+        patient.setPhoneNumber("879456123");
         patientRepository.save(patient);
 
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
@@ -97,6 +99,14 @@ public class InitialDataLoader implements
         doctor.setWorkCalendar(workCalendar);
         doctor.setDoctorSpecializationList(doctorSpecialization);
         doctorRepository.save(doctor);
+
+        Visit visit = new Visit();
+        visit.setDoctor(doctorRepository.findByEmail("test_doctor@test.com"));
+        visit.setPatient(patientRepository.findByEmail("test_patient@test.com"));
+        LocalDateTime now = LocalDateTime.now();
+        visit.setLocalDateTime(now);
+        visit.setVisitDescription("visit description");
+        visitRepository.save(visit);
 
         alreadySetup = true;
     }
