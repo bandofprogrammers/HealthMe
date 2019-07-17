@@ -1,6 +1,8 @@
 package com.healthme.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,10 +19,11 @@ public class Prescription {
     @ManyToOne
     private Patient patient;
 
-    private LocalDateTime created;
+    private LocalDate created;
 
-    private LocalDateTime expiredDate;
+    private LocalDate expiredDate;
 
+    @NotBlank(message = "Required at least one item")
     private String prescribedItems;
 
     public Prescription() {
@@ -50,19 +53,19 @@ public class Prescription {
         this.patient = patient;
     }
 
-    public LocalDateTime getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
-    public LocalDateTime getExpiredDate() {
+    public LocalDate getExpiredDate() {
         return expiredDate;
     }
 
-    public void setExpiredDate(LocalDateTime expiredDate) {
+    public void setExpiredDate(LocalDate expiredDate) {
         this.expiredDate = expiredDate;
     }
 
