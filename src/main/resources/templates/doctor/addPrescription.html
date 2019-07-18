@@ -13,7 +13,7 @@
             <p>Add prescription</p>
             <form method="post" th:object="${prescription}" action="/doctor/addPrescription">
                 <div class="form-group">
-                    <label class="sr-only" for="prescribedItems">First name</label>
+                    <label class="sr-only" for="prescribedItems">Medicines</label>
                     <input class="form-control" placeholder="Enter medicines" type="text" th:field="*{prescribedItems}"
                            id="prescribedItems"/>
                 </div>

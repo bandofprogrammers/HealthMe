@@ -20,6 +20,7 @@
                     <th>Pesel</th>
                     <th>Phone number</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,8 +33,13 @@
                         <td th:text="${visit.Patient.phoneNumber}"></td>
                         <td>
                             <a th:href="@{'/doctor/addPrescription/'+${visit.Patient.email}}">
-                            Presc. <span class="glyphicon glyphicon-plus"></span>
-                        </a></td>
+                            Presc. <span class="glyphicon glyphicon-plus"></span></a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/doctor/fillVisitFields/'+${visit.id}}">
+                               Edit <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        </td>
                     </tr>
                 </th:block>
                 </tbody>

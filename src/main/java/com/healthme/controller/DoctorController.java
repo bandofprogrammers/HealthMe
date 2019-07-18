@@ -2,8 +2,10 @@ package com.healthme.controller;
 
 import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.Prescription;
+import com.healthme.model.entity.Visit;
 import com.healthme.service.doctor.DoctorService;
 import com.healthme.service.prescription.PrescriptionService;
+import com.healthme.service.visit.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,12 +28,15 @@ public class DoctorController {
 
     private final DoctorService doctorService;
     private final PrescriptionService prescriptionService;
+    private final VisitService visitService;
 
     @Autowired
     public DoctorController(DoctorService doctorService,
-                            PrescriptionService prescriptionService) {
+                            PrescriptionService prescriptionService,
+                            VisitService visitService) {
         this.doctorService = doctorService;
         this.prescriptionService = prescriptionService;
+        this.visitService = visitService;
     }
 
 
@@ -68,6 +73,24 @@ public class DoctorController {
                 patientEmail.setMaxAge(0);
             }
             prescriptionService.savePrescription(prescription,principal,email);
+            return "redirect:/doctor/home";
+        }
+    }
+
+    @RequestMapping(value="/fillVisitFields/{visitId}", method = RequestMethod.GET)
+    public String fillVisitFields(@PathVariable Long visitId, Model model){
+
+        model.addAttribute("visit", visitService.findVisitById(visitId));
+        return "doctor/fillVisitFields";
+    }
+
+    @RequestMapping(value="/fillVisitFields",method = RequestMethod.POST)
+    public String saveChangedVisit(@Valid Visit visit, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            return "redirect:/doctor//fillVisitFields/"+visit.getId();
+        }else{
+            visitService.saveVisit(visit);
             return "redirect:/doctor/home";
         }
     }
