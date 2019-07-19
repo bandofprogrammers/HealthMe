@@ -1,18 +1,21 @@
 package com.healthme.controller;
 
+import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
 import com.healthme.model.UserDto;
+import com.healthme.repository.DoctorRepository;
+import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.service.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,23 +26,38 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
+    @Autowired
+    private DoctorSpecializationRepository doctorSpecializationRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
         return "patient/home";
     }
 
-    @RequestMapping(value="/doctors",method=RequestMethod.GET)
-    public String getDoctorsView(Model model){
+    @RequestMapping(value = "/doctors", method = RequestMethod.GET)
+    public String getDoctorsView(Model model) {
+        model.addAttribute("specializations", doctorSpecializationRepository.findAll());
+        DoctorSpecialization internist = doctorSpecializationRepository.findByName("Internist");
+        model.addAttribute("internists", doctorRepository.findAllBySpecialization(internist));
         return "patient/doctors";
     }
 
-    @RequestMapping(value="/prescriptions",method=RequestMethod.GET)
-    public String getPrescriptionsView(Model model){
+    @RequestMapping(value = "/specializations/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public String getDoctorsView(@PathVariable Long id) {
+        return patientService.getDoctorListBySpecializationId(id).toString();
+    }
+
+    @RequestMapping(value = "/prescriptions", method = RequestMethod.GET)
+    public String getPrescriptionsView(Model model) {
         return "patient/prescriptions";
     }
 
-    @RequestMapping(value="/visits",method=RequestMethod.GET)
-    public String getVisitsView(Model model){
+    @RequestMapping(value = "/visits", method = RequestMethod.GET)
+    public String getVisitsView(Model model) {
         return "patient/visits";
     }
 
@@ -80,7 +98,7 @@ public class PatientController {
     }
 
     @ModelAttribute("genders")
-    public List<String> genders(){
+    public List<String> genders() {
         List<String> genders = new ArrayList<>();
         genders.add("Male");
         genders.add("Female");

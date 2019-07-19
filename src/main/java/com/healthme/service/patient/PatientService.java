@@ -2,17 +2,20 @@ package com.healthme.service.patient;
 
 import com.healthme.model.entity.Admin;
 import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
 import com.healthme.model.UserDto;
-import com.healthme.repository.AdminRepository;
-import com.healthme.repository.DoctorRepository;
-import com.healthme.repository.RoleRepository;
-import com.healthme.repository.PatientRepository;
+import com.healthme.repository.*;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PatientService {
@@ -28,6 +31,9 @@ public class PatientService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private DoctorSpecializationRepository doctorSpecializationRepository;
 
     public Patient registerNewPatientAccount(UserDto accountDto) throws NullPointerException {
 
@@ -62,4 +68,23 @@ public class PatientService {
         return false;
     }
 
+    public JSONObject getDoctorListBySpecializationId(Long id) {
+
+        DoctorSpecialization doctorSpecialization = doctorSpecializationRepository.getOne(id);
+        List<Doctor> doctors = doctorRepository.findAllBySpecialization(doctorSpecialization);
+
+        JSONObject doctorsData = new JSONObject();
+
+        for (Doctor doctor : doctors) {
+            JSONObject doctorData = new JSONObject()
+                    .put("id", doctor.getId())
+                    .put("firstName", doctor.getFirstName())
+                    .put("lastName", doctor.getLastName())
+                    .put("phoneNumber", doctor.getPhoneNumber())
+                    .put("email", doctor.getEmail());
+            doctorsData.put(String.valueOf(doctor.getId()), doctorData);
+        }
+
+        return doctorsData;
+    }
 }

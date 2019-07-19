@@ -56,8 +56,9 @@ public class InitialDataLoader implements
         createRoleIfNotFound("ROLE_ADMIN");
         createRoleIfNotFound("ROLE_PATIENT");
         createRoleIfNotFound("ROLE_DOCTOR");
-        createNewDoctorSpecializationIfNotFound("internist");
-        createNewDoctorSpecializationIfNotFound("laryngologist");
+        createNewDoctorSpecializationIfNotFound("Internist");
+        createNewDoctorSpecializationIfNotFound("Laryngologist");
+        createNewDoctorSpecializationIfNotFound("Cardiologist");
         createNewWorkCalendarIfNotFound("2019");
 
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
