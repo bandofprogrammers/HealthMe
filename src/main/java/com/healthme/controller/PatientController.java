@@ -28,6 +28,21 @@ public class PatientController {
         return "patient/home";
     }
 
+    @RequestMapping(value="/doctors",method=RequestMethod.GET)
+    public String getDoctorsView(Model model){
+        return "patient/doctors";
+    }
+
+    @RequestMapping(value="/prescriptions",method=RequestMethod.GET)
+    public String getPrescriptionsView(Model model){
+        return "patient/prescriptions";
+    }
+
+    @RequestMapping(value="/visits",method=RequestMethod.GET)
+    public String getVisitsView(Model model){
+        return "patient/visits";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterView(Model model) {
         model.addAttribute("patient", new UserDto());

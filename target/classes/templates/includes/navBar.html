@@ -7,10 +7,25 @@
                 <a class="navbar-brand" href="/">HealthMe!</a>
             </div>
             <ul class="nav navbar-nav">
+
+                <!--GENERAL LINKS-->
+
                 <li sec:authorize="isAnonymous()"><a href="/user/login">login</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/patient/register">register</a></li>
+
+                <!--ADMIN SPECIFIC-->
+
                 <li sec:authorize="hasRole('ADMIN')"><a href="/admin/approvals">Patient approval</a></li>
                 <li sec:authorize="hasRole('ADMIN')"><a href="/admin/doctors">Doctors</a></li>
+
+                <!--PATIENT SPECIFIC-->
+
+                <li sec:authorize="hasRole('PATIENT')"><a href="/patient/doctors">Doctors</a></li>
+                <li sec:authorize="hasRole('PATIENT')"><a href="/patient/visits">Visits</a></li>
+                <li sec:authorize="hasRole('PATIENT')"><a href="/patient/prescriptions">Prescriptions</a></li>
+
+                <!--GENERAL CONTINUED-->
+
                 <li sec:authorize="isAuthenticated()"><a href="/logout">logout</a></li>
             </ul>
             <span class="navbar-text" sec:authentication="name"></span>

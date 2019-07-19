@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:insert="includes/header::header">
+    <title>Create prescription</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>Visit details</p>
+            <form method="post" th:object="${visit}" action="/doctor/fillVisitFields">
+                <div class="form-group">
+                    <input class="form-control" type="hidden" th:field="*{id}"
+                           id="id"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" th:field="*{localDateTime}"
+                           id="localDateTime"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="recomendations">recomendations</label>
+                    <textarea class="form-control" rows="10" cols="70"  placeholder="recomendations" th:field="*{recomendations}"
+                           id="recomendations"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="visitDescription">visit_description</label>
+                    <textarea class="form-control" rows="10" cols="50" placeholder="visit_description" th:field="*{visitDescription}"
+                           id="visitDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" th:field="*{doctor}"
+                           id="doctor_id"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" th:field="*{patient}"
+                           id="patient_id"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" th:field="*{sickNote}"
+                           id="sick_note_id"/>
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>
+                </div>
+
+                <button class="btn btn-md btn-primary btn-block" type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
