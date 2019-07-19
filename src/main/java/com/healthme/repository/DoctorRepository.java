@@ -1,6 +1,7 @@
 package com.healthme.repository;
 
 import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
     @Query("SELECT d FROM Doctor d WHERE :role MEMBER OF d.roles")
     List<Doctor> findAllDoctors(@Param("role") Role role);
+
+    @Query("SELECT d FROM Doctor d WHERE :specialization MEMBER OF d.doctorSpecializationList")
+    List<Doctor> findAllBySpecialization(@Param("specialization") DoctorSpecialization specialization);
 }

@@ -1,5 +1,6 @@
 package com.healthme.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthme.model.User;
 
 import org.hibernate.annotations.Fetch;
@@ -27,22 +28,27 @@ public class Doctor implements User {
     @NotBlank(message = "Last name must not be empty")
     private String lastName;
 
+    @JsonIgnore
     @NotBlank(message = "Gender must be selected")
     private String gender;
 
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
 
+    @JsonIgnore
     @PESEL
     private String pesel;
 
+    @JsonIgnore
     @NotBlank(message = "Password is required")
     private String password;
 
+    @JsonIgnore
     @NotBlank(message = "Email is required")
     @Email(message = "Wrong email format")
     private String email;
 
+    @JsonIgnore
     @OneToOne
     private WorkCalendar workCalendar;
 
@@ -50,6 +56,7 @@ public class Doctor implements User {
     @Fetch(value = FetchMode.SUBSELECT)
     private Set<Prescription> prescriptions;
 
+    @JsonIgnore
     @NotNull
     @ManyToMany
     private List<DoctorSpecialization> doctorSpecializationList;
@@ -57,6 +64,7 @@ public class Doctor implements User {
     //    TODO boolean stored as string in the mysql db, otherwise corrupted value is saved - fix to be found
     private String enabled;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(
@@ -193,4 +201,5 @@ public class Doctor implements User {
     public void setPrescriptions(Set<Prescription> prescriptions) {
         this.prescriptions = prescriptions;
     }
+
 }
