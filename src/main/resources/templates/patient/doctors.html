@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div th:insert="includes/navBar::nav_bar"></div>
     <div class="row">
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-md-2 col-md-offset-2">
             <form>
                 <h3>Browse by specialization</h3>
                 <div class="form-group">
@@ -21,30 +21,36 @@
                     </select>
                 </div>
             </form>
-            <div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Mail</th>
-                    </tr>
-                    </thead>
-                    <tbody id="doctorTableBody">
-                        <th:block th:each="internist:${internists}">
-                            <tr>
-                                <td th:text="${internist.firstName}"></td>
-                                <td th:text="${internist.lastName}"></td>
-                                <td th:text="${internist.phoneNumber}"></td>
-                                <td th:text="${internist.email}"></td>
-                            </tr>
-                        </th:block>
-                    </tbody>
-                </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" class="col-md-1">First name</th>
+                    <th scope="col" class="col-md-1">Last name</th>
+                    <th scope="col" class="col-md-2">Phone</th>
+                    <th scope="col" class="col-md-2">Mail</th>
+                    <th scope="col" class="col-md-1"></th>
+                </tr>
+                </thead>
+                <tbody id="doctorTableBody">
+                    <th:block th:each="internist:${internists}">
+                        <tr>
+                            <td th:text="${internist.firstName}"></td>
+                            <td th:text="${internist.lastName}"></td>
+                            <td th:text="${internist.phoneNumber}"></td>
+                            <td th:text="${internist.email}"></td>
+                            <td>
+                                <a href="">Schedule</a>
+                            </td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
 
-            <!--TODO ensure that internist is always first here-->
-            </div>
+        <!--TODO ensure that internist is always first here-->
         </div>
     </div>
 </div>

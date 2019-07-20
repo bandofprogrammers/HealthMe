@@ -6,7 +6,6 @@ $(document).ready(function(){
             'success': function (jsonData) {
                 $("#doctorTableBody").empty()
                 showReceived(jsonData)
-                console.log(jsonData)
             }
         });
     })
@@ -21,6 +20,9 @@ function showReceived(jsonData){
                                             <td>${jsonData[key].lastName}</td>
                                             <td>${jsonData[key].phoneNumber}</td>
                                             <td>${jsonData[key].email}</td>
+                                            <td>
+                                                <a href="">Schedule</a>
+                                            </td>
                                         </tr>`))
     })
 
