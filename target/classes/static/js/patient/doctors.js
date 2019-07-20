@@ -21,7 +21,7 @@ function showReceived(jsonData){
                                             <td>${jsonData[key].phoneNumber}</td>
                                             <td>${jsonData[key].email}</td>
                                             <td>
-                                                <a href="">Schedule</a>
+                                                <a href=${window.location.origin}/patient/schedule/${jsonData[key].id}>Schedule</a>
                                             </td>
                                         </tr>`))
     })

@@ -1,8 +1,8 @@
 package com.healthme.controller;
 
+import com.healthme.model.UserDto;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
-import com.healthme.model.UserDto;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.service.patient.PatientService;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.security.Principal;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +47,12 @@ public class PatientController {
     @ResponseBody
     public String getDoctorsView(@PathVariable Long id) {
         return patientService.getDoctorListBySpecializationId(id).toString();
+    }
+
+    @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
+    public String getDoctorScheduleView(@PathVariable Long id, Model model) {
+        model.addAttribute("doctor", doctorRepository.getOne(id));
+        return "patient/doctorSchedule";
     }
 
     @RequestMapping(value = "/prescriptions", method = RequestMethod.GET)
