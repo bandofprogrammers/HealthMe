@@ -16,7 +16,8 @@
                     <label class="sr-only" for="specialization">Specialization</label>
                     <select class="form-control" placeholder="Select specialization" type="text" id="specialization">
                         <th:block th:each="specialization:${specializations}">
-                            <option th:value="${specialization.id}" th:text="${specialization.name}"></option>
+                            <option th:value="${specialization.id}" th:text="${specialization.name}"
+                                    th:selected="${specialization.name} == 'Internist' ? true : false"></option>
                         </th:block>
                     </select>
                 </div>
@@ -36,21 +37,19 @@
                 </tr>
                 </thead>
                 <tbody id="doctorTableBody">
-                    <th:block th:each="internist:${internists}">
-                        <tr>
-                            <td th:text="${internist.firstName}"></td>
-                            <td th:text="${internist.lastName}"></td>
-                            <td th:text="${internist.phoneNumber}"></td>
-                            <td th:text="${internist.email}"></td>
-                            <td>
-                                <a href="">Schedule</a>
-                            </td>
-                        </tr>
-                    </th:block>
+                <th:block th:each="internist:${internists}">
+                    <tr>
+                        <td th:text="${internist.firstName}"></td>
+                        <td th:text="${internist.lastName}"></td>
+                        <td th:text="${internist.phoneNumber}"></td>
+                        <td th:text="${internist.email}"></td>
+                        <td>
+                            <a th:href="@{'/patient/schedule/'+${internist.id}}">Schedule</a>
+                        </td>
+                    </tr>
+                </th:block>
                 </tbody>
             </table>
-
-        <!--TODO ensure that internist is always first here-->
         </div>
     </div>
 </div>
