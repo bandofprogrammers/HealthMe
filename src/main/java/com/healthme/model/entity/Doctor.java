@@ -56,7 +56,6 @@ public class Doctor implements User {
     @Fetch(value = FetchMode.SUBSELECT)
     private Set<Prescription> prescriptions;
 
-    @JsonIgnore
     @NotNull
     @ManyToMany
     private List<DoctorSpecialization> doctorSpecializationList;

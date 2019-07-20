@@ -4,9 +4,8 @@ $(document).ready(function(){
             'url': window.location.origin + "/patient/specializations/" + $("#specialization :selected").val(),
             'dataType': "json",
             'success': function (jsonData) {
-                $("#doctorList").empty()
+                $("#doctorTableBody").empty()
                 showReceived(jsonData)
-                console.log(jsonData)
             }
         });
     })
@@ -14,5 +13,17 @@ $(document).ready(function(){
 })
 
 function showReceived(jsonData){
-    $("#doctorList").append($(`<p>${jsonData[0].firstName}</p>`))
+
+    Object.keys(jsonData).forEach(function (key) {
+        $("#doctorTableBody").append($(`<tr>
+                                            <td>${jsonData[key].firstName}</td>
+                                            <td>${jsonData[key].lastName}</td>
+                                            <td>${jsonData[key].phoneNumber}</td>
+                                            <td>${jsonData[key].email}</td>
+                                            <td>
+                                                <a href="">Schedule</a>
+                                            </td>
+                                        </tr>`))
+    })
+
 }
