@@ -21,10 +21,28 @@
                     </select>
                 </div>
             </form>
-            <div id="doctorList">
-                <th:block th:each="internist:${internists}">
-                    <p th:text="${internist.lastName}"></p>
-                </th:block>
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Mail</th>
+                    </tr>
+                    </thead>
+                    <tbody id="doctorTableBody">
+                        <th:block th:each="internist:${internists}">
+                            <tr>
+                                <td th:text="${internist.firstName}"></td>
+                                <td th:text="${internist.lastName}"></td>
+                                <td th:text="${internist.phoneNumber}"></td>
+                                <td th:text="${internist.email}"></td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+
             <!--TODO ensure that internist is always first here-->
             </div>
         </div>

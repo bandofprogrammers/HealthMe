@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -100,6 +102,25 @@ public class InitialDataLoader implements
         doctor.setWorkCalendar(workCalendar);
         doctor.setDoctorSpecializationList(doctorSpecialization);
         doctorRepository.save(doctor);
+
+//      Test laryngologist
+
+        List<DoctorSpecialization> laryngologist = new ArrayList<>();
+        laryngologist.add(doctorSpecializationRepository.findByName("Laryngologist"));
+        Doctor doctor2 = new Doctor();
+        doctor2.setFirstName("Test_Doctor2");
+        doctor2.setLastName("Test_Doctor2");
+        doctor2.setPassword(passwordEncoder.encode("test"));
+        doctor2.setEmail("test_doctor2@test.com");
+        doctor2.setRoles(Arrays.asList(doctorRole));
+        doctor2.setEnabled("true");
+        doctor2.setGender("Male");
+        doctor2.setPhoneNumber("111111111");
+        doctor2.setPesel("03241037648");
+        doctor2.setWorkCalendar(workCalendar);
+        doctor2.setDoctorSpecializationList(laryngologist);
+        doctorRepository.save(doctor2);
+
 
         Visit visit = new Visit();
         visit.setDoctor(doctorRepository.findByEmail("test_doctor@test.com"));
