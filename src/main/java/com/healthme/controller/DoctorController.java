@@ -2,7 +2,9 @@ package com.healthme.controller;
 
 import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.Prescription;
+import com.healthme.model.entity.SickNote;
 import com.healthme.model.entity.Visit;
+import com.healthme.service.SickNoteService;
 import com.healthme.service.doctor.DoctorService;
 import com.healthme.service.prescription.PrescriptionService;
 import com.healthme.service.visit.VisitService;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/doctor")
@@ -29,14 +34,17 @@ public class DoctorController {
     private final DoctorService doctorService;
     private final PrescriptionService prescriptionService;
     private final VisitService visitService;
+    private final SickNoteService sickNoteService;
 
     @Autowired
     public DoctorController(DoctorService doctorService,
                             PrescriptionService prescriptionService,
-                            VisitService visitService) {
+                            VisitService visitService,
+                            SickNoteService sickNoteService) {
         this.doctorService = doctorService;
         this.prescriptionService = prescriptionService;
         this.visitService = visitService;
+        this.sickNoteService = sickNoteService;
     }
 
 
@@ -88,11 +96,51 @@ public class DoctorController {
     public String saveChangedVisit(@Valid Visit visit, BindingResult bindingResult){
 
         if (bindingResult.hasErrors()){
-            return "redirect:/doctor//fillVisitFields/"+visit.getId();
+            return "redirect:/doctor/fillVisitFields/"+visit.getId();
         }else{
             visitService.saveVisit(visit);
             return "redirect:/doctor/home";
         }
+    }
+
+    @RequestMapping(value="/addSickNote/{patientEmail}", method = RequestMethod.GET)
+    public String addSickNote(Model model,
+                              @PathVariable String patientEmail,
+                              HttpServletResponse response){
+
+        Cookie cookiePatientEmail = new Cookie("patientEmail",patientEmail);
+        cookiePatientEmail.setPath("/doctor/addSickNote");
+        response.addCookie(cookiePatientEmail);
+        model.addAttribute("sickNote", new SickNote());
+
+        return "doctor/addSickNote";
+    }
+
+    @RequestMapping(value = "/addSickNote", method = RequestMethod.POST)
+    public String saveSickNote(@Valid SickNote sickNote, BindingResult bindingResult,HttpServletRequest request){
+        Cookie patientEmail = WebUtils.getCookie(request, "patientEmail");
+
+        if(bindingResult.hasErrors()) {
+
+            return "redirect:/doctor/addSickNote/" + patientEmail.getValue();
+
+            }else{
+
+                sickNoteService.saveSickNote(sickNote,request.getUserPrincipal(),patientEmail.getValue());
+                patientEmail.setMaxAge(0);
+                return "redirect:/doctor/home";
+            }
+        }
+
+    @ModelAttribute("codes")
+    public List<String> codes() {
+        List<String> codes = new ArrayList<>();
+        codes.add("A");
+        codes.add("B");
+        codes.add("C");
+        codes.add("D");
+        codes.add("E");
+        return codes;
     }
 
 }

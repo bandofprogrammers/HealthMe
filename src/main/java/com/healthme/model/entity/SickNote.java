@@ -1,9 +1,10 @@
 package com.healthme.model.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
@@ -14,33 +15,35 @@ public class SickNote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @ManyToOne
     private Patient patient;
 
     @Pattern(regexp = "[1-4]{1}")
-    private int insuredIn;
+    private String insuredIn;
 
     @FutureOrPresent
     private LocalDate creationDate;
 
     @Pattern(regexp = "[0-9]{3}")
-    private int statisticalNumberOfDisease;
+    private String statisticalNumberOfDisease;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate inabilityToWorkFrom;
 
     @Future
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate inabilityToWorkTo;
 
     private int daysInHospital;
 
-    private int doctorId;
+    @ManyToOne
+    private Doctor doctor;
 
     @Pattern(regexp = "[1-3]{1}")
-    private int kinshipCode;
+    private String kinshipCode;
 
     @Pattern(regexp = "[1-2]{1}")
-    private int medicalIndications;
+    private String medicalIndications;
 
     @Pattern(regexp = "[ABCDE]{1,4}")
     private String codes;
@@ -64,11 +67,11 @@ public class SickNote {
         this.patient = patient;
     }
 
-    public int getInsuredIn() {
+    public String getInsuredIn() {
         return insuredIn;
     }
 
-    public void setInsuredIn(int insuredIn) {
+    public void setInsuredIn(String insuredIn) {
         this.insuredIn = insuredIn;
     }
 
@@ -80,11 +83,11 @@ public class SickNote {
         this.creationDate = creationDate;
     }
 
-    public int getStatisticalNumberOfDisease() {
+    public String getStatisticalNumberOfDisease() {
         return statisticalNumberOfDisease;
     }
 
-    public void setStatisticalNumberOfDisease(int statisticalNumberOfDisease) {
+    public void setStatisticalNumberOfDisease(String statisticalNumberOfDisease) {
         this.statisticalNumberOfDisease = statisticalNumberOfDisease;
     }
 
@@ -112,27 +115,27 @@ public class SickNote {
         this.daysInHospital = daysInHospital;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public int getKinshipCode() {
+    public String getKinshipCode() {
         return kinshipCode;
     }
 
-    public void setKinshipCode(int kinshipCode) {
+    public void setKinshipCode(String kinshipCode) {
         this.kinshipCode = kinshipCode;
     }
 
-    public int getMedicalIndications() {
+    public String getMedicalIndications() {
         return medicalIndications;
     }
 
-    public void setMedicalIndications(int medicalIndications) {
+    public void setMedicalIndications(String medicalIndications) {
         this.medicalIndications = medicalIndications;
     }
 
