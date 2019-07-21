@@ -103,14 +103,18 @@ public class DoctorController {
         }
     }
 
-    @RequestMapping(value="/addSickNote/{patientEmail}", method = RequestMethod.GET)
+    @RequestMapping(value="/addSickNote/{patientEmail}/{visitId}", method = RequestMethod.GET)
     public String addSickNote(Model model,
                               @PathVariable String patientEmail,
+                              @PathVariable String visitId,
                               HttpServletResponse response){
 
         Cookie cookiePatientEmail = new Cookie("patientEmail",patientEmail);
+        Cookie cookieVisitId = new Cookie("visitId", visitId);
         cookiePatientEmail.setPath("/doctor/addSickNote");
+        cookieVisitId.setPath("/doctor/addSickNote");
         response.addCookie(cookiePatientEmail);
+        response.addCookie(cookieVisitId);
         model.addAttribute("sickNote", new SickNote());
 
         return "doctor/addSickNote";
@@ -119,6 +123,7 @@ public class DoctorController {
     @RequestMapping(value = "/addSickNote", method = RequestMethod.POST)
     public String saveSickNote(@Valid SickNote sickNote, BindingResult bindingResult,HttpServletRequest request){
         Cookie patientEmail = WebUtils.getCookie(request, "patientEmail");
+        Cookie visitId = WebUtils.getCookie(request,"visitId");
 
         if(bindingResult.hasErrors()) {
 
@@ -126,8 +131,9 @@ public class DoctorController {
 
             }else{
 
-                sickNoteService.saveSickNote(sickNote,request.getUserPrincipal(),patientEmail.getValue());
+                sickNoteService.saveSickNote(sickNote,request.getUserPrincipal(),patientEmail.getValue(),visitId.getValue());
                 patientEmail.setMaxAge(0);
+                visitId.setMaxAge(0);
                 return "redirect:/doctor/home";
             }
         }

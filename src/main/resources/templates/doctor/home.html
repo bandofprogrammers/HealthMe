@@ -42,7 +42,7 @@
                             Presc. <span class="glyphicon glyphicon-plus"></span></a>
                         </td>
                         <td>
-                            <a th:href="@{'/doctor/addSickNote/'+${visit.Patient.email}}">
+                            <a th:href="@{'/doctor/addSickNote/'+${visit.Patient.email}+'/'+${visit.id}}">
                                 sick note <span class="glyphicon glyphicon-plus"></span>
                             </a>
                         </td>
