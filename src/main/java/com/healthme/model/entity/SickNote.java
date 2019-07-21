@@ -48,6 +48,9 @@ public class SickNote {
     @Pattern(regexp = "[ABCDE]{1,4}")
     private String codes;
 
+    @OneToOne
+    private Visit visit;
+
     public SickNote() {
     }
 
@@ -145,5 +148,13 @@ public class SickNote {
 
     public void setCodes(String codes) {
         this.codes = codes;
+    }
+
+    public Visit getVisit() {
+        return visit;
+    }
+
+    public void setVisit(Visit visit) {
+        this.visit = visit;
     }
 }
