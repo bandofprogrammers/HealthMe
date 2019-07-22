@@ -18,4 +18,7 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     @Query("SELECT p FROM Patient p WHERE p.enabled='false'")
     List<Patient> getAllNotEnabled();
 
+    @Query(value = "SELECT visit.id AS visitId, patients.* FROM visit JOIN patients ON patients.id=visit.patient_id where visit.doctor_id=:doctorId",nativeQuery = true)
+    List<Patient> findAllPatientsByDoctorAndVisits(@Param("doctorId") Long doctorId);
+
 }

@@ -24,6 +24,9 @@
                 <li sec:authorize="hasRole('PATIENT')"><a href="/patient/visits">Visits</a></li>
                 <li sec:authorize="hasRole('PATIENT')"><a href="/patient/prescriptions">Prescriptions</a></li>
 
+                <!--DOCTOR SPECIFIC-->
+                <li sec:authorize="hasRole('DOCTOR')"><a href="/doctor/myPatients">My patients</a></li>
+
                 <!--GENERAL CONTINUED-->
 
                 <li sec:authorize="isAuthenticated()"><a href="/logout">logout</a></li>
