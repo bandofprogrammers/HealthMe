@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:insert="includes/header::header">
+    <title>Doctor Home</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <p>My patients</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Pesel</th>
+                    <th>Phone number</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="patient:${patients}">
+                    <tr>
+                        <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
+                        <td th:text="${patient.gender}"></td>
+                        <td th:text="${patient.pesel}"></td>
+                        <td th:text="${patient.phoneNumber}"></td>
+                        <td>
+                            <a th:href="@{'/patient/treatmentHistory/'+${patient.id}}">
+                                <span class="glyphicon glyphicon-list"></span>
+                            </a>
+                        </td>
+
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

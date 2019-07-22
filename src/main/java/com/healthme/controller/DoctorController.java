@@ -138,6 +138,16 @@ public class DoctorController {
             }
         }
 
+
+    @RequestMapping(value = "/myPatients",method = RequestMethod.GET)
+    public String getAllPatientsByDoctorAndVisits(Model model, Principal principal){
+
+        Long doctorId = doctorService.findDoctorByEmail(principal.getName()).getId();
+        model.addAttribute("patients",doctorService.findAllPatientsByDoctorAndVisits(doctorId));
+        return "/doctor/myPatients";
+        }
+
+
     @ModelAttribute("codes")
     public List<String> codes() {
         List<String> codes = new ArrayList<>();
