@@ -22,12 +22,14 @@
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="recomendations">recomendations</label>
-                    <textarea class="form-control" rows="10" cols="70"  placeholder="recomendations" th:field="*{recomendations}"
+                    <textarea class="form-control" rows="10" cols="70"  maxlength="500" placeholder="recomendations"
+                              th:field="*{recomendations}"
                            id="recomendations"></textarea>
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="visitDescription">visit_description</label>
-                    <textarea class="form-control" rows="10" cols="50" placeholder="visit_description" th:field="*{visitDescription}"
+                    <textarea class="form-control" rows="10" cols="50" placeholder="visit_description" maxlength="500"
+                              th:field="*{visitDescription}"
                            id="visitDescription"></textarea>
                 </div>
                 <div class="form-group">

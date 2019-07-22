@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "visits")
 public class Visit {
 
     @Id
@@ -24,9 +25,11 @@ public class Visit {
     @OneToMany
     private List<Prescription> prescriptionList;
 
+    @Column(columnDefinition = "VARCHAR(500)")
     private String recomendations;
 
     @NotBlank
+    @Column(columnDefinition = "VARCHAR(500)")
     private String visitDescription;
 
     @OneToOne
