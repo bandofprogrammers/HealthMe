@@ -145,7 +145,16 @@ public class DoctorController {
         Long doctorId = doctorService.findDoctorByEmail(principal.getName()).getId();
         model.addAttribute("patients",doctorService.findAllPatientsByDoctorAndVisits(doctorId));
         return "/doctor/myPatients";
+
         }
+
+
+    @RequestMapping(value="/patientHistory/{id}", method =RequestMethod.GET)
+    public String showTreatmentHistory(Model model, @PathVariable Long id){
+
+        model.addAttribute("visits",visitService.findVisitByPatient(id));
+        return "doctor/treatmentHistory";
+    }
 
 
     @ModelAttribute("codes")

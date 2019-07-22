@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface VisitRepository extends JpaRepository<Visit, Long> {
-    @Query(value = "SELECT * from visit where local_date_time LIKE :nowOnlyDate% AND doctor_id=:doctorId", nativeQuery = true)
+
+    @Query(value = "SELECT * from visits where local_date_time LIKE :nowOnlyDate% AND doctor_id=:doctorId", nativeQuery = true)
     List<Visit> findAllVisitByDoctorIdForCurrentDay(@Param("nowOnlyDate") String nowOnlyDate, @Param("doctorId") Long doctorId);
 
+    List<Visit> findAllByPatientIdOrderByLocalDateTimeDesc(Long id);
 }
