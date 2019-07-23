@@ -28,7 +28,7 @@ public class Visit {
     @Column(columnDefinition = "VARCHAR(500)")
     private String recomendations;
 
-    @NotBlank
+    @NotBlank(message = "{visitVisitDescription.notblank}")
     @Column(columnDefinition = "VARCHAR(500)")
     private String visitDescription;
 
