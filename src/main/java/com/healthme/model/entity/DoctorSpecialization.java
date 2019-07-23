@@ -13,7 +13,7 @@ public class DoctorSpecialization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "{doctorSpecialization.name}")
     private String name;
 
     public DoctorSpecialization() {

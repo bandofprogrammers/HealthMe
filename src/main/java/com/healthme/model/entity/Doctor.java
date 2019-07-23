@@ -22,30 +22,30 @@ public class Doctor implements User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "First name must not be empty")
+    @NotBlank(message = "{doctorFirstName.notblank}")
     private String firstName;
 
-    @NotBlank(message = "Last name must not be empty")
+    @NotBlank(message = "{doctorLastName.notblank}")
     private String lastName;
 
     @JsonIgnore
-    @NotBlank(message = "Gender must be selected")
+    @NotBlank(message = "{doctorGender.notblank}")
     private String gender;
 
-    @NotBlank(message = "Phone number is required")
+    @NotBlank(message = "{doctorPhoneNumber.notblank}")
     private String phoneNumber;
 
     @JsonIgnore
-    @PESEL
+    @PESEL(message = "{doctorPesel.notblank}")
     private String pesel;
 
     @JsonIgnore
-    @NotBlank(message = "Password is required")
+    @NotBlank(message = "{doctorPass.notblank}")
     private String password;
 
     @JsonIgnore
-    @NotBlank(message = "Email is required")
-    @Email(message = "Wrong email format")
+    @NotBlank(message = "{doctorEmail.notBlank}")
+    @Email(message = "{doctorEmail.email}")
     private String email;
 
     @JsonIgnore

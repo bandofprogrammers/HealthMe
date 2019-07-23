@@ -18,13 +18,13 @@ public class SickNote {
     @ManyToOne
     private Patient patient;
 
-    @Pattern(regexp = "[1-4]{1}")
+    @Pattern(regexp = "[1-4]{1}", message = "{sickNoteInsuredIn.pattern}")
     private String insuredIn;
 
     @FutureOrPresent
     private LocalDate creationDate;
 
-    @Pattern(regexp = "[0-9]{3}")
+    @Pattern(regexp = "[0-9]{3}", message = "{sickNoteStatisticalNumberOfDisease.pattern}")
     private String statisticalNumberOfDisease;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

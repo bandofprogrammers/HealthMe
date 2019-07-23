@@ -127,7 +127,7 @@ public class DoctorController {
 
         if(bindingResult.hasErrors()) {
 
-            return "redirect:/doctor/addSickNote/" + patientEmail.getValue();
+            return "redirect:/doctor/addSickNote/" + patientEmail.getValue()+"/"+visitId.getValue();
 
             }else{
 

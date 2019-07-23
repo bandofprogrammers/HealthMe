@@ -11,27 +11,27 @@ public class UserDto {
 
     private Long id;
 
-    @NotBlank(message = "First name must not be empty")
+    @NotBlank(message = "{UserDTOFirstName.notblank}")
     private String firstName;
 
-    @NotBlank(message = "Last name must not be empty")
+    @NotBlank(message = "{UserDTOLastName.notblank}")
     private String lastName;
 
     //TODO
     private String gender;
     private String phoneNumber;
 
-    @PESEL
+    @PESEL(message ="{UserDTOPesel.pesel}")
     private String pesel;
 
-    @Email(message = "Email format is not correct")
-    @NotBlank(message = "Email must not be empty")
+    @Email(message = "{UserDTOEmail.email}")
+    @NotBlank(message = "{UserDTOEmail.notblank}")
     private String email;
 
-    @NotBlank(message = "Password must not be empty")
+    @NotBlank(message = "{UserDTOPass.notblank}")
     private String password;
 
-    @NotBlank(message = "Please repeat the password")
+    @NotBlank(message = "{UserDTOMatchingPass.notblank}")
     private String matchingPassword;
 
     public String getMatchingPassword() {
