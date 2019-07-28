@@ -51,8 +51,11 @@ public class Doctor implements User {
     private String email;
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private WorkCalendar workCalendar;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<WorkDay> workDays;
 
     @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)

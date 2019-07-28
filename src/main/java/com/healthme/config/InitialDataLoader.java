@@ -2,6 +2,8 @@ package com.healthme.config;
 
 import com.healthme.model.entity.*;
 import com.healthme.model.entity.doctorsCalendar.WorkCalendar;
+import com.healthme.model.entity.doctorsCalendar.WorkDay;
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -10,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,6 +92,7 @@ public class InitialDataLoader implements
 
         Role doctorRole = roleRepository.findByName("ROLE_DOCTOR");
         List<DoctorSpecialization> doctorSpecialization = doctorSpecializationRepository.findAll();
+
         WorkCalendar workCalendar = workCalendarRepository.findByName("2019");
         Doctor doctor = new Doctor();
         doctor.setFirstName("Test_Doctor");
@@ -99,8 +104,36 @@ public class InitialDataLoader implements
         doctor.setGender("Male");
         doctor.setPhoneNumber("777777777");
         doctor.setPesel("75012097612");
-        doctor.setWorkCalendar(workCalendar);
+
         doctor.setDoctorSpecializationList(doctorSpecialization);
+
+        WorkDay workDay = new WorkDay();
+        workDay.setDate("2019-07-28");
+        workDay.setDoctor(doctor);
+        workDay.setWorkCalendar(workCalendar);
+        WorkHour workHour = new WorkHour();
+        workHour.setHour("8:00");
+        workHour.setDoctor(doctor);
+        workHour.setDoctor(doctor);
+        workHour.setWorkDay(workDay);
+
+        WorkHour workHour1 = new WorkHour();
+        workHour1.setHour("9:00");
+        workHour1.setDoctor(doctor);
+        workHour1.setDoctor(doctor);
+        workHour1.setWorkDay(workDay);
+
+        List<WorkHour> workHours = new ArrayList<>();
+
+        workHours.add(workHour);
+        workHours.add(workHour1);
+
+        workDay.setWorkingHours(workHours);
+        workCalendar.setDaysOfWork(Arrays.asList(workDay));
+        workCalendar.setDoctor(doctor);
+        doctor.setWorkCalendar(workCalendar);
+
+
         doctorRepository.save(doctor);
 
 //      Test laryngologist

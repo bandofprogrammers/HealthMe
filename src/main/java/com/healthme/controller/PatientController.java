@@ -3,8 +3,10 @@ package com.healthme.controller;
 import com.healthme.model.UserDto;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
+import com.healthme.repository.WorkHourRepository;
 import com.healthme.service.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,9 @@ public class PatientController {
     @Autowired
     private DoctorRepository doctorRepository;
 
+    @Autowired
+    private WorkHourRepository workHourRepository;
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
         return "patient/home";
@@ -45,8 +51,16 @@ public class PatientController {
 
     @RequestMapping(value = "/specializations/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String getDoctorsView(@PathVariable Long id) {
+    public String getDoctorSpecializations(@PathVariable Long id) {
         return patientService.getDoctorListBySpecializationId(id).toString();
+    }
+
+
+    @RequestMapping(value = "/availableterms/{doctorId}/{date}", method = RequestMethod.GET)
+    public String getAvailableTerms(@PathVariable Long doctorId, @PathVariable String date, Model model) {
+        List<WorkHour> workHours = workHourRepository.getAvailableTermsByDoctorIdAndDate(doctorId, date);
+        model.addAttribute("hours", workHours);
+        return "patient/testHours";
     }
 
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)

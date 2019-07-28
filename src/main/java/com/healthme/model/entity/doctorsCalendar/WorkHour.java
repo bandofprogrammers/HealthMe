@@ -1,5 +1,6 @@
 package com.healthme.model.entity.doctorsCalendar;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.Patient;
 
@@ -15,12 +16,15 @@ public class WorkHour {
 //    TODO maybe change format here from string to time
     private String hour;
 
+    @JsonIgnore
     @ManyToOne
     private WorkDay workDay;
 
-    @OneToOne
+    @JsonIgnore
+    @ManyToOne
     private Patient patient;
 
+    @JsonIgnore
     @OneToOne
     private Doctor doctor;
 
@@ -55,4 +59,5 @@ public class WorkHour {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
+
 }
