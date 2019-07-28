@@ -15,9 +15,33 @@ public class WorkDay {
 
     private LocalDate date;
 
-    @ManyToMany
+    @OneToOne
     private Doctor doctor;
 
-    @OneToMany
+    @OneToMany(mappedBy = "workDay")
     private List<WorkHour> workingHours;
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public List<WorkHour> getWorkingHours() {
+        return workingHours;
+    }
+
+    public void setWorkingHours(List<WorkHour> workingHours) {
+        this.workingHours = workingHours;
+    }
 }
