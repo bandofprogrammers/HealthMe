@@ -15,10 +15,13 @@ public class WorkDay {
 
     private LocalDate date;
 
-    @OneToOne
+    @ManyToOne
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "workDay")
+    @ManyToOne
+    private WorkCalendar workCalendar;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<WorkHour> workingHours;
 
     public LocalDate getDate() {
@@ -43,5 +46,13 @@ public class WorkDay {
 
     public void setWorkingHours(List<WorkHour> workingHours) {
         this.workingHours = workingHours;
+    }
+
+    public WorkCalendar getWorkCalendar() {
+        return workCalendar;
+    }
+
+    public void setWorkCalendar(WorkCalendar workCalendar) {
+        this.workCalendar = workCalendar;
     }
 }

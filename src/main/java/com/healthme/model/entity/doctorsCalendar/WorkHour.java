@@ -18,7 +18,7 @@ public class WorkHour {
     @ManyToOne
     private WorkDay workDay;
 
-    @OneToOne
+    @ManyToOne
     private Patient patient;
 
     @OneToOne

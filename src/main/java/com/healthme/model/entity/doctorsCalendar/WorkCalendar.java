@@ -1,5 +1,7 @@
 package com.healthme.model.entity.doctorsCalendar;
 
+import com.healthme.model.entity.Doctor;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,8 +14,11 @@ public class WorkCalendar {
 
     private String name;
 
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<WorkDay> daysOfWork;
+
+    @OneToOne
+    private Doctor doctor;
 
     public WorkCalendar() {
     }
@@ -36,5 +41,21 @@ public class WorkCalendar {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<WorkDay> getDaysOfWork() {
+        return daysOfWork;
+    }
+
+    public void setDaysOfWork(List<WorkDay> daysOfWork) {
+        this.daysOfWork = daysOfWork;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 }
