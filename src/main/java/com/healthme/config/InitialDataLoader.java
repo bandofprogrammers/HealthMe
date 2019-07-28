@@ -1,6 +1,7 @@
 package com.healthme.config;
 
 import com.healthme.model.entity.*;
+import com.healthme.model.entity.doctorsCalendar.WorkCalendar;
 import com.healthme.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Component

@@ -1,9 +1,7 @@
-package com.healthme.model.entity;
+package com.healthme.model.entity.doctorsCalendar;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class WorkCalendar {
@@ -13,6 +11,9 @@ public class WorkCalendar {
     private Long id;
 
     private String name;
+
+    @ManyToMany
+    private List<WorkDay> daysOfWork;
 
     public WorkCalendar() {
     }

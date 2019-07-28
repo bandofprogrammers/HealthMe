@@ -3,6 +3,7 @@ package com.healthme.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthme.model.User;
 
+import com.healthme.model.entity.doctorsCalendar.WorkCalendar;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.pl.PESEL;
