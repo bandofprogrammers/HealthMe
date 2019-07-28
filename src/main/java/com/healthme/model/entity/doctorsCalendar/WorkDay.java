@@ -13,19 +13,22 @@ public class WorkDay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate date;
+    private String date;
 
-    @OneToOne
+    @ManyToOne
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "workDay")
+    @ManyToOne
+    private WorkCalendar workCalendar;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<WorkHour> workingHours;
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -43,5 +46,13 @@ public class WorkDay {
 
     public void setWorkingHours(List<WorkHour> workingHours) {
         this.workingHours = workingHours;
+    }
+
+    public WorkCalendar getWorkCalendar() {
+        return workCalendar;
+    }
+
+    public void setWorkCalendar(WorkCalendar workCalendar) {
+        this.workCalendar = workCalendar;
     }
 }

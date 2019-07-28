@@ -4,10 +4,12 @@ import com.healthme.model.UserDto;
 import com.healthme.model.entity.DoctorRating;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.service.doctor.DoctorService;
 import com.healthme.service.doctorRating.DoctorRatingService;
+import com.healthme.repository.WorkHourRepository;
 import com.healthme.service.patient.PatientService;
 import com.healthme.service.visit.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class PatientController {
     private DoctorRepository doctorRepository;
 
     @Autowired
+
     private VisitService visitService;
 
     @Autowired
@@ -47,6 +50,8 @@ public class PatientController {
 
     @Autowired
     private DoctorRatingService doctorRatingService;
+
+    private WorkHourRepository workHourRepository;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
@@ -63,8 +68,16 @@ public class PatientController {
 
     @RequestMapping(value = "/specializations/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String getDoctorsView(@PathVariable Long id) {
+    public String getDoctorSpecializations(@PathVariable Long id) {
         return patientService.getDoctorListBySpecializationId(id).toString();
+    }
+
+
+    @RequestMapping(value = "/availableterms/{doctorId}/{date}", method = RequestMethod.GET)
+    public String getAvailableTerms(@PathVariable Long doctorId, @PathVariable String date, Model model) {
+        List<WorkHour> workHours = workHourRepository.getAvailableTermsByDoctorIdAndDate(doctorId, date);
+        model.addAttribute("hours", workHours);
+        return "patient/testHours";
     }
 
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
