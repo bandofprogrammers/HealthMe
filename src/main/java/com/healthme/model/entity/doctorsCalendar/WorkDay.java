@@ -13,7 +13,7 @@ public class WorkDay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate date;
+    private String date;
 
     @ManyToOne
     private Doctor doctor;
@@ -24,11 +24,11 @@ public class WorkDay {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<WorkHour> workingHours;
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
