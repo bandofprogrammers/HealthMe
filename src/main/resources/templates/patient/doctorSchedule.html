@@ -20,7 +20,6 @@
     <div th:insert="includes/navBar::nav_bar"></div>
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
-            <p>This view should contain doctor schedule!</p>
             <p th:text="${'This particular view is dedicated to - ' + doctor.firstName}"></p>
         </div>
         <div class="datetimepicker"></div>
@@ -28,8 +27,32 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class='col-sm-6'>
+        <div class='col-md-6'>
             <div id="date_picker"></div>
+        </div>
+        <div class='col-md-6'>
+            <div class='col-md-2'>
+                <button type="button" class="btn btn-primary btn-md btn-block">8:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">8:30</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">9:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">9:30</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">10:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">10:30</button>
+            </div>
+            <div class='col-md-2'>
+                <button type="button" class="btn btn-primary btn-md btn-block">11:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">11:30</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">12:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">12:30</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">13:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">13:30</button>
+            </div>
+            <div class='col-md-2'>
+                <button type="button" class="btn btn-primary btn-md btn-block">14:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">14:30</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">15:00</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">15:30</button>
+            </div>
         </div>
     </div>
 </div>

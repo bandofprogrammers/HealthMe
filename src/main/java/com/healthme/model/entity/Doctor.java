@@ -3,6 +3,8 @@ package com.healthme.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthme.model.User;
 
+import com.healthme.model.entity.doctorsCalendar.WorkCalendar;
+import com.healthme.model.entity.doctorsCalendar.WorkDay;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.pl.PESEL;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="doctors")
+@Table(name = "doctors")
 public class Doctor implements User {
 
     @Id
@@ -52,7 +54,7 @@ public class Doctor implements User {
     @OneToOne
     private WorkCalendar workCalendar;
 
-    @OneToMany(mappedBy = "doctor",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private Set<Prescription> prescriptions;
 
