@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:insert="includes/header::header">
+    <title>Create prescription</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>Rate doctor</p>
+            <form method="post" th:object="${doctorRating}" action="/patient/rateDoctor">
+                <label for="rate">Notes</label>
+                    <div class="form-group">
+                        <textarea class="form-control" type="text" th:field="*{notes}"
+                                  id="notes" placeholder="In my opinion..."
+                                  rows="10" cols="70">
+                        </textarea>
+                    </div>
+                <div class="form-group">
+                    <label for="rate">Rate</label>
+                    <select class="form-control" placeholder="Select rate" type="text" th:field="*{rate}"
+                            id="rate">
+                        <th:block th:each="rate:${rate}">
+                            <option th:value="${rate}" th:text="${rate}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>
+                </div>
+                <button class="btn btn-md btn-primary btn-block" type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

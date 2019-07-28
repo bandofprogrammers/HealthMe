@@ -11,4 +11,6 @@ public interface DoctorSpecializationRepository extends JpaRepository<DoctorSpec
 
     @Query("SELECT d FROM DoctorSpecialization d WHERE d.name=:name")
     DoctorSpecialization findByName(@Param("name") String name);
+
+
 }

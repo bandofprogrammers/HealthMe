@@ -10,7 +10,34 @@
     <div th:insert="includes/navBar::nav_bar"></div>
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
-            <p>This view should contain visits list!</p>
+            <p>My visits</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Doctor</th>
+                    <th>Specialization</th>
+                    <th>Time</th>
+                    <th>Doctor's phone number</th>
+                    <th>Recomendations</th>
+                    <th>Description</th>
+                    <th>Rate doctor</th>
+                 </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="visit:${visits}">
+                    <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
+                    <td th:text="${visit.Doctor.doctorSpecializationList}"></td>
+                    <td th:text="${visit.localDateTime}"></td>
+                    <td th:text="${visit.Doctor.phoneNumber}"></td>
+                    <td th:text="${visit.recomendations}"></td>
+                    <td th:text="${visit.visitDescription}"></td>
+                    <td>
+                        <a th:href="@{'/patient/rateDoctor/'+${visit.Doctor.email}}">rate</a>
+                    </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
