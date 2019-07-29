@@ -7,6 +7,7 @@ import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.repository.WorkHourRepository;
+import com.healthme.service.calendar.WorkCalendarService;
 import com.healthme.service.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,9 @@ public class PatientController {
     private DoctorRepository doctorRepository;
 
     @Autowired
+    private WorkCalendarService workCalendarService;
+
+    @Autowired
     private WorkHourRepository workHourRepository;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -55,12 +59,10 @@ public class PatientController {
         return patientService.getDoctorListBySpecializationId(id).toString();
     }
 
-
     @RequestMapping(value = "/availableterms/{doctorId}/{date}", method = RequestMethod.GET)
-    public String getAvailableTerms(@PathVariable Long doctorId, @PathVariable String date, Model model) {
-        List<WorkHour> workHours = workHourRepository.getAvailableTermsByDoctorIdAndDate(doctorId, date);
-        model.addAttribute("hours", workHours);
-        return "patient/testHours";
+    @ResponseBody
+    public String getAvailableTerms(@PathVariable Long doctorId, @PathVariable String date) {
+        return workCalendarService.getAvailableTermsByDoctorIdAndDate(doctorId,date).toString();
     }
 
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
