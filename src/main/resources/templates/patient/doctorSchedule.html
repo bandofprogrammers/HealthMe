@@ -32,26 +32,10 @@
         </div>
         <div class='col-md-6'>
             <div class='col-md-2'>
-                <button type="button" class="btn btn-primary btn-md btn-block">8:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">8:30</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">9:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">9:30</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">10:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">10:30</button>
-            </div>
-            <div class='col-md-2'>
-                <button type="button" class="btn btn-primary btn-md btn-block">11:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">11:30</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">12:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">12:30</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">13:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">13:30</button>
-            </div>
-            <div class='col-md-2'>
-                <button type="button" class="btn btn-primary btn-md btn-block">14:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">14:30</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">15:00</button>
-                <button type="button" class="btn btn-primary btn-md btn-block">15:30</button>
+                <th:block th:each="key:${availableHours.get('hours').keys()}">
+                    <button type="button" class="btn btn-primary btn-md btn-block"
+                            th:text="${availableHours.get('hours').get(key).get('hour')}"></button>
+                </th:block>
             </div>
         </div>
     </div>

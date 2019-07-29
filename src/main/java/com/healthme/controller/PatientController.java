@@ -3,7 +3,6 @@ package com.healthme.controller;
 import com.healthme.model.UserDto;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
-import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.repository.WorkHourRepository;
@@ -68,6 +67,7 @@ public class PatientController {
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
     public String getDoctorScheduleView(@PathVariable Long id, Model model) {
         model.addAttribute("doctor", doctorRepository.getOne(id));
+        model.addAttribute("availableHours",workCalendarService.getAvailableTermsByDoctorIdAndDate(id, String.valueOf(LocalDate.now())));
         return "patient/doctorSchedule";
     }
 

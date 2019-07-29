@@ -12,8 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,7 +106,7 @@ public class InitialDataLoader implements
         doctor.setDoctorSpecializationList(doctorSpecialization);
 
         WorkDay workDay = new WorkDay();
-        workDay.setDate("2019-07-28");
+        workDay.setDate("2019-07-29");
         workDay.setDoctor(doctor);
         workDay.setWorkCalendar(workCalendar);
         WorkHour workHour = new WorkHour();
