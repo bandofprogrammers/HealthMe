@@ -34,7 +34,8 @@
             <div class='col-md-2'>
                 <th:block th:each="key:${availableHours.get('hours').keys()}">
                     <button type="button" class="btn btn-primary btn-md btn-block"
-                            th:text="${availableHours.get('hours').get(key).get('hour')}"></button>
+                            th:text="${availableHours.get('hours').get(key).get('hour')}"
+                    th:value="${key}"></button>
                 </th:block>
             </div>
         </div>
