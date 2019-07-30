@@ -1,10 +1,13 @@
 package com.healthme.controller;
 
 import com.healthme.model.UserDto;
+import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
+import com.healthme.repository.PatientRepository;
 import com.healthme.repository.WorkHourRepository;
 import com.healthme.service.calendar.WorkCalendarService;
 import com.healthme.service.patient.PatientService;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +42,9 @@ public class PatientController {
 
     @Autowired
     private WorkHourRepository workHourRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
@@ -79,6 +86,16 @@ public class PatientController {
     @RequestMapping(value = "/visits", method = RequestMethod.GET)
     public String getVisitsView(Model model) {
         return "patient/visits";
+    }
+
+
+    @RequestMapping(value="/registerforhour",method = RequestMethod.POST)
+    public String registerForHour(@ModelAttribute("doctorId") Long doctorId, @ModelAttribute("hourId") Long hourId, Principal principal){
+        Patient patient = patientRepository.findByEmail(principal.getName());
+        WorkHour workHour = workHourRepository.getOne(hourId);
+        workHour.setPatient(patient);
+        workHourRepository.save(workHour);
+        return "patient/registeredForHour";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
