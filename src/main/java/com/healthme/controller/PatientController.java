@@ -4,6 +4,7 @@ import com.healthme.model.UserDto;
 import com.healthme.model.entity.DoctorRating;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.Visit;
 import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
@@ -25,8 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/patient")
@@ -94,7 +97,8 @@ public class PatientController {
     @RequestMapping(value = "/visits", method = RequestMethod.GET)
     public String getVisitsView(Model model, Principal principal) {
         Patient patient = patientService.findOneByEmail(principal.getName());
-        model.addAttribute("visits", visitService.findVisitByPatient(patient.getId()));
+        model.addAttribute("pastVisits", visitService.findVisitByPatientAndDateFromPast(patient.getId().toString()));
+        model.addAttribute("visits",visitService.findVisitByPatientAndDateFromFutureOrToday(patient.getId().toString()));
         return "patient/visits";
     }
 
@@ -124,15 +128,19 @@ public class PatientController {
         }
     }
 
-    @RequestMapping(value="/rateDoctor/{doctorEmail}", method = RequestMethod.GET)
+    @RequestMapping(value="/rateDoctor/{doctorEmail}/{visitId}", method = RequestMethod.GET)
     public String rateDoctor(@PathVariable String doctorEmail,
+                             @PathVariable String visitId,
                              Model model,
                              HttpServletResponse response){
 
         model.addAttribute("doctorRating", new DoctorRating());
         Cookie doctorEmailCookie = new Cookie("doctorEmail",doctorEmail);
+        Cookie vistIdCookie = new Cookie("visitId", visitId);
         doctorEmailCookie.setPath("/patient/rateDoctor");
+        vistIdCookie.setPath("/patient/rateDoctor");
         response.addCookie(doctorEmailCookie);
+        response.addCookie(vistIdCookie);
 
         return "/patient/rateDoctor";
     }
@@ -147,9 +155,11 @@ public class PatientController {
         }
         else{
             Cookie doctorEmailCookie = WebUtils.getCookie(request, "doctorEmail");
-            doctorRating.setDoctor(doctorService.findDoctorByEmail(doctorEmailCookie.getValue()));
+            Cookie visitIdCookie = WebUtils.getCookie(request, "visitId");
+            doctorRatingService.saveRating(doctorRating,
+                    visitIdCookie.getValue(),doctorEmailCookie.getValue());
             doctorEmailCookie.setMaxAge(0);
-            doctorRatingService.saveRating(doctorRating);
+            visitIdCookie.setMaxAge(0);
             return "redirect:/patient/visits";
         }
     }

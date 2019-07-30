@@ -5,6 +5,7 @@ import com.healthme.repository.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,5 +29,15 @@ public class VisitService {
 
     public List<Visit> findVisitByPatient(Long id) {
         return visitRepository.findAllByPatientIdOrderByLocalDateTimeDesc(id);
+    }
+
+    public List<Visit> findVisitByPatientAndDateFromPast(String patientId){
+        LocalDateTime now = LocalDateTime.now();
+        return visitRepository.findAllByPatientIdAndPastDate(now.toString(),patientId);
+    }
+
+    public List<Visit> findVisitByPatientAndDateFromFutureOrToday(String patientId) {
+        LocalDateTime now = LocalDateTime.now();
+        return visitRepository.findVisitByPatientAndDateFromFutureOrToday(now.toString(),patientId);
     }
 }
