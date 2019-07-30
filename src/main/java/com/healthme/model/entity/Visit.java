@@ -37,6 +37,9 @@ public class Visit {
 
     private LocalDateTime localDateTime;
 
+    @OneToOne()
+    private DoctorRating doctorRating;
+
     public Visit() {
     }
 
@@ -102,5 +105,13 @@ public class Visit {
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public DoctorRating getDoctorRating() {
+        return doctorRating;
+    }
+
+    public void setDoctorRating(DoctorRating doctorRating) {
+        this.doctorRating = doctorRating;
     }
 }

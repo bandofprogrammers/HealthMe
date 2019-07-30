@@ -10,7 +10,36 @@
     <div th:insert="includes/navBar::nav_bar"></div>
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
-            <p>My visits</p>
+            <p>Upcoming visits</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Doctor</th>
+                    <th>Specialization</th>
+                    <th>Time</th>
+                    <th>Doctor's phone number</th>
+                    <th>Recomendations</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="visit:${visits}">
+                    <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
+                    <td th:text="${visit.Doctor.doctorSpecializationList}"></td>
+                    <td th:text="${visit.localDateTime}"></td>
+                    <td th:text="${visit.Doctor.phoneNumber}"></td>
+                    <td th:text="${visit.recomendations}"></td>
+                    <td th:text="${visit.visitDescription}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-2">
+            <p>Completed visits</p>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -21,10 +50,10 @@
                     <th>Recomendations</th>
                     <th>Description</th>
                     <th>Rate doctor</th>
-                 </tr>
+                </tr>
                 </thead>
                 <tbody>
-                <th:block th:each="visit:${visits}">
+                <th:block th:each="visit:${pastVisits}">
                     <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
                     <td th:text="${visit.Doctor.doctorSpecializationList}"></td>
                     <td th:text="${visit.localDateTime}"></td>
@@ -32,7 +61,7 @@
                     <td th:text="${visit.recomendations}"></td>
                     <td th:text="${visit.visitDescription}"></td>
                     <td>
-                        <a th:href="@{'/patient/rateDoctor/'+${visit.Doctor.email}}">rate</a>
+                        <a th:href="@{'/patient/rateDoctor/'+${visit.Doctor.email}+'/'+${visit.id}}">rate</a>
                     </td>
                     </tr>
                 </th:block>

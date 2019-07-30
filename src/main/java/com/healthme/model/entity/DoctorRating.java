@@ -22,6 +22,11 @@ public class DoctorRating {
     @ManyToOne
     private Doctor doctor;
 
+    private String status;
+
+    @OneToOne()
+    private Visit visit;
+
     public DoctorRating() {
     }
 
@@ -55,5 +60,21 @@ public class DoctorRating {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Visit getVisit() {
+        return visit;
+    }
+
+    public void setVisit(Visit visit) {
+        this.visit = visit;
     }
 }
