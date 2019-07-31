@@ -10,10 +10,28 @@
     <div th:insert="includes/navBar::nav_bar"></div>
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
-            <p>This view should contain visits list!</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Hour</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="workHour:${workHours}">
+                    <tr>
+                        <td th:text="${workHour.doctor.lastName}"></td>
+                        <td th:text="${workHour.workDay.date}"></td>
+                        <td th:text="${workHour.hour}"></td>
+                        <td></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
 </body>
 </html>

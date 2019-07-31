@@ -68,13 +68,13 @@ public class PatientController {
     @RequestMapping(value = "/availableterms/{doctorId}/{date}", method = RequestMethod.GET)
     @ResponseBody
     public String getAvailableTerms(@PathVariable Long doctorId, @PathVariable String date) {
-        return workCalendarService.getAvailableTermsByDoctorIdAndDate(doctorId,date).toString();
+        return workCalendarService.getAvailableTermsByDoctorIdAndDate(doctorId, date).toString();
     }
 
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
     public String getDoctorScheduleView(@PathVariable Long id, Model model) {
         model.addAttribute("doctor", doctorRepository.getOne(id));
-        model.addAttribute("availableHours",workCalendarService.getAvailableTermsByDoctorIdAndDate(id, String.valueOf(LocalDate.now())));
+        model.addAttribute("availableHours", workCalendarService.getAvailableTermsByDoctorIdAndDate(id, String.valueOf(LocalDate.now())));
         return "patient/doctorSchedule";
     }
 
@@ -84,13 +84,14 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/visits", method = RequestMethod.GET)
-    public String getVisitsView(Model model) {
+    public String getVisitsView(Principal principal, Model model) {
+        model.addAttribute("workHours", workHourRepository.findAllByPatientEmail(principal.getName()));
         return "patient/visits";
     }
 
 
-    @RequestMapping(value="/registerforhour",method = RequestMethod.POST)
-    public String registerForHour(@ModelAttribute("doctorId") Long doctorId, @ModelAttribute("hourId") Long hourId, Principal principal){
+    @RequestMapping(value = "/registerforhour", method = RequestMethod.POST)
+    public String registerForHour(@ModelAttribute("doctorId") Long doctorId, @ModelAttribute("hourId") Long hourId, Principal principal) {
         Patient patient = patientRepository.findByEmail(principal.getName());
         WorkHour workHour = workHourRepository.getOne(hourId);
         workHour.setPatient(patient);

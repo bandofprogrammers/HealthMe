@@ -9,11 +9,10 @@ $(document).ready(function(){
             }
         });
     })
-
 })
 
-function showReceived(jsonData){
 
+function showReceived(jsonData){
     Object.keys(jsonData).forEach(function (key) {
         $("#doctorTableBody").append($(`<tr>
                                             <td>${jsonData[key].firstName}</td>
@@ -25,5 +24,4 @@ function showReceived(jsonData){
                                             </td>
                                         </tr>`))
     })
-
 }

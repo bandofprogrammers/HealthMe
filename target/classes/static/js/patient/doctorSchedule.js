@@ -8,7 +8,6 @@ $(document).ready(function(){
         getAvailableHoursForDoctorAndDate($('#doctorId').val(),$('#date_picker').datepicker('getFormattedDate'))
     })
 
-
     $('.register-for-hour-button').click(function(){
         registerForHour($('#doctorId').val(),$(this).val());
     })
@@ -29,25 +28,21 @@ function registerForHour(doctorId, hourId){
            });
 }
 
-function getAvailableHoursForDoctorAndDate(doctorId,date){
 
+function getAvailableHoursForDoctorAndDate(doctorId,date){
     $.ajax({
         'url': window.location.origin + "/patient/availableterms/" + doctorId + "/" + date,
         'dataType': "json",
         'success': function (jsonData) {
-
-            $("#available_hours").empty()
-
+            $("#available_hours").empty();
             var availableHours=jsonData["hours"];
 
             Object.keys(availableHours).forEach(function (key) {
-
-            console.log(availableHours[key])
                 var hourButton = $(`<button type="button" class="btn btn-primary btn-md btn-block register-for-hour-button"
                                      value="${key}">${availableHours[key].hour}</button>`);
-                $("#available_hours").append(hourButton)
 
-                hourButton.click(function(){registerForHour($('#doctorId').val(),$(this).val())})
+                $("#available_hours").append(hourButton);
+                hourButton.click(function(){registerForHour($('#doctorId').val(),$(this).val())});
             })
         }
     })

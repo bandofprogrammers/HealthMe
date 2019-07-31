@@ -12,4 +12,7 @@ import java.util.List;
 public interface WorkHourRepository extends JpaRepository<WorkHour, Long> {
     @Query("SELECT h from WorkHour h WHERE h.doctor.id=:id and h.workDay.date=:date")
     List<WorkHour> getAvailableTermsByDoctorIdAndDate(@Param("id") Long doctorId, @Param("date") String date);
+
+    @Query("SELECT h FROM WorkHour h WHERE h.patient.email=:email")
+    List<WorkHour> findAllByPatientEmail(@Param("email") String email);
 }

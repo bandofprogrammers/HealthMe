@@ -10,16 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-
-    <style>
-        .datepicker-inline {
-            width: 100%;
-        }
-        .datepicker table {
-            width: 100%;
-        }
-    </style>
-
+    <link href="/css/doctorSchedule.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="container-fluid">
@@ -41,7 +32,7 @@
                 <th:block th:each="key:${availableHours.get('hours').keys()}">
                     <button type="button" class="btn btn-primary btn-md btn-block register-for-hour-button"
                             th:text="${availableHours.get('hours').get(key).get('hour')}"
-                    th:value="${key}"></button>
+                            th:value="${key}"></button>
                 </th:block>
             </div>
         </div>
