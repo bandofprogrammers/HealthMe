@@ -10,6 +10,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+
+    <style>
+        .datepicker-inline {
+            width: 100%;
+        }
+        .datepicker table {
+            width: 100%;
+        }
+    </style>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -23,11 +33,11 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class='col-md-6' id="date_selection">
+        <div class='col-md-6'>
             <div id="date_picker"></div>
         </div>
         <div class='col-md-6'>
-            <div class='col-md-2'>
+            <div class='col-md-2' id="available_hours">
                 <th:block th:each="key:${availableHours.get('hours').keys()}">
                     <button type="button" class="btn btn-primary btn-md btn-block register-for-hour-button"
                             th:text="${availableHours.get('hours').get(key).get('hour')}"

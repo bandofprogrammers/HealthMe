@@ -106,7 +106,7 @@ public class InitialDataLoader implements
         doctor.setDoctorSpecializationList(doctorSpecialization);
 
         WorkDay workDay = new WorkDay();
-        workDay.setDate("2019-07-30");
+        workDay.setDate("2019-07-31");
         workDay.setDoctor(doctor);
         workDay.setWorkCalendar(workCalendar);
         WorkHour workHour = new WorkHour();
