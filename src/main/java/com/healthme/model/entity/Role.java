@@ -1,7 +1,5 @@
 package com.healthme.model.entity;
 
-import com.healthme.model.entity.Patient;
-
 import javax.persistence.*;
 import java.util.Collection;
 

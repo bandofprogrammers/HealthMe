@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(patientAuthenticationProvider());
         auth.authenticationProvider(doctorAuthenticationProvider());
         auth.authenticationProvider(adminAuthenticationProvider());
+
     }
 
     @Bean
@@ -86,6 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/patient/register").permitAll()
+                .antMatchers("/console/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/patient/**").hasRole("PATIENT")
                 .antMatchers("/doctor/**").hasRole("DOCTOR")
