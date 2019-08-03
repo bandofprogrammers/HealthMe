@@ -2,6 +2,7 @@ package com.healthme.model.entity;
 
 
 import com.healthme.model.User;
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -43,6 +44,9 @@ public class Patient implements User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
+
+    @OneToMany
+    private List<WorkHour> workHours;
 
 
     public Patient() {
@@ -128,7 +132,6 @@ public class Patient implements User {
         this.roles = roles;
     }
 
-
     public Set<Prescription> getPrescriptionList() {
         return prescriptionList;
     }
@@ -143,5 +146,13 @@ public class Patient implements User {
 
     public void setAddressList(List<Address> addressList) {
         this.addressList = addressList;
+    }
+
+    public List<WorkHour> getWorkHours() {
+        return workHours;
+    }
+
+    public void setWorkHours(List<WorkHour> workHours) {
+        this.workHours = workHours;
     }
 }

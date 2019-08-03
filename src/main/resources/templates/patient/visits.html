@@ -15,6 +15,18 @@
                 <thead>
                 <tr>
                     <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Hour</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="workHour:${workHours}">
+                    <tr>
+                        <td th:text="${workHour.doctor.lastName}"></td>
+                        <td th:text="${workHour.workDay.date}"></td>
+                        <td th:text="${workHour.hour}"></td>
+                        <td></td>
                     <th>Specialization</th>
                     <th>Time</th>
                     <th>Doctor's phone number</th>
@@ -36,7 +48,6 @@
             </table>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
             <p>Completed visits</p>
@@ -70,6 +81,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

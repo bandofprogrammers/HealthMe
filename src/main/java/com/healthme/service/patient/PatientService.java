@@ -1,21 +1,18 @@
 package com.healthme.service.patient;
 
+import com.healthme.model.UserDto;
 import com.healthme.model.entity.Admin;
 import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
-import com.healthme.model.UserDto;
 import com.healthme.repository.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class PatientService {
