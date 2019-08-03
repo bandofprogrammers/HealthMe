@@ -1,10 +1,7 @@
 package com.healthme.service.patient;
 
 import com.healthme.model.UserDto;
-import com.healthme.model.entity.Admin;
-import com.healthme.model.entity.Doctor;
-import com.healthme.model.entity.DoctorSpecialization;
-import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.*;
 import com.healthme.repository.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,9 @@ public class PatientService {
 
     @Autowired
     private DoctorSpecializationRepository doctorSpecializationRepository;
+
+    @Autowired
+    private DoctorRatingRepository doctorRatingRepository;
 
     public Patient registerNewPatientAccount(UserDto accountDto) throws NullPointerException {
 
@@ -79,14 +79,33 @@ public class PatientService {
                     .put("lastName", doctor.getLastName())
                     .put("phoneNumber", doctor.getPhoneNumber())
                     .put("email", doctor.getEmail());
+
+            List<DoctorRating> doctorRatings = doctorRatingRepository.getRatingsForDoctor(doctor);
+            doctorData.put("rating", calculateAverageRating(doctorRatings));
+
             doctorsData.put(String.valueOf(doctor.getId()), doctorData);
         }
 
         return doctorsData;
     }
 
+    private double calculateAverageRating(List<DoctorRating> doctorRatings) {
+
+        if(doctorRatings.size()==0){
+            return 0.0;
+        }
+
+        Double total = 0.0;
+
+        for (DoctorRating doctorRating : doctorRatings) {
+            total += doctorRating.getRate();
+        }
+
+        return total/doctorRatings.size();
+    }
+
     public Patient findOneByEmail(String email) {
 
-        return  patientRepository.findByEmail(email);
+        return patientRepository.findByEmail(email);
     }
 }

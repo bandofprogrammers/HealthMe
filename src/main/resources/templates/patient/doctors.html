@@ -32,7 +32,8 @@
                     <th scope="col" class="col-md-1">First name</th>
                     <th scope="col" class="col-md-1">Last name</th>
                     <th scope="col" class="col-md-2">Phone</th>
-                    <th scope="col" class="col-md-2">Mail</th>
+                    <th scope="col" class="col-md-1">Mail</th>
+                    <th scope="col" class="col-md-1">Rating</th>
                     <th scope="col" class="col-md-1"></th>
                 </tr>
                 </thead>
@@ -43,6 +44,7 @@
                         <td th:text="${internist.lastName}"></td>
                         <td th:text="${internist.phoneNumber}"></td>
                         <td th:text="${internist.email}"></td>
+                        <td></td>
                         <td>
                             <a th:href="@{'/patient/schedule/'+${internist.id}}">Schedule</a>
                         </td>

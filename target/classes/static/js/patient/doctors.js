@@ -19,6 +19,7 @@ function showReceived(jsonData){
                                             <td>${jsonData[key].lastName}</td>
                                             <td>${jsonData[key].phoneNumber}</td>
                                             <td>${jsonData[key].email}</td>
+                                            <td>${jsonData[key].rating}</td>
                                             <td>
                                                 <a href=${window.location.origin}/patient/schedule/${jsonData[key].id}>Schedule</a>
                                             </td>
