@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "visits")
 public class Visit {
 
     @Id
@@ -24,15 +25,20 @@ public class Visit {
     @OneToMany
     private List<Prescription> prescriptionList;
 
+    @Column(columnDefinition = "VARCHAR(500)")
     private String recomendations;
 
-    @NotBlank
+    @NotBlank(message = "{visitVisitDescription.notblank}")
+    @Column(columnDefinition = "VARCHAR(500)")
     private String visitDescription;
 
     @OneToOne
     private SickNote sickNote;
 
     private LocalDateTime localDateTime;
+
+    @OneToOne()
+    private DoctorRating doctorRating;
 
     public Visit() {
     }
@@ -99,5 +105,13 @@ public class Visit {
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public DoctorRating getDoctorRating() {
+        return doctorRating;
+    }
+
+    public void setDoctorRating(DoctorRating doctorRating) {
+        this.doctorRating = doctorRating;
     }
 }

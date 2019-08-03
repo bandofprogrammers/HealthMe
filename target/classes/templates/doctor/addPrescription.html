@@ -14,8 +14,9 @@
             <form method="post" th:object="${prescription}" action="/doctor/addPrescription">
                 <div class="form-group">
                     <label class="sr-only" for="prescribedItems">Medicines</label>
-                    <input class="form-control" placeholder="Enter medicines" type="text" th:field="*{prescribedItems}"
-                           id="prescribedItems"/>
+                    <textarea class="form-control" placeholder="Enter medicines" th:field="*{prescribedItems}"
+                              id="prescribedItems" rows="10" cols="70">
+                    </textarea>
                 </div>
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
                     <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>

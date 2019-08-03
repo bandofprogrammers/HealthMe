@@ -84,4 +84,9 @@ public class PatientService {
 
         return doctorsData;
     }
+
+    public Patient findOneByEmail(String email) {
+
+        return  patientRepository.findByEmail(email);
+    }
 }

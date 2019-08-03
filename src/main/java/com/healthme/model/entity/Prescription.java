@@ -23,7 +23,7 @@ public class Prescription {
 
     private LocalDate expiredDate;
 
-    @NotBlank(message = "Required at least one item")
+    @NotBlank(message = "{prescriptionPrescripedItems.notblank}")
     private String prescribedItems;
 
     public Prescription() {

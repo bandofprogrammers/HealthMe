@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:insert="includes/header::header">
+    <title>Create sick note</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>Add sick note</p>
+            <form method="post" th:object="${sickNote}" action="/doctor/addSickNote">
+                <div class="form-group">
+                    <label for="codes">Codes</label>
+                    <select class="form-control" th:field="*{codes}"
+                            id="codes">
+                        <th:block th:each="codes:${codes}">
+                            <option th:value="${codes}" th:text="${codes}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label  for="daysInHospital">Days in hospital</label>
+                    <input class="form-control" type="number" th:field="*{daysInHospital}"
+                           id="daysInHospital"/>
+                </div>
+                <div class="form-group">
+                    <label for="inabilityToWorkFrom">Inability to work from</label>
+                    <input class="form-control" type="date" th:field="*{inabilityToWorkFrom}"
+                           id="inabilityToWorkFrom"/>
+                </div>
+                <div class="form-group">
+                    <label for="inabilityToWorkTo">Inability to work to</label>
+                    <input class="form-control" type="date" th:field="*{inabilityToWorkTo}"
+                           id="inabilityToWorkTo"/>
+                </div>
+                <div class="form-group">
+                    <label for="insuredIn">Insured in</label>
+                    <input class="form-control" type="number" min="1" max="4" th:field="*{insuredIn}"
+                           id="insuredIn"/>
+                </div>
+                <div class="form-group">
+                    <label for="kinshipCode">Kinship code</label>
+                    <input class="form-control" type="number" min="1" max="3" th:field="*{kinshipCode}"
+                           id="kinshipCode"/>
+                </div>
+                <div class="form-group">
+                    <label for="medicalIndications">medical indications</label>
+                    <input class="form-control" type="number" min="1" max="2" th:field="*{medicalIndications}"
+                           id="medicalIndications"/>
+                </div>
+                <div class="form-group">
+                    <label for="statisticalNumberOfDisease">Statistical number of disease</label>
+                    <input class="form-control" type="number" th:field="*{statisticalNumberOfDisease}"
+                           id="statisticalNumberOfDisease"/>
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#lists.sort(#fields.errors('*'))}" th:text="${err}"></p>
+                </div>
+                <button class="btn btn-md btn-primary btn-block" type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

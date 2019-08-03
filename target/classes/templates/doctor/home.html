@@ -21,23 +21,29 @@
                     <th>Phone number</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <th:block th:each="visit:${visits}">
                     <tr>
-                        <td th:text="${visit.Patient.firstName}"></td>
+                        <td th:text="${visit.Patient.firstName} + ' ' + ${visit.Patient.lastName}"></td>
                         <td th:text="${visit.localDateTime}"></td>
                         <td th:text="${visit.Patient.gender}"></td>
                         <td th:text="${visit.Patient.pesel}"></td>
                         <td th:text="${visit.Patient.phoneNumber}"></td>
                         <td>
+                            <a th:href="@{'/doctor/fillVisitFields/'+${visit.id}}">
+                                Edit <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        </td>
+                        <td>
                             <a th:href="@{'/doctor/addPrescription/'+${visit.Patient.email}}">
                             Presc. <span class="glyphicon glyphicon-plus"></span></a>
                         </td>
                         <td>
-                            <a th:href="@{'/doctor/fillVisitFields/'+${visit.id}}">
-                               Edit <span class="glyphicon glyphicon-edit"></span>
+                            <a th:href="@{'/doctor/addSickNote/'+${visit.Patient.email}+'/'+${visit.id}}">
+                                sick note <span class="glyphicon glyphicon-plus"></span>
                             </a>
                         </td>
                     </tr>
