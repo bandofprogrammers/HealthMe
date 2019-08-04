@@ -129,10 +129,4 @@ public class PatientService {
     public List<WorkHour> findAllWorkHoursForWhichRegisteredByEmail(String email) {
         return workHourRepository.findAllByPatientEmail(email);
     }
-
-    public void cancelVisitByHourId(Long id) {
-        WorkHour hourToBeCanceled = workHourRepository.getOne(id);
-        hourToBeCanceled.setPatient(null);
-        workHourRepository.save(hourToBeCanceled);
-    }
 }

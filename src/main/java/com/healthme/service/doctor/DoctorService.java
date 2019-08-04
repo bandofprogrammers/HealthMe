@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 public class DoctorService {
 
+
     private final VisitRepository visitRepository;
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
