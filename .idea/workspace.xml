@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b33db3c8-6092-4e08-b063-ca19f7fee490" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/service/doctor/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/service/doctor/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/service/doctorSpecialization/DoctorSpecializationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/service/doctorSpecialization/DoctorSpecializationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/service/patient/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/service/patient/PatientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/patient/doctorSchedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/patient/doctorSchedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/patient/registeredForHour.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/patient/registeredForHour.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/patient/visits.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/patient/visits.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/patient/doctorSchedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/patient/doctorSchedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/patient/registeredForHour.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/patient/registeredForHour.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/patient/visits.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/patient/visits.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
+            <state relative-caret-position="447">
+              <caret line="106" column="26" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -33,39 +40,55 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/doctor/DoctorService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/registered.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-              <folding>
-                <element signature="e#1586#1587#0" expanded="true" />
-                <element signature="e#1607#1608#0" expanded="true" />
-              </folding>
+            <state>
+              <caret selection-end-line="17" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/doctorSpecialization/DoctorSpecializationService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Visit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#271#272#0" expanded="true" />
-                <element signature="e#292#293#0" expanded="true" />
-                <element signature="e#626#627#0" expanded="true" />
-                <element signature="e#692#693#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-213">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/UserController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="-108">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/visits.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/doctorSchedule.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/doctors.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="93" />
             </state>
           </provider>
         </entry>
@@ -73,11 +96,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/patient/PatientService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="104" column="67" selection-start-line="104" selection-start-column="67" selection-end-line="104" selection-end-column="67" />
+            <state relative-caret-position="222">
+              <caret line="94" column="44" lean-forward="true" selection-start-line="94" selection-start-column="44" selection-end-line="94" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Doctor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-45">
+              <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -128,27 +160,27 @@
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/WorkHour.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/WorkDay.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Doctor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkCalendar.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/repository/WorkDayRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/controller/WorkCalendarController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/patient/testHours.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkHour.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/calendar/WorkCalendarService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/patient/registeredForHour.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/patient/doctorSchedule.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/patient/doctors.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/editDoctor.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/doctorSchedule.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/patient/doctorSchedule.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Patient.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/patient/visits.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/repository/WorkHourRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/patient/PatientService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/doctorSpecialization/DoctorSpecializationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/doctor/DoctorService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/patient/visits.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/patient/doctorSchedule.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/patient/registeredForHour.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/healthme/service/patient/PatientService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java" />
       </list>
     </option>
@@ -541,7 +573,7 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28112894" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28112894" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -570,17 +602,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/UserDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1017">
-          <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2172#2173#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/admin/AdminService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -777,20 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/registeredForHour.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/registered.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/config/InitialDataLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -805,13 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/patient/doctorSchedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
@@ -836,34 +836,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Doctor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/prescriptions.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/doctors.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="55" selection-start-line="55" selection-end-line="55" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -880,37 +856,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Patient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
-          <folding>
-            <element signature="e#3466#3467#0" expanded="true" />
-            <element signature="e#3498#3499#0" expanded="true" />
-            <element signature="e#3556#3557#0" expanded="true" />
-            <element signature="e#3598#3599#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/doctorSchedule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="18" column="46" lean-forward="true" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/doctorList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="44" column="20" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="44" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/visits.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -921,29 +870,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/DoctorController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/doctor/DoctorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-331">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        <state relative-caret-position="90">
+          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/patient/PatientService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="104" column="67" selection-start-line="104" selection-start-column="67" selection-end-line="104" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1586#1587#0" expanded="true" />
+            <element signature="e#1607#1608#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -962,21 +895,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/doctor/DoctorService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/DoctorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+        <state relative-caret-position="-1016">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
           <folding>
-            <element signature="e#1586#1587#0" expanded="true" />
-            <element signature="e#1607#1608#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/patient/doctorSchedule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Visit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-213">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/doctors.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Patient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1327">
+          <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Doctor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/registered.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/registeredForHour.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/doctorSchedule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/patient/visits.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/service/patient/PatientService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="94" column="44" lean-forward="true" selection-start-line="94" selection-start-column="44" selection-end-line="94" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
+        <state relative-caret-position="447">
+          <caret line="106" column="26" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
