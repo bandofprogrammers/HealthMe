@@ -27,21 +27,27 @@
                         <td th:text="${workHour.workDay.date}"></td>
                         <td th:text="${workHour.hour}"></td>
                         <td></td>
-                    <th>Specialization</th>
-                    <th>Time</th>
-                    <th>Doctor's phone number</th>
-                    <th>Recomendations</th>
-                    <th>Description</th>
-                </tr>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                <th>Specialization</th>
+                <th>Time</th>
+                <th>Doctor's phone number</th>
+                <th>Recomendations</th>
+                <th>Description</th>
                 </thead>
                 <tbody>
                 <th:block th:each="visit:${visits}">
-                    <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
-                    <td th:text="${visit.Doctor.doctorSpecializationList}"></td>
-                    <td th:text="${visit.localDateTime}"></td>
-                    <td th:text="${visit.Doctor.phoneNumber}"></td>
-                    <td th:text="${visit.recomendations}"></td>
-                    <td th:text="${visit.visitDescription}"></td>
+                    <tr>
+                        <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
+                        <td th:text="${visit.Doctor.doctorSpecializationList}"></td>
+                        <td th:text="${visit.localDateTime}"></td>
+                        <td th:text="${visit.Doctor.phoneNumber}"></td>
+                        <td th:text="${visit.recomendations}"></td>
+                        <td th:text="${visit.visitDescription}"></td>
                     </tr>
                 </th:block>
                 </tbody>
