@@ -5,17 +5,18 @@ import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.DoctorRating;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
-import com.healthme.model.entity.Visit;
 import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.repository.PatientRepository;
-import com.healthme.service.doctor.DoctorService;
-import com.healthme.service.doctorRating.DoctorRatingService;
 import com.healthme.repository.WorkHourRepository;
 import com.healthme.service.calendar.WorkCalendarService;
+import com.healthme.service.doctor.DoctorService;
+import com.healthme.service.doctorRating.DoctorRatingService;
+import com.healthme.service.doctorSpecialization.DoctorSpecializationService;
 import com.healthme.service.patient.PatientService;
 import com.healthme.service.visit.VisitService;
+import jdk.nashorn.internal.runtime.Specialization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,16 +24,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/patient")
@@ -42,13 +42,6 @@ public class PatientController {
     private PatientService patientService;
 
     @Autowired
-    private DoctorSpecializationRepository doctorSpecializationRepository;
-
-    @Autowired
-    private DoctorRepository doctorRepository;
-
-    @Autowired
-
     private WorkCalendarService workCalendarService;
 
     @Autowired
@@ -61,10 +54,7 @@ public class PatientController {
     private DoctorRatingService doctorRatingService;
 
     @Autowired
-    private WorkHourRepository workHourRepository;
-
-    @Autowired
-    private PatientRepository patientRepository;
+    private DoctorSpecializationService doctorSpecializationService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
@@ -73,9 +63,9 @@ public class PatientController {
 
     @RequestMapping(value = "/doctors", method = RequestMethod.GET)
     public String getDoctorsView(Model model) {
-        model.addAttribute("specializations", doctorSpecializationRepository.findAll());
-        DoctorSpecialization internist = doctorSpecializationRepository.findByName("Internist");
-        model.addAttribute("internists", doctorRepository.findAllBySpecialization(internist));
+        model.addAttribute("specializations", doctorSpecializationService.findAll());
+        DoctorSpecialization internist = doctorSpecializationService.findByName("Internist");
+        model.addAttribute("internists", doctorService.findAllBySpecialization(internist));
         return "patient/doctors";
     }
 
@@ -93,7 +83,7 @@ public class PatientController {
 
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
     public String getDoctorScheduleView(@PathVariable Long id, Model model) {
-        model.addAttribute("doctor", doctorRepository.getOne(id));
+        model.addAttribute("doctor", doctorService.getOneById(id));
         model.addAttribute("availableHours", workCalendarService.getAvailableTermsByDoctorIdAndDate(id, String.valueOf(LocalDate.now())));
         return "patient/doctorSchedule";
     }
@@ -106,19 +96,15 @@ public class PatientController {
     @RequestMapping(value = "/visits", method = RequestMethod.GET)
     public String getVisitsView(Model model, Principal principal) {
         Patient patient = patientService.findOneByEmail(principal.getName());
-        model.addAttribute("workHours", workHourRepository.findAllByPatientEmail(principal.getName()));
+        model.addAttribute("workHours", patientService.findAllWorkHoursForWhichRegisteredByEmail(principal.getName()));
         model.addAttribute("pastVisits", visitService.findVisitByPatientAndDateFromPast(patient.getId().toString()));
-        model.addAttribute("visits",visitService.findVisitByPatientAndDateFromFutureOrToday(patient.getId().toString()));
+        model.addAttribute("visits", visitService.findVisitByPatientAndDateFromFutureOrToday(patient.getId().toString()));
         return "patient/visits";
     }
 
-
     @RequestMapping(value = "/registerforhour", method = RequestMethod.POST)
-    public String registerForHour(@ModelAttribute("doctorId") Long doctorId, @ModelAttribute("hourId") Long hourId, Principal principal) {
-        Patient patient = patientRepository.findByEmail(principal.getName());
-        WorkHour workHour = workHourRepository.getOne(hourId);
-        workHour.setPatient(patient);
-        workHourRepository.save(workHour);
+    public String registerForHour(@ModelAttribute("hourId") Long hourId, Principal principal) {
+        patientService.registerForHour(principal, hourId);
         return "patient/registeredForHour";
     }
 
@@ -148,14 +134,14 @@ public class PatientController {
         }
     }
 
-    @RequestMapping(value="/rateDoctor/{doctorEmail}/{visitId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rateDoctor/{doctorEmail}/{visitId}", method = RequestMethod.GET)
     public String rateDoctor(@PathVariable String doctorEmail,
                              @PathVariable String visitId,
                              Model model,
-                             HttpServletResponse response){
+                             HttpServletResponse response) {
 
         model.addAttribute("doctorRating", new DoctorRating());
-        Cookie doctorEmailCookie = new Cookie("doctorEmail",doctorEmail);
+        Cookie doctorEmailCookie = new Cookie("doctorEmail", doctorEmail);
         Cookie vistIdCookie = new Cookie("visitId", visitId);
         doctorEmailCookie.setPath("/patient/rateDoctor");
         vistIdCookie.setPath("/patient/rateDoctor");
@@ -165,19 +151,18 @@ public class PatientController {
         return "/patient/rateDoctor";
     }
 
-    @RequestMapping(value="/rateDoctor", method = RequestMethod.POST)
+    @RequestMapping(value = "/rateDoctor", method = RequestMethod.POST)
     public String saveRating(@Valid DoctorRating doctorRating,
                              BindingResult bindingResult,
-                             HttpServletRequest request){
+                             HttpServletRequest request) {
 
-        if(bindingResult.hasErrors()){
-            return "redirect:/patient/rateDoctor"+ doctorRating.getId();
-        }
-        else{
+        if (bindingResult.hasErrors()) {
+            return "redirect:/patient/rateDoctor" + doctorRating.getId();
+        } else {
             Cookie doctorEmailCookie = WebUtils.getCookie(request, "doctorEmail");
             Cookie visitIdCookie = WebUtils.getCookie(request, "visitId");
             doctorRatingService.saveRating(doctorRating,
-                    visitIdCookie.getValue(),doctorEmailCookie.getValue());
+                    visitIdCookie.getValue(), doctorEmailCookie.getValue());
             doctorEmailCookie.setMaxAge(0);
             visitIdCookie.setMaxAge(0);
             return "redirect:/patient/visits";
@@ -194,7 +179,6 @@ public class PatientController {
         return registered;
     }
 
-
     @ModelAttribute("genders")
     public List<String> genders() {
         List<String> genders = new ArrayList<>();
@@ -207,7 +191,7 @@ public class PatientController {
     public List<Integer> rate() {
         List<Integer> rate = new ArrayList<>();
 
-        for(int i = 0; i<11; i++){
+        for (int i = 0; i < 11; i++) {
             rate.add(i);
         }
         return rate;

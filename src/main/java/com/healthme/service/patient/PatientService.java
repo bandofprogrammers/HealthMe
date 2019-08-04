@@ -5,12 +5,14 @@ import com.healthme.model.entity.Admin;
 import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,6 +33,9 @@ public class PatientService {
 
     @Autowired
     private DoctorSpecializationRepository doctorSpecializationRepository;
+
+    @Autowired
+    private WorkHourRepository workHourRepository;
 
     public Patient registerNewPatientAccount(UserDto accountDto) throws NullPointerException {
 
@@ -88,5 +93,16 @@ public class PatientService {
     public Patient findOneByEmail(String email) {
 
         return  patientRepository.findByEmail(email);
+    }
+
+    public void registerForHour(Principal principal, Long hourId) {
+        Patient patient = patientRepository.findByEmail(principal.getName());
+        WorkHour workHour = workHourRepository.getOne(hourId);
+        workHour.setPatient(patient);
+        workHourRepository.save(workHour);
+    }
+
+    public List<WorkHour> findAllWorkHoursForWhichRegisteredByEmail(String email) {
+        return workHourRepository.findAllByPatientEmail(email);
     }
 }
