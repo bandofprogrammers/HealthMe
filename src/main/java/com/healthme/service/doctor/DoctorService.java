@@ -1,6 +1,7 @@
 package com.healthme.service.doctor;
 
 import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
 import com.healthme.model.entity.Visit;
 import com.healthme.repository.DoctorRepository;
@@ -39,5 +40,13 @@ public class DoctorService {
 
     public List<Patient> findAllPatientsByDoctorAndVisits(Long doctorId) {
        return patientRepository.findAllPatientsByDoctorAndVisits(doctorId);
+    }
+
+    public Doctor getOneById(Long id) {
+        return doctorRepository.getOne(id);
+    }
+
+    public List<Doctor> findAllBySpecialization(DoctorSpecialization specialization){
+        return doctorRepository.findAllBySpecialization(specialization);
     }
 }
