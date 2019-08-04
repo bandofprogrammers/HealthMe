@@ -17,7 +17,6 @@
     <div th:insert="includes/navBar::nav_bar"></div>
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
-            <p th:text="${'This particular view is dedicated to - ' + doctor.firstName}"></p>
             <input type="hidden" th:value="${doctor.id}" id="doctorId"/>
         </div>
     </div>

@@ -1,22 +1,15 @@
 package com.healthme.controller;
 
 import com.healthme.model.UserDto;
-import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.DoctorRating;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
-import com.healthme.model.entity.doctorsCalendar.WorkHour;
-import com.healthme.repository.DoctorRepository;
-import com.healthme.repository.DoctorSpecializationRepository;
-import com.healthme.repository.PatientRepository;
-import com.healthme.repository.WorkHourRepository;
 import com.healthme.service.calendar.WorkCalendarService;
 import com.healthme.service.doctor.DoctorService;
 import com.healthme.service.doctorRating.DoctorRatingService;
 import com.healthme.service.doctorSpecialization.DoctorSpecializationService;
 import com.healthme.service.patient.PatientService;
 import com.healthme.service.visit.VisitService;
-import jdk.nashorn.internal.runtime.Specialization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -106,6 +99,12 @@ public class PatientController {
     public String registerForHour(@ModelAttribute("hourId") Long hourId, Principal principal) {
         patientService.registerForHour(principal, hourId);
         return "patient/registeredForHour";
+    }
+
+    @RequestMapping(value = "/cancelvisit/{id}", method = RequestMethod.GET)
+    public String cancelVisit(@PathVariable Long id) {
+        patientService.cancelVisitByHourId(id);
+        return "redirect:/patient/visits";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)

@@ -3,7 +3,6 @@ package com.healthme.model.entity.doctorsCalendar;
 import com.healthme.model.entity.Doctor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
