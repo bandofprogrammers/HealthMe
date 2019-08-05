@@ -2,7 +2,6 @@ package com.healthme.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthme.model.User;
-
 import com.healthme.model.entity.doctorsCalendar.WorkCalendar;
 import com.healthme.model.entity.doctorsCalendar.WorkDay;
 import org.hibernate.annotations.Fetch;
@@ -60,6 +59,11 @@ public class Doctor implements User {
     @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private Set<Prescription> prescriptions;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<DoctorRating> doctorRatings;
+
+    private double currentRating;
 
     @NotNull
     @ManyToMany
@@ -206,4 +210,19 @@ public class Doctor implements User {
         this.prescriptions = prescriptions;
     }
 
+    public List<DoctorRating> getDoctorRatings() {
+        return doctorRatings;
+    }
+
+    public void setDoctorRatings(List<DoctorRating> doctorRatings) {
+        this.doctorRatings = doctorRatings;
+    }
+
+    public double getCurrentRating() {
+        return currentRating;
+    }
+
+    public void setCurrentRating(double currentRating) {
+        this.currentRating = currentRating;
+    }
 }

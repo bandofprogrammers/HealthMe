@@ -37,7 +37,7 @@ public class Visit {
 
     private LocalDateTime localDateTime;
 
-    @OneToOne()
+    @OneToOne
     private DoctorRating doctorRating;
 
     public Visit() {

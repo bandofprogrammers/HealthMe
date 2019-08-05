@@ -40,4 +40,12 @@ public class DoctorService {
     public List<Patient> findAllPatientsByDoctorAndVisits(Long doctorId) {
        return patientRepository.findAllPatientsByDoctorAndVisits(doctorId);
     }
+
+    public List<Doctor> findAllBySpecializationInternistWithRating() {
+        return doctorRepository.findAllBySpecInternistWithRating();
+    }
+
+    public void save(Doctor doctor) {
+        doctorRepository.save(doctor);
+    }
 }
