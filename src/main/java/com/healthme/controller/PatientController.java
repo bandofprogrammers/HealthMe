@@ -1,19 +1,17 @@
 package com.healthme.controller;
 
 import com.healthme.model.UserDto;
-import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.DoctorRating;
 import com.healthme.model.entity.DoctorSpecialization;
 import com.healthme.model.entity.Patient;
-import com.healthme.model.entity.Visit;
 import com.healthme.model.entity.doctorsCalendar.WorkHour;
 import com.healthme.repository.DoctorRepository;
 import com.healthme.repository.DoctorSpecializationRepository;
 import com.healthme.repository.PatientRepository;
-import com.healthme.service.doctor.DoctorService;
-import com.healthme.service.doctorRating.DoctorRatingService;
 import com.healthme.repository.WorkHourRepository;
 import com.healthme.service.calendar.WorkCalendarService;
+import com.healthme.service.doctor.DoctorService;
+import com.healthme.service.doctorRating.DoctorRatingService;
 import com.healthme.service.patient.PatientService;
 import com.healthme.service.visit.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +21,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/patient")
@@ -73,9 +70,10 @@ public class PatientController {
 
     @RequestMapping(value = "/doctors", method = RequestMethod.GET)
     public String getDoctorsView(Model model) {
+
         model.addAttribute("specializations", doctorSpecializationRepository.findAll());
         DoctorSpecialization internist = doctorSpecializationRepository.findByName("Internist");
-        model.addAttribute("internists", doctorRepository.findAllBySpecialization(internist));
+        model.addAttribute("internists", doctorService.findAllBySpecializationInternistWithRating());
         return "patient/doctors";
     }
 
@@ -156,11 +154,11 @@ public class PatientController {
 
         model.addAttribute("doctorRating", new DoctorRating());
         Cookie doctorEmailCookie = new Cookie("doctorEmail",doctorEmail);
-        Cookie vistIdCookie = new Cookie("visitId", visitId);
+        Cookie visitIdCookie = new Cookie("visitId",visitId);
         doctorEmailCookie.setPath("/patient/rateDoctor");
-        vistIdCookie.setPath("/patient/rateDoctor");
+        visitIdCookie.setPath("/patient/rateDoctor");
         response.addCookie(doctorEmailCookie);
-        response.addCookie(vistIdCookie);
+        response.addCookie(visitIdCookie);
 
         return "/patient/rateDoctor";
     }
@@ -176,8 +174,7 @@ public class PatientController {
         else{
             Cookie doctorEmailCookie = WebUtils.getCookie(request, "doctorEmail");
             Cookie visitIdCookie = WebUtils.getCookie(request, "visitId");
-            doctorRatingService.saveRating(doctorRating,
-                    visitIdCookie.getValue(),doctorEmailCookie.getValue());
+            doctorRatingService.saveRating(doctorRating,doctorEmailCookie.getValue(),visitIdCookie.getValue());
             doctorEmailCookie.setMaxAge(0);
             visitIdCookie.setMaxAge(0);
             return "redirect:/patient/visits";

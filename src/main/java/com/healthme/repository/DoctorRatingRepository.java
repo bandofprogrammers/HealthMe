@@ -14,4 +14,7 @@ public interface DoctorRatingRepository extends JpaRepository<DoctorRating, Long
 
     @Query("SELECT r FROM DoctorRating r WHERE r.doctor=:doctor")
     List<DoctorRating> getRatingsForDoctor(@Param("doctor") Doctor doctor);
+
+    @Query(value = "SELECT AVG(rate) from doctor_rating where doctor_id=:doctorId",nativeQuery = true)
+    double findAVGRatingByDoctor(@Param("doctorId") Long doctorId);
 }

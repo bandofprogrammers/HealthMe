@@ -1,10 +1,13 @@
 package com.healthme.service.patient;
 
 import com.healthme.model.UserDto;
-import com.healthme.model.entity.*;
+import com.healthme.model.entity.Admin;
+import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.DoctorSpecialization;
+import com.healthme.model.entity.Patient;
 import com.healthme.repository.*;
+import com.healthme.service.doctorRating.DoctorRatingService;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,23 +17,25 @@ import java.util.List;
 @Service
 public class PatientService {
 
-    @Autowired
-    private PatientRepository patientRepository;
 
-    @Autowired
-    private DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
+    private final AdminRepository adminRepository;
+    private final RoleRepository roleRepository;
+    private final DoctorSpecializationRepository doctorSpecializationRepository;
 
-    @Autowired
-    private AdminRepository adminRepository;
+    public PatientService(PatientRepository patientRepository,
+                          DoctorRepository doctorRepository,
+                          AdminRepository adminRepository,
+                          RoleRepository roleRepository,
+                          DoctorSpecializationRepository doctorSpecializationRepository) {
+        this.patientRepository = patientRepository;
+        this.doctorRepository = doctorRepository;
+        this.adminRepository = adminRepository;
+        this.roleRepository = roleRepository;
+        this.doctorSpecializationRepository = doctorSpecializationRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private DoctorSpecializationRepository doctorSpecializationRepository;
-
-    @Autowired
-    private DoctorRatingRepository doctorRatingRepository;
+    }
 
     public Patient registerNewPatientAccount(UserDto accountDto) throws NullPointerException {
 
@@ -78,10 +83,8 @@ public class PatientService {
                     .put("firstName", doctor.getFirstName())
                     .put("lastName", doctor.getLastName())
                     .put("phoneNumber", doctor.getPhoneNumber())
-                    .put("email", doctor.getEmail());
-
-            List<DoctorRating> doctorRatings = doctorRatingRepository.getRatingsForDoctor(doctor);
-            doctorData.put("rating", calculateAverageRating(doctorRatings));
+                    .put("email", doctor.getEmail())
+                    .put("rating", doctor.getCurrentRating());
 
             doctorsData.put(String.valueOf(doctor.getId()), doctorData);
         }
@@ -89,20 +92,6 @@ public class PatientService {
         return doctorsData;
     }
 
-    private double calculateAverageRating(List<DoctorRating> doctorRatings) {
-
-        if(doctorRatings.size()==0){
-            return 0.0;
-        }
-
-        Double total = 0.0;
-
-        for (DoctorRating doctorRating : doctorRatings) {
-            total += doctorRating.getRate();
-        }
-
-        return total/doctorRatings.size();
-    }
 
     public Patient findOneByEmail(String email) {
 

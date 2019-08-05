@@ -22,10 +22,10 @@ public class DoctorRating {
     @ManyToOne
     private Doctor doctor;
 
-    private String status;
-
-    @OneToOne()
+    @OneToOne(mappedBy = "doctorRating")
     private Visit visit;
+
+    private String status;
 
     public DoctorRating() {
     }

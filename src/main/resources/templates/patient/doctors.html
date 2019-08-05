@@ -44,6 +44,7 @@
                         <td th:text="${internist.lastName}"></td>
                         <td th:text="${internist.phoneNumber}"></td>
                         <td th:text="${internist.email}"></td>
+                        <td th:text="${internist.currentRating} == 0.00 ? 'not rated yet' : ${internist.currentRating}"></td>
                         <td></td>
                         <td>
                             <a th:href="@{'/patient/schedule/'+${internist.id}}">Schedule</a>

@@ -23,8 +23,15 @@ public class VisitService {
         visitRepository.save(visit);
     }
 
-    public Optional<Visit> findVisitById(Long id){
-        return visitRepository.findById(id);
+    public Visit findVisitById(Long id){
+
+        Optional<Visit> optVisit = visitRepository.findById(id);
+        Visit visit = new Visit();
+
+        if(optVisit.isPresent()){
+            visit=optVisit.get();
+        }
+        return visit;
     }
 
     public List<Visit> findVisitByPatient(Long id) {
