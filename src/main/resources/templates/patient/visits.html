@@ -31,23 +31,29 @@
                 </th:block>
                 </tbody>
             </table>
-            <table>
+            <table class="table table-striped">
                 <thead>
-                <th>Specialization</th>
-                <th>Time</th>
-                <th>Doctor's phone number</th>
-                <th>Recomendations</th>
-                <th>Description</th>
+                    <th>Specialization</th>
+                    <th>Time</th>
+                    <th>Doctor's phone number</th>
+                    <th>Recomendations</th>
+                    <th>Description</th>
+                    <th></th>
                 </thead>
                 <tbody>
                 <th:block th:each="visit:${visits}">
                     <tr>
                         <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
-                        <td th:text="${visit.Doctor.doctorSpecializationList}"></td>
+                        <td>
+                            <div th:each="spec:${visit.Doctor.doctorSpecializationList}">
+                                <div th:text="${spec.name}"></div>
+                            </div>
+                        </td>
                         <td th:text="${visit.localDateTime}"></td>
                         <td th:text="${visit.Doctor.phoneNumber}"></td>
                         <td th:text="${visit.recomendations}"></td>
                         <td th:text="${visit.visitDescription}"></td>
+                        <td></td>
                     </tr>
                 </th:block>
                 </tbody>
@@ -71,15 +77,20 @@
                 </thead>
                 <tbody>
                 <th:block th:each="visit:${pastVisits}">
-                    <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
-                    <td th:text="${visit.Doctor.doctorSpecializationList}"></td>
-                    <td th:text="${visit.localDateTime}"></td>
-                    <td th:text="${visit.Doctor.phoneNumber}"></td>
-                    <td th:text="${visit.recomendations}"></td>
-                    <td th:text="${visit.visitDescription}"></td>
-                    <td>
-                        <a th:href="@{'/patient/rateDoctor/'+${visit.Doctor.email}+'/'+${visit.id}}">rate</a>
-                    </td>
+                    <tr>
+                        <td th:text="${visit.Doctor.firstName} + ' ' + ${visit.Doctor.lastName}"></td>
+                        <td>
+                            <div th:each="spec:${visit.Doctor.doctorSpecializationList}">
+                                <div th:text="${spec.name}"></div>
+                            </div>
+                        </td>
+                        <td th:text="${visit.localDateTime}"></td>
+                        <td th:text="${visit.Doctor.phoneNumber}"></td>
+                        <td th:text="${visit.recomendations}"></td>
+                        <td th:text="${visit.visitDescription}"></td>
+                        <td>
+                            <a th:href="@{'/patient/rateDoctor/'+${visit.Doctor.email}+'/'+${visit.id}}">rate</a>
+                        </td>
                     </tr>
                 </th:block>
                 </tbody>
