@@ -26,7 +26,11 @@
                         <td th:text="${workHour.doctor.lastName}"></td>
                         <td th:text="${workHour.workDay.date}"></td>
                         <td th:text="${workHour.hour}"></td>
-                        <td></td>
+                        <td>
+                            <a href="#modal_delete" data-toggle="modal" th:data-hour-id="${workHour.id}">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
                     </tr>
                 </th:block>
                 </tbody>
@@ -98,5 +102,20 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to cancel this visit?</p>
+                <form action="/patient/cancelvisit" method="post">
+                    <input type="hidden" name="id" id="id"/>
+                    <button type="submit" class="btn btn-default" value="Yes">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/patient/visits.js}"></script>
 </body>
 </html>
