@@ -1,11 +1,14 @@
 package com.healthme.service.calendar;
 
+import com.healthme.model.entity.Patient;
 import com.healthme.model.entity.doctorsCalendar.WorkHour;
+import com.healthme.repository.PatientRepository;
 import com.healthme.repository.WorkHourRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -13,6 +16,9 @@ public class WorkCalendarService {
 
     @Autowired
     private WorkHourRepository workHourRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
 
     public JSONObject getAvailableTermsByDoctorIdAndDate(Long doctorId, String date) {
 
@@ -31,5 +37,15 @@ public class WorkCalendarService {
         JSONObject timeTable = new JSONObject().put("hours", availableHours);
 
         return timeTable;
+    }
+
+    public void cancelVisitByHourId(Long id, Principal principal) {
+        WorkHour workHour = workHourRepository.getOne(id);
+        Patient patient = patientRepository.findByEmail(principal.getName());
+
+        if (workHour.getPatient().getId() == patient.getId()) {
+            workHour.setPatient(null);
+            workHourRepository.save(workHour);
+        }
     }
 }

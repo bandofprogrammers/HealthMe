@@ -106,7 +106,7 @@ public class PatientController {
         Patient patient = patientService.findOneByEmail(principal.getName());
         model.addAttribute("workHours", workHourRepository.findAllByPatientEmail(principal.getName()));
         model.addAttribute("pastVisits", visitService.findVisitByPatientAndDateFromPast(patient.getId().toString()));
-        model.addAttribute("visits",visitService.findVisitByPatientAndDateFromFutureOrToday(patient.getId().toString()));
+        model.addAttribute("visits", visitService.findVisitByPatientAndDateFromFutureOrToday(patient.getId().toString()));
         return "patient/visits";
     }
 
@@ -118,6 +118,12 @@ public class PatientController {
         workHour.setPatient(patient);
         workHourRepository.save(workHour);
         return "patient/registeredForHour";
+    }
+
+    @RequestMapping(value = "/cancelvisit", method = RequestMethod.POST)
+    public String cancelVisit(@RequestParam("id") Long id, Principal principal) {
+        workCalendarService.cancelVisitByHourId(id, principal);
+        return "redirect:/patient/visits";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -146,15 +152,15 @@ public class PatientController {
         }
     }
 
-    @RequestMapping(value="/rateDoctor/{doctorEmail}/{visitId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rateDoctor/{doctorEmail}/{visitId}", method = RequestMethod.GET)
     public String rateDoctor(@PathVariable String doctorEmail,
                              @PathVariable String visitId,
                              Model model,
-                             HttpServletResponse response){
+                             HttpServletResponse response) {
 
         model.addAttribute("doctorRating", new DoctorRating());
-        Cookie doctorEmailCookie = new Cookie("doctorEmail",doctorEmail);
-        Cookie visitIdCookie = new Cookie("visitId",visitId);
+        Cookie doctorEmailCookie = new Cookie("doctorEmail", doctorEmail);
+        Cookie visitIdCookie = new Cookie("visitId", visitId);
         doctorEmailCookie.setPath("/patient/rateDoctor");
         visitIdCookie.setPath("/patient/rateDoctor");
         response.addCookie(doctorEmailCookie);
@@ -163,18 +169,17 @@ public class PatientController {
         return "/patient/rateDoctor";
     }
 
-    @RequestMapping(value="/rateDoctor", method = RequestMethod.POST)
+    @RequestMapping(value = "/rateDoctor", method = RequestMethod.POST)
     public String saveRating(@Valid DoctorRating doctorRating,
                              BindingResult bindingResult,
-                             HttpServletRequest request){
+                             HttpServletRequest request) {
 
-        if(bindingResult.hasErrors()){
-            return "redirect:/patient/rateDoctor"+ doctorRating.getId();
-        }
-        else{
+        if (bindingResult.hasErrors()) {
+            return "redirect:/patient/rateDoctor" + doctorRating.getId();
+        } else {
             Cookie doctorEmailCookie = WebUtils.getCookie(request, "doctorEmail");
             Cookie visitIdCookie = WebUtils.getCookie(request, "visitId");
-            doctorRatingService.saveRating(doctorRating,doctorEmailCookie.getValue(),visitIdCookie.getValue());
+            doctorRatingService.saveRating(doctorRating, doctorEmailCookie.getValue(), visitIdCookie.getValue());
             doctorEmailCookie.setMaxAge(0);
             visitIdCookie.setMaxAge(0);
             return "redirect:/patient/visits";
@@ -204,7 +209,7 @@ public class PatientController {
     public List<Integer> rate() {
         List<Integer> rate = new ArrayList<>();
 
-        for(int i = 0; i<11; i++){
+        for (int i = 0; i < 11; i++) {
             rate.add(i);
         }
         return rate;
