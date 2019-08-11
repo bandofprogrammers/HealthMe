@@ -54,7 +54,7 @@
                                 <div th:text="${spec.name}"></div>
                             </div>
                         </td>
-                        <td th:text="${visit.localDateTime}"></td>
+                        <td th:text="${#temporals.format(visit.localDateTime,'dd-MM-yyyy HH:mm')}"></td>
                         <td th:text="${visit.Doctor.phoneNumber}"></td>
                         <td th:text="${visit.recomendations}"></td>
                         <td th:text="${visit.visitDescription}"></td>
@@ -89,7 +89,7 @@
                                 <div th:text="${spec.name}"></div>
                             </div>
                         </td>
-                        <td th:text="${visit.localDateTime}"></td>
+                        <td th:text="${#temporals.format(visit.localDateTime,'dd-MM-yyyy HH:mm')}"></td>
                         <td th:text="${visit.Doctor.phoneNumber}"></td>
                         <td th:text="${visit.recomendations}"></td>
                         <td th:text="${visit.visitDescription}"></td>
