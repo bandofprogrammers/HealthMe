@@ -1,5 +1,7 @@
 package com.healthme.model.entity;
 
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -35,7 +37,8 @@ public class Visit {
     @OneToOne
     private SickNote sickNote;
 
-    private LocalDateTime localDateTime;
+    @OneToOne
+    private WorkHour workHour;
 
     @OneToOne
     private DoctorRating doctorRating;
@@ -99,12 +102,12 @@ public class Visit {
         this.sickNote = sickNote;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public WorkHour getWorkHour() {
+        return workHour;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setWorkHour(WorkHour workHour) {
+        this.workHour = workHour;
     }
 
     public DoctorRating getDoctorRating() {
