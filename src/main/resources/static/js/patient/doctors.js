@@ -6,10 +6,12 @@ $(document).ready(function(){
             'success': function (jsonData) {
                 $("#doctorTableBody").empty()
                 showReceived(jsonData)
+
             }
-        });
+        })
     })
-})
+
+});
 
 
 function showReceived(jsonData){
@@ -23,6 +25,7 @@ function showReceived(jsonData){
                                             <td>${jsonData[key].phoneNumber}</td>
                                             <td>${jsonData[key].email}</td>
                                             <td>not rated yet</td>
+
                                             <td>
                                                 <a href=${window.location.origin}/patient/schedule/${jsonData[key].id}>Schedule</a>
                                             </td>
