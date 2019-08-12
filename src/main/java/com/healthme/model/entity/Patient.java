@@ -48,6 +48,9 @@ public class Patient implements User {
     @OneToMany
     private List<WorkHour> workHours;
 
+    @OneToMany
+    private List<Message> messages;
+
 
     public Patient() {
     }
@@ -154,5 +157,13 @@ public class Patient implements User {
 
     public void setWorkHours(List<WorkHour> workHours) {
         this.workHours = workHours;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

@@ -3,12 +3,10 @@ package com.healthme.controller;
 import com.healthme.model.UserDto;
 import com.healthme.model.entity.DoctorRating;
 import com.healthme.model.entity.DoctorSpecialization;
+import com.healthme.model.entity.Message;
 import com.healthme.model.entity.Patient;
 import com.healthme.model.entity.doctorsCalendar.WorkHour;
-import com.healthme.repository.DoctorRepository;
-import com.healthme.repository.DoctorSpecializationRepository;
-import com.healthme.repository.PatientRepository;
-import com.healthme.repository.WorkHourRepository;
+import com.healthme.repository.*;
 import com.healthme.service.calendar.WorkCalendarService;
 import com.healthme.service.doctor.DoctorService;
 import com.healthme.service.doctorRating.DoctorRatingService;
@@ -45,7 +43,9 @@ public class PatientController {
     private DoctorRepository doctorRepository;
 
     @Autowired
+    private MessageRepository messsageRepository;
 
+    @Autowired
     private WorkCalendarService workCalendarService;
 
     @Autowired
@@ -69,11 +69,15 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/doctors", method = RequestMethod.GET)
-    public String getDoctorsView(Model model) {
+    public String getDoctorsView(Model model,Principal principal) {
 
         model.addAttribute("specializations", doctorSpecializationRepository.findAll());
         DoctorSpecialization internist = doctorSpecializationRepository.findByName("Internist");
         model.addAttribute("internists", doctorService.findAllBySpecializationInternistWithRating());
+        Patient patient = patientService.findOneByEmail(principal.getName());
+        Message message = new Message();
+        message.setSenderId(patient.getId());
+        model.addAttribute("message",message);
         return "patient/doctors";
     }
 
@@ -184,6 +188,17 @@ public class PatientController {
             visitIdCookie.setMaxAge(0);
             return "redirect:/patient/visits";
         }
+    }
+
+    @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
+    public String sendMessage(@ModelAttribute("message") Message message) {
+
+        messsageRepository.save(message);
+        Message messageToAdd = messsageRepository.getOne(messsageRepository.getLastInsertedId());
+
+        patientService.addMessage(messageToAdd);
+        doctorService.addMessage(messageToAdd);
+        return "redirect:/patient/doctors";
     }
 
     private Patient createUserAccount(UserDto accountDto) {

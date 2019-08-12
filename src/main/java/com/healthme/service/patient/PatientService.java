@@ -1,16 +1,14 @@
 package com.healthme.service.patient;
 
 import com.healthme.model.UserDto;
-import com.healthme.model.entity.Admin;
-import com.healthme.model.entity.Doctor;
-import com.healthme.model.entity.DoctorSpecialization;
-import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.*;
 import com.healthme.repository.*;
 import com.healthme.service.doctorRating.DoctorRatingService;
 import org.json.JSONObject;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -96,5 +94,11 @@ public class PatientService {
     public Patient findOneByEmail(String email) {
 
         return patientRepository.findByEmail(email);
+    }
+
+    public void addMessage(Message message){
+        Patient patient = patientRepository.getOne(message.getSenderId());
+        patient.getMessages().add(message);
+        patientRepository.save(patient);
     }
 }

@@ -1,6 +1,7 @@
 package com.healthme.service.doctor;
 
 import com.healthme.model.entity.Doctor;
+import com.healthme.model.entity.Message;
 import com.healthme.model.entity.Patient;
 import com.healthme.model.entity.Visit;
 import com.healthme.repository.DoctorRepository;
@@ -46,6 +47,12 @@ public class DoctorService {
     }
 
     public void save(Doctor doctor) {
+        doctorRepository.save(doctor);
+    }
+
+    public void addMessage(Message message){
+        Doctor doctor = doctorRepository.getOne(message.getReceiverId());
+        doctor.getMessages().add(message);
         doctorRepository.save(doctor);
     }
 }

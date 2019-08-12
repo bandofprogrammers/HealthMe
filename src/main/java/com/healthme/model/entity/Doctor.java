@@ -65,6 +65,10 @@ public class Doctor implements User {
 
     private double currentRating;
 
+    @OneToMany
+    private List<Message> messages;
+
+
     @NotNull
     @ManyToMany
     private List<DoctorSpecialization> doctorSpecializationList;
@@ -224,5 +228,12 @@ public class Doctor implements User {
 
     public void setCurrentRating(double currentRating) {
         this.currentRating = currentRating;
+    }
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }
