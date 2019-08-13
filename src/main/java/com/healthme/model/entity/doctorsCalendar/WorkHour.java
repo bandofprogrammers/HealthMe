@@ -3,8 +3,10 @@ package com.healthme.model.entity.doctorsCalendar;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthme.model.entity.Doctor;
 import com.healthme.model.entity.Patient;
+import com.healthme.model.entity.Visit;
 
 import javax.persistence.*;
+import java.sql.Time;
 
 @Entity
 public class WorkHour {
@@ -13,8 +15,8 @@ public class WorkHour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    TODO maybe change format here from string to time
-    private String hour;
+    //    TODO maybe change format here from string to time
+    private Time hour;
 
     @JsonIgnore
     @ManyToOne
@@ -28,6 +30,10 @@ public class WorkHour {
     @OneToOne
     private Doctor doctor;
 
+    @JsonIgnore
+    @OneToOne
+    private Visit visit;
+
     public Long getId() {
         return id;
     }
@@ -36,11 +42,11 @@ public class WorkHour {
         this.id = id;
     }
 
-    public String getHour() {
+    public Time getHour() {
         return hour;
     }
 
-    public void setHour(String hour) {
+    public void setHour(Time hour) {
         this.hour = hour;
     }
 
@@ -68,4 +74,11 @@ public class WorkHour {
         this.doctor = doctor;
     }
 
+    public Visit getVisit() {
+        return visit;
+    }
+
+    public void setVisit(Visit visit) {
+        this.visit = visit;
+    }
 }

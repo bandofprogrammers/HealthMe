@@ -29,17 +29,17 @@ insert into doctors_roles(doctor_id,role_id) values(2,4);
 insert into patients_roles(patient_id,role_id) values(1,3);
 insert into admins_roles(admin_id,role_id) values(1,2);
 
-insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2018-01-13T17:09:42','stay home','visit desc',1,1);
-insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2020-01-13T17:09:42','can go out','visit desc',1,1);
-insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2016-01-13T17:09:42','stay away from people','visit desc',1,1);
-insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2019-08-11T17:18:42','rekomendacje','visit desc',1,1);
+insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2018-01-13','stay home','visit desc',1,1);
+insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2020-01-13','can go out','visit desc',1,1);
+insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2016-01-13','stay away from people','visit desc',1,1);
+insert into visits(local_date_time,recomendations,visit_description,doctor_id,patient_id) VALUES('2019-08-11','rekomendacje','visit desc',1,1);
 
 
 insert into work_day(date,doctor_id,work_calendar_id) VALUES('2019-08-08',1,1);
 insert into work_calendar_days_of_work(work_calendar_id,days_of_work_id) VALUES(1,1);
-insert into work_hour(hour,doctor_id,patient_id,work_day_id) VALUES('8:00',1,1,1);
-insert into work_hour(hour,doctor_id,patient_id,work_day_id) VALUES('9:00',1,1,1);
-insert into work_hour(hour,doctor_id,work_day_id) VALUES('10:00',1,1);
-insert into work_hour(hour,doctor_id,work_day_id) VALUES('11:00',1,1);
+insert into work_hour(hour,doctor_id,patient_id,work_day_id) VALUES('09:30:09',1,1,1);
+insert into work_hour(hour,doctor_id,patient_id,work_day_id) VALUES('22:33:09',1,1,1);
+insert into work_hour(hour,doctor_id,work_day_id) VALUES('19:33:09',1,1);
+insert into work_hour(hour,doctor_id,work_day_id) VALUES('11:00:50',1,1);
 insert into work_day_working_hours(work_day_id,working_hours_id) VALUES(1,1);
 insert into work_day_working_hours(work_day_id,working_hours_id) VALUES(1,2);

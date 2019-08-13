@@ -1,6 +1,7 @@
 package com.healthme.repository;
 
 import com.healthme.model.entity.Visit;
+import com.healthme.model.entity.doctorsCalendar.WorkDay;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +16,6 @@ public interface VisitRepository extends JpaRepository<Visit, Long> {
     List<Visit> findAllVisitByDoctorIdForCurrentDay(@Param("nowOnlyDate") String nowOnlyDate, @Param("doctorId") Long doctorId);
 
     List<Visit> findAllByPatientIdOrderByLocalDateTimeDesc(Long id);
-
 
     @Query(value="select * from visits join doctors on doctors.id=visits.doctor_id where visits.doctor_rating_id is null AND visits.patient_id=:patientId AND visits.local_date_time<:now", nativeQuery = true)
     List<Visit> findAllByPatientIdAndPastDate(@Param("now") String now, @Param("patientId") String patientId);

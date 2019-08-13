@@ -1,5 +1,7 @@
 package com.healthme.model.entity;
 
+import com.healthme.model.entity.doctorsCalendar.WorkHour;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +97,7 @@ public class PatientController {
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
     public String getDoctorScheduleView(@PathVariable Long id, Model model) {
         model.addAttribute("doctor", doctorRepository.getOne(id));
-        model.addAttribute("availableHours", workCalendarService.getAvailableTermsByDoctorIdAndDate(id, String.valueOf(LocalDate.now())));
+        model.addAttribute("availableHours", workCalendarService.getAvailableTermsByDoctorIdAndDate(id, String.valueOf(Date.valueOf(LocalDate.now()))));
         return "patient/doctorSchedule";
     }
 

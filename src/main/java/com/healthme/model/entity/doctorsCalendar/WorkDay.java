@@ -3,6 +3,7 @@ package com.healthme.model.entity.doctorsCalendar;
 import com.healthme.model.entity.Doctor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class WorkDay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String date;
+    private Date date;
 
     @ManyToOne
     private Doctor doctor;
@@ -24,11 +25,11 @@ public class WorkDay {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<WorkHour> workingHours;
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
