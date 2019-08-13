@@ -3,12 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="b33db3c8-6092-4e08-b063-ca19f7fee490" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/controller/PatientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Visit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/Visit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkDay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkHour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/model/entity/doctorsCalendar/WorkHour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/repository/VisitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/repository/VisitRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/repository/WorkHourRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/repository/WorkHourRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/healthme/service/calendar/WorkCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/healthme/service/calendar/WorkCalendarService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/healthme.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/healthme.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/patient/visits.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/patient/visits.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/patient/doctors.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/patient/doctors.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

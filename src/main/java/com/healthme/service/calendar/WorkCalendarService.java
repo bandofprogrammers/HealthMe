@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -24,12 +26,14 @@ public class WorkCalendarService {
 
         JSONObject availableHours = new JSONObject();
 
-        List<WorkHour> workHours = workHourRepository.getAvailableTermsByDoctorIdAndDate(doctorId, date);
+        List<WorkHour> workHours = workHourRepository.getAvailableTermsByDoctorIdAndDate(doctorId, Date.valueOf(date));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
 
         for (WorkHour workHour : workHours) {
             if (workHour.getPatient() == null) {
                 JSONObject singleHour = new JSONObject()
-                        .put("hour", workHour.getHour());
+                        .put("hour", sdf.format(workHour.getHour()));
                 availableHours.put(String.valueOf(workHour.getId()), singleHour);
             }
         }

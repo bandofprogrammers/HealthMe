@@ -37,8 +37,7 @@ public class Visit {
     @OneToOne
     private SickNote sickNote;
 
-    @OneToOne
-    private WorkHour workHour;
+    private LocalDateTime localDateTime;
 
     @OneToOne
     private DoctorRating doctorRating;
@@ -102,12 +101,12 @@ public class Visit {
         this.sickNote = sickNote;
     }
 
-    public WorkHour getWorkHour() {
-        return workHour;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    public void setWorkHour(WorkHour workHour) {
-        this.workHour = workHour;
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 
     public DoctorRating getDoctorRating() {

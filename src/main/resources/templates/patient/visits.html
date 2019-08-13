@@ -25,7 +25,7 @@
                     <tr>
                         <td th:text="${workHour.doctor.lastName}"></td>
                         <td th:text="${workHour.workDay.date}"></td>
-                        <td th:text="${workHour.hour}"></td>
+                        <td th:text="${#dates.format(workHour.hour,'H:mm')}"></td>
                         <td>
                             <a href="#modal_delete" data-toggle="modal" th:data-hour-id="${workHour.id}">
                                 <span class="glyphicon glyphicon-remove"></span>
