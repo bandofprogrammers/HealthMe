@@ -23,9 +23,11 @@
                 <li sec:authorize="hasRole('PATIENT')"><a href="/patient/doctors">Doctors</a></li>
                 <li sec:authorize="hasRole('PATIENT')"><a href="/patient/visits">Visits</a></li>
                 <li sec:authorize="hasRole('PATIENT')"><a href="/patient/prescriptions">Prescriptions</a></li>
+                <li sec:authorize="hasRole('PATIENT')"><a href="/patient/messages">Messages</a></li>
 
                 <!--DOCTOR SPECIFIC-->
                 <li sec:authorize="hasRole('DOCTOR')"><a href="/doctor/myPatients">My patients</a></li>
+                <li sec:authorize="hasRole('DOCTOR')"><a href="/doctor/messages">Messages</a></li>
 
                 <!--GENERAL CONTINUED-->
 

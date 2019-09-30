@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Parameter;
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -100,5 +101,14 @@ public class PatientService {
         Patient patient = patientRepository.getOne(message.getSenderId());
         patient.getMessages().add(message);
         patientRepository.save(patient);
+    }
+
+    public long getPatientId(Principal principal){
+        Patient patient = patientRepository.findByEmail(principal.getName());
+        return patient.getId();
+    }
+
+    public String getPatientClass(Principal principal){
+        return patientRepository.findByEmail(principal.getName()).getClass().getSimpleName();
     }
 }
