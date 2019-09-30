@@ -15,8 +15,14 @@ public class Message {
     @NotNull
     private Long senderId;
 
+    @NotBlank
+    private String senderClass;
+
     @NotNull
     private Long receiverId;
+
+    @NotNull
+    private String receiverClass;
 
     @NotBlank
     private String topic;
@@ -65,5 +71,21 @@ public class Message {
 
     public void setReceiverId(Long receiverId) {
         this.receiverId = receiverId;
+    }
+
+    public String getSenderClass() {
+        return senderClass;
+    }
+
+    public void setSenderClass(String senderClass) {
+        this.senderClass = senderClass;
+    }
+
+    public String getReceiverClass() {
+        return receiverClass;
+    }
+
+    public void setReceiverClass(String receiverClass) {
+        this.receiverClass = receiverClass;
     }
 }

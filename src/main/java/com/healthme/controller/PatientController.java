@@ -10,6 +10,7 @@ import com.healthme.repository.*;
 import com.healthme.service.calendar.WorkCalendarService;
 import com.healthme.service.doctor.DoctorService;
 import com.healthme.service.doctorRating.DoctorRatingService;
+import com.healthme.service.message.MessageService;
 import com.healthme.service.patient.PatientService;
 import com.healthme.service.visit.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,9 @@ public class PatientController {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private MessageService messageService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String getHomeView() {
@@ -194,12 +198,22 @@ public class PatientController {
     @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
     public String sendMessage(@ModelAttribute("message") Message message) {
 
-        messsageRepository.save(message);
-        Message messageToAdd = messsageRepository.getOne(messsageRepository.getLastInsertedId());
 
-        patientService.addMessage(messageToAdd);
-        doctorService.addMessage(messageToAdd);
+
+        messsageRepository.save(messageService.assignSenderReceiverClasses(message));
+//        Message messageToAdd = messsageRepository.getOne(messsageRepository.getLastInsertedId());
+//
+//        patientService.addMessage(messageToAdd);
+//        doctorService.addMessage(messageToAdd);
         return "redirect:/patient/doctors";
+    }
+
+    @RequestMapping(value = "/messages", method = RequestMethod.GET)
+    public String showMessages(Model model, Principal principal){
+
+        List<Message> outgoingList = messsageRepository.findAllBySenderIdAndSenderClass(patientService.getPatientId(principal),patientService.getPatientClass(principal));
+        model.addAttribute("outgoing",outgoingList);
+        return "/patient/messages";
     }
 
     private Patient createUserAccount(UserDto accountDto) {

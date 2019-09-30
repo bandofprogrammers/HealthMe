@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:insert="includes/header::header">
+    <title>Patient Home</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div th:insert="includes/navBar::nav_bar"></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-2">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" class="col-md-1">From</th>
+                    <th scope="col" class="col-md-1">Topic</th>
+                    <th scope="col" class="col-md-2">Content</th>
+                </tr>
+                </thead>
+                <tbody id="messages">
+                <th:block th:each="message:${outgoing}">
+                    <tr>
+                        <td th:text="${message.senderId}"></td>
+                        <td th:text="${message.topic}"></td>
+                        <td th:text="${message.content}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
